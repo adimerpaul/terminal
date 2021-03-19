@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2021 a las 02:04:53
+-- Tiempo de generación: 19-03-2021 a las 02:40:16
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.1
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `terminal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ambientes`
+--
+
+CREATE TABLE `ambientes` (
+  `id` int(11) NOT NULL,
+  `rubros` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `planta` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `tiempo` date NOT NULL,
+  `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(11) NOT NULL,
+  `cliente_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -65,19 +83,18 @@ INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `fechanac`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hambientes`
+-- Estructura de tabla para la tabla `pagos`
 --
 
-CREATE TABLE `hambientes` (
+CREATE TABLE `pagos` (
   `id` int(11) NOT NULL,
-  `rubros` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `planta` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `tiempo` date NOT NULL,
-  `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1,
+  `monto` double(11,2) NOT NULL,
+  `cambio` double(11,2) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ambiente_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `cliente_id` int(11) NOT NULL
+  `mes` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `anio` varchar(20) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -107,18 +124,26 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `tipo`, `fecha`) VALUES
 --
 
 --
+-- Indices de la tabla `ambientes`
+--
+ALTER TABLE `ambientes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `cliente_id` (`cliente_id`);
+
+--
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `hambientes`
+-- Indices de la tabla `pagos`
 --
-ALTER TABLE `hambientes`
+ALTER TABLE `pagos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `cliente_id` (`cliente_id`);
+  ADD KEY `ambiente_id` (`ambiente_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `users`
@@ -131,15 +156,21 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `ambientes`
+--
+ALTER TABLE `ambientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT de la tabla `hambientes`
+-- AUTO_INCREMENT de la tabla `pagos`
 --
-ALTER TABLE `hambientes`
+ALTER TABLE `pagos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -153,11 +184,18 @@ ALTER TABLE `users`
 --
 
 --
--- Filtros para la tabla `hambientes`
+-- Filtros para la tabla `ambientes`
 --
-ALTER TABLE `hambientes`
-  ADD CONSTRAINT `hambientes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `hambientes_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`);
+ALTER TABLE `ambientes`
+  ADD CONSTRAINT `ambientes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `ambientes_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`);
+
+--
+-- Filtros para la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  ADD CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`ambiente_id`) REFERENCES `ambientes` (`id`),
+  ADD CONSTRAINT `pagos_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
