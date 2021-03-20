@@ -181,8 +181,12 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Fecha Nac</th>
                                     <th>Razon</th>
+                                    <th>nit</th>
+                                    <th>Rep. Legal</th>
+                                    <th>Celular</th>
+                                    <th>Nro. contrato</th>
+                                    <th>Direccion</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </tfoot>
