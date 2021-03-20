@@ -19,15 +19,24 @@ class Cliente extends CI_Controller {
         $ci=$this->input->post('ci');
         $nombres=$this->input->post('nombres');
         $apellidos=$this->input->post('apellidos');
-        $fechanac=$this->input->post('fechanac');
+        // $fechanac=$this->input->post('fechanac');
         $razon=$this->input->post('razon');
+        $nit=$this->input->post('nit');
+        $replegal=$this->input->post('replegal');
+        $celular=$this->input->post('celular');
+        $ncontrato=$this->input->post('ncontrato');
+        $direccion=$this->input->post('direccion');
         $this->db->query("INSERT INTO clientes SET 
-        ci='$ci',
-        nombres='$nombres',
-        apellidos='$apellidos',
-        razon='$razon',
-        fechanac='$fechanac'
-        ");
+                                                ci='$ci',
+                                                nombres='$nombres',
+                                                apellidos='$apellidos',
+                                                razon='$razon',
+                                                nit='$nit',
+                                                replegal='$replegal',
+                                                celular='$celular',
+                                                ncontrato='$ncontrato',
+                                                direccion='$direccion'
+                                                ");
         header('Location: '.base_url().'Cliente');
     }
     public function modificar()
@@ -39,16 +48,25 @@ class Cliente extends CI_Controller {
         $ci=$this->input->post('ci');
         $nombres=$this->input->post('nombres');
         $apellidos=$this->input->post('apellidos');
-        $fechanac=$this->input->post('fechanac');
+        // $fechanac=$this->input->post('fechanac');
         $razon=$this->input->post('razon');
+        $nit=$this->input->post('nit');
+        $replegal=$this->input->post('replegal');
+        $celular=$this->input->post('celular');
+        $ncontrato=$this->input->post('ncontrato');
+        $direccion=$this->input->post('direccion');
         $this->db->query("UPDATE clientes SET
-        ci='$ci',
-        nombres='$nombres',
-        apellidos='$apellidos',
-        razon='$razon',
-        fechanac='$fechanac'
-        WHERE id=$id
-        ");
+                                    ci='$ci',
+                                    nombres='$nombres',
+                                    apellidos='$apellidos',
+                                    razon='$razon',
+                                    nit='$nit',
+                                    replegal='$replegal',
+                                    celular='$celular',
+                                    ncontrato='$ncontrato',
+                                    direccion='$direccion'
+                                    WHERE id=$id
+                                    ");
         header('Location: '.base_url().'Cliente');
     }
     public function borrar($id)

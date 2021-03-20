@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2021 a las 02:40:16
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.1
+-- Tiempo de generación: 20-03-2021 a las 13:55:29
+-- Versión del servidor: 10.1.31-MariaDB
+-- Versión de PHP: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,8 +34,8 @@ CREATE TABLE `ambientes` (
   `planta` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `tiempo` date NOT NULL,
   `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` int(11) NOT NULL DEFAULT '1',
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(11) NOT NULL,
   `cliente_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -51,34 +52,42 @@ CREATE TABLE `clientes` (
   `nombres` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `apellidos` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `razon` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `fechanac` date NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` tinyint(1) NOT NULL DEFAULT 1
+  `nit` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` tinyint(1) NOT NULL DEFAULT '1',
+  `replegal` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `celular` int(11) NOT NULL,
+  `ncontrato` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(80) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `fechanac`, `fecha`, `estado`) VALUES
-(1, '1010', 'JUANITO ALBETITO', 'ALCACHOFA', '1010', '2021-03-03', '2021-03-19 00:18:31', 1),
-(2, '2020', 'PEDRO', 'PICAPIEDRA', '220', '2000-01-01', '2021-03-19 00:25:29', 1),
-(3, '3030', 'VILMA', 'PICAPIERDA', '4040', '2000-01-01', '2021-03-19 00:27:25', 1),
-(6, '5050', 'jose', 'chunco', '5050', '2021-03-09', '2021-03-19 00:43:06', 0),
-(7, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:12', 1),
-(8, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:12', 1),
-(9, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:12', 1),
-(10, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:12', 1),
-(11, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(12, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(13, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(14, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(15, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(16, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(17, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(18, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(19, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1),
-(20, '12321', 'asdas', 'asdsa', '12321', '2021-03-09', '2021-03-19 00:43:20', 1);
+INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `nit`, `fecha`, `estado`, `replegal`, `celular`, `ncontrato`, `direccion`) VALUES
+(1, '1010', 'ALBETO JUAN', 'ALCACHOFA', '1010', 9999, '2021-03-19 00:18:31', 1, 'alex', 898989, '8934/8', 'PANDO'),
+(2, '2020', 'JUAN PEDRO ', 'PICA', '220', 1010, '2021-03-19 00:25:29', 1, 'MARIO LOPEZ', 8903248, '98798/9', 'BOLIVAR #90'),
+(3, '3030', 'VILMA', 'PICAPIERDA', 'ANDINA', 8089, '2021-03-19 00:27:25', 1, 'MARIO LOPEZ', 8782, '98798/9', 'BOLIVAR #90'),
+(6, '5050', 'jose', 'chunco', '5050', 0, '2021-03-19 00:43:06', 0, '', 0, '', ''),
+(7, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
+(8, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
+(9, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
+(10, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
+(11, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(12, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(13, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(14, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(15, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(16, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(17, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(18, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(19, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 1, '', 0, '', ''),
+(20, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:20', 0, '', 0, '', ''),
+(21, '53453453', 'JUAN ', 'Mollo', 'Mari juana', 0, '2021-03-19 15:09:06', 1, '', 0, '', ''),
+(22, '5778877', 'PEDRO ', 'CALLE', 'andina', 0, '2021-03-19 15:21:25', 1, '', 0, '', ''),
+(23, '53453453', 'CARLOS', 'MOLLO', 'NASER', 5050, '2021-03-19 15:27:51', 1, 'CARLOS LOPEZ', 9090, '879/09', 'BOLIVAR #40'),
+(24, '53453453', 'RONALD', 'CALLE MOLLO', 'CRUZ DEL SUR', 9595949, '2021-03-20 12:54:54', 1, 'RAMIRO ALI', 89284, '349/9', 'BOLIVAR #20');
 
 -- --------------------------------------------------------
 
@@ -90,7 +99,7 @@ CREATE TABLE `pagos` (
   `id` int(11) NOT NULL,
   `monto` double(11,2) NOT NULL,
   `cambio` double(11,2) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ambiente_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `mes` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
@@ -109,7 +118,7 @@ CREATE TABLE `users` (
   `email` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `password` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'ADMIN',
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -165,7 +174,7 @@ ALTER TABLE `ambientes`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`

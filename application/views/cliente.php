@@ -53,6 +53,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
+                                                            <label for="nit" class="col-sm-2 col-form-label">Nit</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="nit" name="nit" placeholder="Nit" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
                                                             <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombres" required>
@@ -64,10 +70,34 @@
                                                                 <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos" required>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
+                                                        <!-- <div class="form-group row">
                                                             <label for="fechanac" class="col-sm-2 col-form-label">Fecha nacimiento</label>
                                                             <div class="col-sm-10">
                                                                 <input type="date" class="form-control" id="fechanac" name="fechanac" placeholder="Fecha nacimiento" required>
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="form-group row">
+                                                            <label for="replegal" class="col-sm-2 col-form-label">Rep. Legal</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="replegal" name="replegal" placeholder="Representante Legal" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="celular" class="col-sm-2 col-form-label">Celular</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="ncontrato" class="col-sm-2 col-form-label">Nro Contrato</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="ncontrato" name="ncontrato" placeholder="Nro Contrato" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -94,8 +124,12 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Fecha Nac</th>
                                     <th>Razon</th>
+                                    <th>nit</th>
+                                    <th>Rep. Legal</th>
+                                    <th>Celular</th>
+                                    <th>Nro. contrato</th>
+                                    <th>Direccion</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
@@ -116,17 +150,25 @@
                                     echo "<tr>
                                         <td>$cont</td>
                                         <td>$row->nombres $row->apellidos</td>
-                                        <td>$row->fechanac</td>
                                         <td>$row->razon</td>
+                                        <td>$row->nit</td>
+                                        <td>$row->replegal</td>
+                                        <td>$row->celular</td>
+                                        <td>$row->ncontrato</td>
+                                        <td>$row->direccion</td>
                                         <td>
                                             <div class='btn btn-group'>
                                                 <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
-                                                data-ci='$row->ci'
-                                                data-id='$row->id'
-                                                data-nombres='$row->nombres'
-                                                data-apellidos='$row->apellidos'
-                                                data-fechanac='$row->fechanac'
-                                                data-razon='$row->razon'
+                                                    data-ci='$row->ci'
+                                                    data-id='$row->id'
+                                                    data-nombres='$row->nombres'
+                                                    data-apellidos='$row->apellidos'
+                                                    data-razon='$row->razon'
+                                                    data-nit='$row->nit'
+                                                    data-replegal='$row->replegal'
+                                                    data-celular='$row->celular'
+                                                    data-ncontrato='$row->ncontrato'
+                                                    data-direccion='$row->direccion'
                                                 ><i class='fa fa-edit'></i></button>
                                                 <a type='button' onclick='borrar(event)' href='".base_url()."Cliente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
                                             </div>
@@ -171,6 +213,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
+                                                        <label for="nit2" class="col-sm-2 col-form-label">Nit</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="nit2" name="nit" placeholder="Nit" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
                                                         <label for="nombres2" class="col-sm-2 col-form-label">Nombres</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control" id="nombres2" name="nombres" placeholder="Nombres" required>
@@ -182,12 +230,36 @@
                                                             <input type="text" class="form-control" id="apellidos2" name="apellidos" placeholder="Apellidos" required>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row">
+                                                    <!-- <div class="form-group row">
                                                         <label for="fechanac2" class="col-sm-2 col-form-label">Fecha nacimiento</label>
                                                         <div class="col-sm-10">
                                                             <input type="date" class="form-control" id="fechanac2" name="fechanac" placeholder="Fecha nacimiento" required>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
+                                                    <div class="form-group row">
+                                                            <label for="replegl2" class="col-sm-2 col-form-label">Rep. Legal</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="replegal2" name="replegal" placeholder="Representante Legal" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="celular2" class="col-sm-2 col-form-label">Celular</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="celular2" name="celular" placeholder="Celular" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="ncontrato2" class="col-sm-2 col-form-label">Nro Contrato</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="ncontrato2" name="ncontrato" placeholder="Nro Contrato" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="direccion2" class="col-sm-2 col-form-label">Direccion</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="direccion2" name="direccion" placeholder="Direccion" required>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                                 <!-- /.card-body -->
                                                 <div class="modal-footer justify-content-between">
@@ -223,7 +295,12 @@
             $('#nombres2').val(button.data('nombres'));
             $('#apellidos2').val(button.data('apellidos'));
             $('#razon2').val(button.data('razon'));
-            $('#fechanac2').val(button.data('fechanac'));
+            // $('#fechanac2').val(button.data('fechanac'));
+            $('#nit2').val(button.data('nit'));
+            $('#replegal2').val(button.data('replegal'));
+            $('#celular2').val(button.data('celular'));
+            $('#ncontrato2').val(button.data('ncontrato'));
+            $('#direccion2').val(button.data('direccion'));
             $('#id2').val(button.data('id'));
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
