@@ -16,50 +16,49 @@ class Ambiente extends CI_Controller {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
-        $ci=$this->input->post('ci');
-        $nombres=$this->input->post('nombres');
-        $apellidos=$this->input->post('apellidos');
-        $fechanac=$this->input->post('fechanac');
-        $razon=$this->input->post('razon');
-        $this->db->query("INSERT INTO clientes SET 
-        ci='$ci',
-        nombres='$nombres',
-        apellidos='$apellidos',
-        razon='$razon',
-        fechanac='$fechanac'
+        $rubro=$this->input->post('rubro');
+        $nombre=$this->input->post('nombre');
+        $detalle=$this->input->post('detalle');
+        $mesanine=$this->input->post('mesanine');
+        $user_id=$this->session->id;
+//        $razon=$this->input->post('razon');
+        $this->db->query("INSERT INTO ambientes SET 
+        rubro='$rubro',
+        nombre='$nombre',
+        detalle='$detalle',
+        mesanine='$mesanine',
+        user_id='$user_id'
         ");
-        header('Location: '.base_url().'Cliente');
+        header('Location: '.base_url().'Ambiente');
     }
     public function modificar()
     {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
+        $rubro=$this->input->post('rubro');
         $id=$this->input->post('id');
-        $ci=$this->input->post('ci');
-        $nombres=$this->input->post('nombres');
-        $apellidos=$this->input->post('apellidos');
-        $fechanac=$this->input->post('fechanac');
-        $razon=$this->input->post('razon');
-        $this->db->query("UPDATE clientes SET
-        ci='$ci',
-        nombres='$nombres',
-        apellidos='$apellidos',
-        razon='$razon',
-        fechanac='$fechanac'
+        $nombre=$this->input->post('nombre');
+        $detalle=$this->input->post('detalle');
+        $mesanine=$this->input->post('mesanine');
+        $this->db->query("UPDATE ambientes SET
+        rubro='$rubro',
+        nombre='$nombre',
+        detalle='$detalle',
+        mesanine='$mesanine'
         WHERE id=$id
         ");
-        header('Location: '.base_url().'Cliente');
+        header('Location: '.base_url().'Ambiente');
     }
     public function borrar($id)
     {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
-        $this->db->query("UPDATE clientes SET
+        $this->db->query("UPDATE ambientes SET
         estado='0'
         WHERE id=$id
         ");
-        header('Location: '.base_url().'Cliente');
+        header('Location: '.base_url().'Ambiente');
     }
 }

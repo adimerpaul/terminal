@@ -43,7 +43,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link"  href="" role="button">
-                    ESTACIÓN DE AUTOBUSES ORURO S.R.L.
+                    Terminal
                 </a>
             </li>
             <!--            <li class="nav-item d-none d-sm-inline-block">-->
@@ -267,6 +267,12 @@
                                 <a href="<?=base_url()?>Ambiente" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Ambientes</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?=base_url()?>Cobro" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Cobros</p>
                                 </a>
                             </li>
                             <!--                            <li class="nav-item">-->

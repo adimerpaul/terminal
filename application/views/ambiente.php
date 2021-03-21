@@ -44,7 +44,7 @@
                                                             <label for="rubros" class="col-sm-2 col-form-label">Rubro</label>
                                                             <div class="col-sm-10">
                                                                 <!-- <input type="text" class="form-control" id="rubros" name="rubros" placeholder="Rubro" required> -->
-                                                                <select class="form-control" name="rubro" required="">
+                                                                <select class="form-control" name="rubro" required="" >
                                                                     <option value="">Seleccionar</option>
                                                                     <option value="OFICINAS DE TRANSPORTE">OFICINAS DE TRANSPORTE</option>
                                                                     <option value="BODEGAS Y ALMACENES">BODEGAS Y ALMACENES</option>
@@ -60,21 +60,27 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="planta" class="col-sm-2 col-form-label">Planta</label>
+                                                            <label for="nombre" class="col-sm-2 col-form-label">Razon social o nombre</label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="planta" name="planta" placeholder="Planta" required>
+                                                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="tiempo" class="col-sm-2 col-form-label">Tiempo</label>
+                                                            <label for="detalle" class="col-sm-2 col-form-label">Detalle</label>
                                                             <div class="col-sm-10">
-                                                                <input type="date" class="form-control" id="tiempo" name="tiempo" placeholder="Tiempo" required>
+                                                                <input type="text" class="form-control" id="detalle" name="detalle" placeholder="Detalle" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="rubros" class="col-sm-2 col-form-label">Tipo</label>
+                                                            <label for="mesanine" class="col-sm-2 col-form-label">Mesasnine</label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="rubros" name="rubros" placeholder="Tipo" required>
+<!--                                                                <input type="text" class="form-control" id="mesanine" name="mesanine" placeholder="Mesasnine" required>-->
+<!--                                                                <div class="form-group">-->
+                                                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                                        <input type="checkbox" class="custom-control-input" id="mesanine" name="mesanine">
+                                                                        <label class="custom-control-label" for="mesanine">NO/SI</label>
+                                                                    </div>
+<!--                                                                </div>-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -99,14 +105,11 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+<!--                                    <th>#</th>-->
+                                    <th>Rubro</th>
                                     <th>Nombre</th>
-                                    <th>Razon</th>
-                                    <th>nit</th>
-                                    <th>Rep. Legal</th>
-                                    <th>Celular</th>
-                                    <th>Nro. contrato</th>
-                                    <th>Direccion</th>
+                                    <th>Detalle</th>
+                                    <th>mesanine</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
@@ -119,33 +122,29 @@
                                     }
                                 </script>
                                 <?php
-                                $query=$this->db->query("SELECT * FROM clientes WHERE estado=1");
-                                $cont=0;
+                                $query=$this->db->query("SELECT * FROM ambientes WHERE estado=1");
+//                                $cont=0;
                                 foreach ($query->result() as $row)
                                 {
-                                    $cont++;
+//                                    $cont++;
+                                    if ($row->mesanine=='on'){
+                                        $me="<span class='badge badge-success'>SI</span>";
+                                    }else{
+                                        $me="<span class='badge badge-danger'>NO</span>";
+                                    }
                                     echo "<tr>
-                                        <td>$cont</td>
-                                        <td>$row->nombres $row->apellidos</td>
-                                        <td>$row->razon</td>
-                                        <td>$row->nit</td>
-                                        <td>$row->replegal</td>
-                                        <td>$row->celular</td>
-                                        <td>$row->ncontrato</td>
-                                        <td>$row->direccion</td>
+                                        <td>$row->rubro</td>
+                                        <td>$row->nombre</td>
+                                        <td>$row->detalle</td>
+                                        <td>$me</td>
                                         <td>
                                             <div class='btn btn-group'>
                                                 <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
-                                                    data-ci='$row->ci'
+                                                    data-rubro='$row->rubro'
+                                                    data-nombre='$row->nombre'
+                                                    data-detalle='$row->detalle'
+                                                    data-mesanine='$row->mesanine'
                                                     data-id='$row->id'
-                                                    data-nombres='$row->nombres'
-                                                    data-apellidos='$row->apellidos'
-                                                    data-razon='$row->razon'
-                                                    data-nit='$row->nit'
-                                                    data-replegal='$row->replegal'
-                                                    data-celular='$row->celular'
-                                                    data-ncontrato='$row->ncontrato'
-                                                    data-direccion='$row->direccion'
                                                 ><i class='fa fa-edit'></i></button>
                                                 <a type='button' onclick='borrar(event)' href='".base_url()."Cliente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
                                             </div>
@@ -156,14 +155,10 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Rubro</th>
                                     <th>Nombre</th>
-                                    <th>Razon</th>
-                                    <th>nit</th>
-                                    <th>Rep. Legal</th>
-                                    <th>Celular</th>
-                                    <th>Nro. contrato</th>
-                                    <th>Direccion</th>
+                                    <th>Detalle</th>
+                                    <th>mesanine</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </tfoot>
@@ -178,69 +173,48 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="post" action="<?=base_url()?>Cliente/modificar">
+                                            <form class="form-horizontal" method="post" action="<?=base_url()?>Ambiente/modificar">
                                                 <div class="card-body">
                                                     <div class="form-group row">
-                                                        <label for="ci2" class="col-sm-2 col-form-label">Carnet de identidad</label>
+                                                        <label for="rubro2" class="col-sm-2 col-form-label">Rubro</label>
                                                         <div class="col-sm-10">
                                                             <input type="hidden" id="id2" name="id">
-                                                            <input type="text" class="form-control" id="ci2" name="ci" placeholder="Carnet de identidad" required>
+                                                            <select class="form-control" name="rubro" required=""  id="rubro2">
+                                                                <option value="">Seleccionar</option>
+                                                                <option value="OFICINAS DE TRANSPORTE">OFICINAS DE TRANSPORTE</option>
+                                                                <option value="BODEGAS Y ALMACENES">BODEGAS Y ALMACENES</option>
+                                                                <option value="KIOSKOS">KIOSKOS</option>
+                                                                <option value="PLANTA BAJA">PLANTA BAJA</option>
+                                                                <option value="PLANTA ALTA COMERCIAL">PLANTA ALTA COMERCIAL</option>
+                                                                <option value="CAJEROS AUTOMATICOS">CAJEROS AUTOMATICOS</option>
+                                                                <option value="ESTIVADORES">ESTIVADORES</option>
+                                                                <option value="COMERCIANTES">COMERCIANTES</option>
+                                                                <option value="PERNOCTE Y PARQUEO">PERNOCTE Y PARQUEO</option>
+                                                                <option value="ENERGIA ELECTRICA">ENERGIA ELECTRICA</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="razon2" class="col-sm-2 col-form-label">Razon Social</label>
+                                                        <label for="nombre2" class="col-sm-2 col-form-label">Razon social o nombre</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="razon2" name="razon" placeholder="Razon Social" required>
+                                                            <input type="text" class="form-control" id="nombre2" name="nombre" placeholder="Nombre" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="nit2" class="col-sm-2 col-form-label">Nit</label>
+                                                        <label for="detalle2" class="col-sm-2 col-form-label">Detalle</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="nit2" name="nit" placeholder="Nit" required>
+                                                            <input type="text" class="form-control" id="detalle2" name="detalle" placeholder="Detalle" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="nombres2" class="col-sm-2 col-form-label">Nombres</label>
+                                                        <label for="mesanine2" class="col-sm-2 col-form-label">Mesasnine</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="nombres2" name="nombres" placeholder="Nombres" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="apellidos2" class="col-sm-2 col-form-label">Apellidos</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="apellidos2" name="apellidos" placeholder="Apellidos" required>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="form-group row">
-                                                        <label for="fechanac2" class="col-sm-2 col-form-label">Fecha nacimiento</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="date" class="form-control" id="fechanac2" name="fechanac" placeholder="Fecha nacimiento" required>
-                                                        </div>
-                                                    </div> -->
-                                                    <div class="form-group row">
-                                                            <label for="replegl2" class="col-sm-2 col-form-label">Rep. Legal</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="replegal2" name="replegal" placeholder="Representante Legal" required>
+                                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                                <input type="checkbox" class="custom-control-input" id="mesanine2" name="mesanine">
+                                                                <label class="custom-control-label" for="mesanine2">NO/SI</label>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="celular2" class="col-sm-2 col-form-label">Celular</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="celular2" name="celular" placeholder="Celular" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label for="ncontrato2" class="col-sm-2 col-form-label">Nro Contrato</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="ncontrato2" name="ncontrato" placeholder="Nro Contrato" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label for="direccion2" class="col-sm-2 col-form-label">Direccion</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="direccion2" name="direccion" placeholder="Direccion" required>
-                                                            </div>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <!-- /.card-body -->
                                                 <div class="modal-footer justify-content-between">
@@ -270,18 +244,24 @@
 <script>
     window.onload=function (){
         $('#exampleModal').on('show.bs.modal', function (event) {
+            // console.log('a');
             var button = $(event.relatedTarget) // Button that triggered the modal
-            // console.log(button.data('ci')); // Extract info from data-* attributes
-            $('#ci2').val(button.data('ci'));
-            $('#nombres2').val(button.data('nombres'));
-            $('#apellidos2').val(button.data('apellidos'));
-            $('#razon2').val(button.data('razon'));
+            console.log(button.data('mesanine')); // Extract info from data-* attributes
+            $('#rubro2').val(button.data('rubro'));
+            $('#nombre2').val(button.data('nombre'));
+            $('#detalle2').val(button.data('detalle'));
+            if (button.data('mesanine')=='on'){
+                $('#mesanine2').attr('checked', true);
+            }else {
+                $('#mesanine2').attr('checked', false);
+            }
+
             // $('#fechanac2').val(button.data('fechanac'));
-            $('#nit2').val(button.data('nit'));
-            $('#replegal2').val(button.data('replegal'));
-            $('#celular2').val(button.data('celular'));
-            $('#ncontrato2').val(button.data('ncontrato'));
-            $('#direccion2').val(button.data('direccion'));
+            // $('#nit2').val(button.data('nit'));
+            // $('#replegal2').val(button.data('replegal'));
+            // $('#celular2').val(button.data('celular'));
+            // $('#ncontrato2').val(button.data('ncontrato'));
+            // $('#direccion2').val(button.data('direccion'));
             $('#id2').val(button.data('id'));
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
