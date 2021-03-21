@@ -16,19 +16,17 @@ class User extends CI_Controller {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
-        $ci=$this->input->post('ci');
-        $nombres=$this->input->post('nombres');
-        $apellidos=$this->input->post('apellidos');
-        $fechanac=$this->input->post('fechanac');
-        $razon=$this->input->post('razon');
-        $this->db->query("INSERT INTO clientes SET 
-        ci='$ci',
-        nombres='$nombres',
-        apellidos='$apellidos',
-        razon='$razon',
-        fechanac='$fechanac'
+        $name=$this->input->post('name');
+        $email=$this->input->post('email');
+        $password=md5($this->input->post('password'));
+        $tipo=$this->input->post('tipo');
+        $this->db->query("INSERT INTO users SET 
+        name='$name',
+        email='$email',
+        password='$password',
+        tipo='$tipo'
         ");
-        header('Location: '.base_url().'Cliente');
+        header('Location: '.base_url().'User');
     }
     public function modificar()
     {
@@ -36,30 +34,25 @@ class User extends CI_Controller {
             header('Location: '.base_url());
         }
         $id=$this->input->post('id');
-        $ci=$this->input->post('ci');
-        $nombres=$this->input->post('nombres');
-        $apellidos=$this->input->post('apellidos');
-        $fechanac=$this->input->post('fechanac');
-        $razon=$this->input->post('razon');
-        $this->db->query("UPDATE clientes SET
-        ci='$ci',
-        nombres='$nombres',
-        apellidos='$apellidos',
-        razon='$razon',
-        fechanac='$fechanac'
+        $name=$this->input->post('name');
+        $email=$this->input->post('email');
+        $password=md5($this->input->post('password'));
+        $tipo=$this->input->post('tipo');
+        $this->db->query("UPDATE users SET
+        name='$name',
+        email='$email',
+        password='$password',
+        tipo='$tipo'
         WHERE id=$id
         ");
-        header('Location: '.base_url().'Cliente');
+        header('Location: '.base_url().'User');
     }
     public function borrar($id)
     {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
-        $this->db->query("UPDATE clientes SET
-        estado='0'
-        WHERE id=$id
-        ");
-        header('Location: '.base_url().'Cliente');
+        $this->db->query("DELETE FROM users WHERE id=$id");
+        header('Location: '.base_url().'User');
     }
 }
