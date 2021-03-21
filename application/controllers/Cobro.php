@@ -16,28 +16,29 @@ class Cobro extends CI_Controller {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
-        $ci=$this->input->post('ci');
-        $nombres=$this->input->post('nombres');
-        $apellidos=$this->input->post('apellidos');
-        // $fechanac=$this->input->post('fechanac');
-        $razon=$this->input->post('razon');
-        $nit=$this->input->post('nit');
-        $replegal=$this->input->post('replegal');
-        $celular=$this->input->post('celular');
-        $ncontrato=$this->input->post('ncontrato');
-        $direccion=$this->input->post('direccion');
-        $this->db->query("INSERT INTO clientes SET
-                                                ci='$ci',
-                                                nombres='$nombres',
-                                                apellidos='$apellidos',
-                                                razon='$razon',
-                                                nit='$nit',
-                                                replegal='$replegal',
-                                                celular='$celular',
-                                                ncontrato='$ncontrato',
-                                                direccion='$direccion'
-                                                ");
-        header('Location: '.base_url().'Cliente');
+        var_dump($_POST);
+//        $ci=$this->input->post('ci');
+//        $nombres=$this->input->post('nombres');
+//        $apellidos=$this->input->post('apellidos');
+//        // $fechanac=$this->input->post('fechanac');
+//        $razon=$this->input->post('razon');
+//        $nit=$this->input->post('nit');
+//        $replegal=$this->input->post('replegal');
+//        $celular=$this->input->post('celular');
+//        $ncontrato=$this->input->post('ncontrato');
+//        $direccion=$this->input->post('direccion');
+//        $this->db->query("INSERT INTO clientes SET
+//                                                ci='$ci',
+//                                                nombres='$nombres',
+//                                                apellidos='$apellidos',
+//                                                razon='$razon',
+//                                                nit='$nit',
+//                                                replegal='$replegal',
+//                                                celular='$celular',
+//                                                ncontrato='$ncontrato',
+//                                                direccion='$direccion'
+//                                                ");
+//        header('Location: '.base_url().'Cliente');
     }
     public function modificar()
     {

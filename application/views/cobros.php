@@ -249,40 +249,41 @@
                                     <td><span class="badge bg-success">90%</span></td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td><input type="date" class="form-control" placeholder="Fecha de pago" id="fechapago"  value="<?=date('Y-m-d'); ?>"></td>
-                                    <td>
-                                        <input type="number" class="form-control" placeholder="Bs" id="monto">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" placeholder="Numero F-R" id="fatura">
-                                    </td>
-                                    <td>
-<!--                                        <input type="text" class="form-control" placeholder="Mes">-->
-                                        <select name="mes" id="mes" class="form-control">
-                                            <option value="">Seleccionar..</option>
-                                            <option value="1">ENERO</option>
-                                            <option value="2">FEBRERO</option>
-                                            <option value="3">MARZO</option>
-                                            <option value="4">ABRIL</option>
-                                            <option value="5">MAYO</option>
-                                            <option value="6">JUNIO</option>
-                                            <option value="7">JULIO</option>
-                                            <option value="8">AGOSTO</option>
-                                            <option value="9">SEPTIEMBRE</option>
-                                            <option value="10">OCTUBRE</option>
-                                            <option value="11">NOVIEMBRE</option>
-                                            <option value="12">DICIEMBRE</option>
-                                        </select>
-                                        <?=date('m')?>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control" placeholder="Anio">
-                                    </td>
-                                    <td>
-<!--                                        <input type="text" class="form-control" placeholder="Periodo">-->
-                                        <button class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i></button>
-                                    </td>
+                                    <form action="" method="post" id="formulario">
+                                        <td></td>
+                                        <td><input type="date" class="form-control" placeholder="Fecha de pago" id="fechapago"  value="<?=date('Y-m-d'); ?>" required></td>
+                                        <td>
+                                            <input type="number" class="form-control" placeholder="Bs" id="monto" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Numero F-R" id="factura" required>
+                                        </td>
+                                        <td>
+    <!--                                        <input type="text" class="form-control" placeholder="Mes">-->
+                                            <select name="mes" id="mes" class="form-control" required>
+                                                <option value="">Seleccionar..</option>
+                                                <option value="01" <?=date('m')=='01'?'selected':''?>>ENERO</option>
+                                                <option value="02" <?=date('m')=='02'?'selected':''?>>FEBRERO</option>
+                                                <option value="03" <?=date('m')=='03'?'selected':''?>>MARZO</option>
+                                                <option value="04" <?=date('m')=='04'?'selected':''?>>ABRIL</option>
+                                                <option value="05" <?=date('m')=='05'?'selected':''?>>MAYO</option>
+                                                <option value="06" <?=date('m')=='06'?'selected':''?>>JUNIO</option>
+                                                <option value="07" <?=date('m')=='07'?'selected':''?>>JULIO</option>
+                                                <option value="08" <?=date('m')=='08'?'selected':''?>>AGOSTO</option>
+                                                <option value="09" <?=date('m')=='09'?'selected':''?>>SEPTIEMBRE</option>
+                                                <option value="10" <?=date('m')=='10'?'selected':''?>>OCTUBRE</option>
+                                                <option value="11" <?=date('m')=='11'?'selected':''?>>NOVIEMBRE</option>
+                                                <option value="12" <?=date('m')=='12'?'selected':''?>>DICIEMBRE</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" placeholder="Año" value="<?=date('Y')?>" required>
+                                        </td>
+                                        <td>
+    <!--                                        <input type="text" class="form-control" placeholder="Periodo">-->
+                                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i></button>
+                                        </td>
+                                    </form>
                                 </tr>
                                 </tbody>
                             </table>
@@ -461,7 +462,37 @@
     window.onload=function (){
         moment.locale('es');
         console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
-
+        $('#formulario').submit(function (e){
+            // console.log($('#nombre').val());
+            if ($('#nombre').val()==null){
+                alert('debes seleccionar un ambiente o razon social');
+                return false;
+            }
+            $.ajax({
+                url:'Cobro/crear',
+                data:{
+                    monto:$('#monto').val(),
+                    ambiente_id:$('#nombre').val(),
+                    mes:$('#mes').val(),
+                    anio:$('#anio').val(),
+                    factura:$('#fatura').val(),
+                },
+                type:'post',
+                success:function (e){
+                    console.log(e);
+                    // let datos=JSON.parse(e);
+                    // console.log(datos);
+                    // let d='';
+                    // $('#nombre').html('');
+                    // datos.forEach(r=>{
+                    //     d+='<option value="'+r.id+'">'+r.nombre+' '+r.detalle+'</option>';
+                    // })
+                    // $('#nombre').html(d);
+                }
+            })
+            // e.preventDefault();
+            return false;
+        });
         $('#rubro').change(function (e){
             $.ajax({
               url:'Cobro/nombres',
