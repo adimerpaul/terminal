@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2021 a las 13:55:29
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.3
+-- Tiempo de generación: 22-03-2021 a las 01:29:59
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,15 +29,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ambientes` (
   `id` int(11) NOT NULL,
-  `rubros` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `planta` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `tiempo` date NOT NULL,
-  `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT '1',
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `rubro` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `detalle` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `mesanine` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `user_id` int(11) NOT NULL,
   `cliente_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `ambientes`
+--
+
+INSERT INTO `ambientes` (`id`, `rubro`, `nombre`, `detalle`, `mesanine`, `estado`, `fecha`, `user_id`, `cliente_id`) VALUES
+(2, 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'on', 1, '2021-03-21 15:34:10', 1, 0),
+(3, 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 'OFICINA # 57', '', 1, '2021-03-21 15:34:51', 1, 0),
+(4, 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 55', 'on', 1, '2021-03-21 21:37:09', 1, 0),
+(5, 'KIOSKOS', 'EXPRESO TARIJA', 'OFICINA # 41 y BG 41-62', '', 1, '2021-03-22 00:12:39', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -53,8 +62,8 @@ CREATE TABLE `clientes` (
   `apellidos` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `razon` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `nit` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `estado` tinyint(1) NOT NULL DEFAULT '1',
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
   `replegal` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `celular` int(11) NOT NULL,
   `ncontrato` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
@@ -98,13 +107,33 @@ INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `nit`, `fec
 CREATE TABLE `pagos` (
   `id` int(11) NOT NULL,
   `monto` double(11,2) NOT NULL,
-  `cambio` double(11,2) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `ambiente_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `mes` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `anio` varchar(20) COLLATE utf8_spanish2_ci NOT NULL
+  `mes` int(20) NOT NULL,
+  `anio` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `fechapago` date NOT NULL,
+  `factura` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `periodo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `rubro` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `detalle` varchar(150) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `pagos`
+--
+
+INSERT INTO `pagos` (`id`, `monto`, `fecha`, `ambiente_id`, `user_id`, `mes`, `anio`, `fechapago`, `factura`, `periodo`, `rubro`, `nombre`, `detalle`) VALUES
+(1, 1800.00, '2021-03-21 23:37:45', 2, 1, 3, '2021', '2021-03-22', 'F-123456', 'mar-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56'),
+(2, 4000.00, '2021-03-21 23:37:54', 2, 1, 5, '2021', '2021-03-22', 'F-001', 'may-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56'),
+(3, 1800.00, '2021-03-21 23:38:05', 2, 1, 4, '2021', '2021-03-22', 'F-001', 'abr-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56'),
+(4, 4000.00, '2021-03-21 23:38:27', 3, 1, 8, '2021', '2021-03-22', 'F-123456', 'ago-21', 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 'OFICINA # 57'),
+(5, 1800.00, '2021-03-21 23:38:37', 3, 1, 7, '2021', '2021-03-22', 'F-001', 'jul-21', 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 'OFICINA # 57'),
+(6, 1800.00, '2021-03-22 00:13:33', 5, 1, 3, '2021', '2021-03-22', 'F-123456', 'mar-21', 'KIOSKOS', 'EXPRESO TARIJA', 'OFICINA # 41 y BG 41-62'),
+(7, 4000.00, '2021-03-22 00:13:48', 5, 1, 4, '2021', '2021-03-22', 'F-001', 'abr-21', 'KIOSKOS', 'EXPRESO TARIJA', 'OFICINA # 41 y BG 41-62'),
+(8, 4000.00, '2021-03-22 00:14:25', 5, 1, 5, '2021', '2021-03-22', 'F-123445', 'may-21', 'KIOSKOS', 'EXPRESO TARIJA', 'OFICINA # 41 y BG 41-62'),
+(9, 1000.00, '2021-03-22 00:29:32', 5, 3, 6, '2021', '2021-03-22', 'F-123456785', 'jun-21', 'KIOSKOS', 'EXPRESO TARIJA', 'OFICINA # 41 y BG 41-62');
 
 -- --------------------------------------------------------
 
@@ -118,7 +147,7 @@ CREATE TABLE `users` (
   `email` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `password` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'ADMIN',
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -126,7 +155,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `tipo`, `fecha`) VALUES
-(1, 'admin', 'admin@test.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', '2021-03-18 23:03:49');
+(1, 'admin', 'admin@test.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-18 23:03:49'),
+(2, 'SOLEDAD', 'soledad@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-22 00:16:46'),
+(3, 'juana', 'juana@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'SECRETARIA', '2021-03-22 00:17:28');
 
 --
 -- Índices para tablas volcadas
@@ -168,7 +199,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `ambientes`
 --
 ALTER TABLE `ambientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -180,13 +211,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -196,8 +227,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `ambientes`
 --
 ALTER TABLE `ambientes`
-  ADD CONSTRAINT `ambientes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `ambientes_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`);
+  ADD CONSTRAINT `ambientes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `pagos`

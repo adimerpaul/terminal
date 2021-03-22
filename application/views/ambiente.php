@@ -72,7 +72,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="mesanine" class="col-sm-2 col-form-label">Mesasnine</label>
+                                                            <label for="mesanine" class="col-sm-2 col-form-label">Mesanine</label>
                                                             <div class="col-sm-10">
 <!--                                                                <input type="text" class="form-control" id="mesanine" name="mesanine" placeholder="Mesasnine" required>-->
 <!--                                                                <div class="form-group">-->
@@ -132,6 +132,11 @@
                                     }else{
                                         $me="<span class='badge badge-danger'>NO</span>";
                                     }
+                                    if ($this->session->tipo=='ADMINISTRADOR'){
+                                        $be="<a type='button' onclick='borrar(event)' href='".base_url()."Cliente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
+                                    }else{
+                                        $be="";
+                                    }
                                     echo "<tr>
                                         <td>$row->rubro</td>
                                         <td>$row->nombre</td>
@@ -146,7 +151,7 @@
                                                     data-mesanine='$row->mesanine'
                                                     data-id='$row->id'
                                                 ><i class='fa fa-edit'></i></button>
-                                                <a type='button' onclick='borrar(event)' href='".base_url()."Cliente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
+                                                $be
                                             </div>
                                         </td>
                                     </tr>";
@@ -207,7 +212,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="mesanine2" class="col-sm-2 col-form-label">Mesasnine</label>
+                                                        <label for="mesanine2" class="col-sm-2 col-form-label">Mesanine</label>
                                                         <div class="col-sm-10">
                                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                                                 <input type="checkbox" class="custom-control-input" id="mesanine2" name="mesanine">

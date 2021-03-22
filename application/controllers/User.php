@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 	public function index()
 	{
-	    if (!$this->session->name){
+	    if (!$this->session->name || $this->session->tipo!='ADMINISTRADOR'){
             header('Location: '.base_url());
         }
         $this->load->view('templates/header');

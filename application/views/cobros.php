@@ -131,11 +131,10 @@
                                                 ?>
                                             </select>
                                         </div>
-                                        <label for="nombre" class="col-sm-1 col-form-label"> Razon social o nombre</label>
+                                        <label for="nombre" class="col-sm-3 col-form-label"> Razon social o nombre</label>
                                         <div class="col-sm-4">
                                             <!--                                            <input type="text" class="form-control" id="ci" name="ci" placeholder="Carnet de identidad" required>-->
                                             <select name="nombre" id="nombre" required class="form-control" >
-
                                             </select>
                                         </div>
                                     </div>
@@ -200,58 +199,31 @@
                                 <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Fecha</th>
-                                    <th>Bs</th>
+                                    <th>Bs.</th>
                                     <th>Factura o recibo</th>
-                                    <th>Mes</th>
+                                    <th>Periodo</th>
                                     <th>Año</th>
                                     <th style="width: 40px">Opciones</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Update software</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-danger">55%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Clean database</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-warning">70%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>Cron job running</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-primary">30%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Fix and squish bugs</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar bg-success" style="width: 90%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-success">90%</span></td>
-                                </tr>
+                                <tbody id="contenido">
+<!--                                <tr>-->
+<!--                                    <td>1.</td>-->
+<!--                                    <td>Update software</td>-->
+<!--                                    <td>-->
+<!--                                        <div class="progress progress-xs">-->
+<!--                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                    <td><span class="badge bg-danger">55%</span></td>-->
+<!--                                </tr>-->
+
+                                </tbody>
+                                <tfoot>
                                 <tr>
                                     <form action="" method="post" id="formulario">
                                         <td></td>
-                                        <td><input type="date" class="form-control" placeholder="Fecha de pago" id="fechapago"  value="<?=date('Y-m-d'); ?>" required></td>
+                                        <td><input type="date" class="form-control" placeholder="Fecha de pago" id="fechapago" name="fechapago"  value="<?=date('Y-m-d'); ?>" required></td>
                                         <td>
                                             <input type="number" class="form-control" placeholder="Bs" id="monto" required>
                                         </td>
@@ -259,7 +231,7 @@
                                             <input type="text" class="form-control" placeholder="Numero F-R" id="factura" required>
                                         </td>
                                         <td>
-    <!--                                        <input type="text" class="form-control" placeholder="Mes">-->
+                                            <!--                                        <input type="text" class="form-control" placeholder="Mes">-->
                                             <select name="mes" id="mes" class="form-control" required>
                                                 <option value="">Seleccionar..</option>
                                                 <option value="01" <?=date('m')=='01'?'selected':''?>>ENERO</option>
@@ -277,15 +249,15 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control" placeholder="Año" value="<?=date('Y')?>" required>
+                                            <input type="number" class="form-control" id="anio" placeholder="Año" value="<?=date('Y')?>" required>
                                         </td>
                                         <td>
-    <!--                                        <input type="text" class="form-control" placeholder="Periodo">-->
+                                            <!--                                        <input type="text" class="form-control" placeholder="Periodo">-->
                                             <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i></button>
                                         </td>
                                     </form>
                                 </tr>
-                                </tbody>
+                                </tfoot>
                             </table>
 <!--                            <table id="example1" class="table table-bordered table-striped">-->
 <!--                                <thead>-->
@@ -464,7 +436,7 @@
         console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
         $('#formulario').submit(function (e){
             // console.log($('#nombre').val());
-            if ($('#nombre').val()==null){
+            if ($('#nombre').val()==null || $('#nombre').val()==''){
                 alert('debes seleccionar un ambiente o razon social');
                 return false;
             }
@@ -475,23 +447,62 @@
                     ambiente_id:$('#nombre').val(),
                     mes:$('#mes').val(),
                     anio:$('#anio').val(),
-                    factura:$('#fatura').val(),
+                    factura:$('#factura').val(),
+                    fechapago:$('#fechapago').val(),
                 },
                 type:'post',
                 success:function (e){
-                    console.log(e);
-                    // let datos=JSON.parse(e);
-                    // console.log(datos);
-                    // let d='';
-                    // $('#nombre').html('');
-                    // datos.forEach(r=>{
-                    //     d+='<option value="'+r.id+'">'+r.nombre+' '+r.detalle+'</option>';
-                    // })
-                    // $('#nombre').html(d);
+                    if (e=="Ya se realizo el pago"){
+                        alert('el mes ya fue insertado porfavor verifique sus datos');
+                    }else{
+                        alert('Insertado correctamente!!');
+                        actualizar();
+                        $('#monto').val('');
+                        $('#factura').val('');
+                    }
+                },
+                error:function (e){
+                    // alert(e)
+                    // console.log(e);
+                    alert('el mes ya fue insertado porfavor verifique sus datos');
                 }
             })
             // e.preventDefault();
             return false;
+        });
+        function actualizar(){
+            $.ajax({
+                url:'Cobro/consulta',
+                data:{
+                    id:$('#nombre').val()
+                },
+                type:'post',
+                success:function (e){
+                    // console.log(e);
+                    let datos=JSON.parse(e);
+                    // console.log(datos);
+                    let d='';
+                    let cont=0;
+                    // // $('#nombre').html('');
+                    datos.forEach(r=>{
+                        cont++;
+                        d+='<tr>'+
+                            '<td>'+cont+'</td>'+
+                            '<td>'+r.fechapago+'</td>'+
+                            '<td>'+r.monto+'</td>'+
+                            '<td>'+r.factura+'</td>'+
+                            '<td>'+r.periodo+'</td>'+
+                            '<td>'+r.anio+'</td>'+
+                            '<td></td>'+
+                            '</tr>';
+                    })
+                    $('#contenido').html(d);
+                }
+            })
+        }
+        $('#nombre').change(function (e){
+            actualizar();
+            e.preventDefault();
         });
         $('#rubro').change(function (e){
             $.ajax({
@@ -503,9 +514,9 @@
                 success:function (e){
                     // console.log(e);
                     let datos=JSON.parse(e);
-                    console.log(datos);
-                    let d='';
-                    $('#nombre').html('');
+                    // console.log(datos);
+                    let d='<option value="">Seleccionar...</option>';
+                    // $('#nombre').html('');
                     datos.forEach(r=>{
                         d+='<option value="'+r.id+'">'+r.nombre+' '+r.detalle+'</option>';
                     })

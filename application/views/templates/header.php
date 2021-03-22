@@ -238,6 +238,9 @@
                         <!--                            </li>-->
                         <!--                        </ul>-->
                     </li>
+                    <?php
+                        if ($this->session->tipo=='ADMINISTRADOR'):
+                    ?>
                     <li class="nav-item">
                         <a href="<?=base_url()?>User" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
@@ -247,6 +250,9 @@
                             </p>
                         </a>
                     </li>
+                    <?php
+                        endif
+                    ?>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
@@ -273,6 +279,12 @@
                                 <a href="<?=base_url()?>Cobro" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Cobros</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?=base_url()?>Reporte" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Reportes</p>
                                 </a>
                             </li>
                             <!--                            <li class="nav-item">-->
