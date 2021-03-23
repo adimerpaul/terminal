@@ -59,14 +59,34 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
+                                                            <label for="valpas" class="col-sm-2 col-form-label">Repetir Clave</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="password" class="form-control" id="valpas" name="valpas" placeholder="Repetir Clave" required oninput="validarpas()">
+                                                            </div>
+                                                        </div>
+                                                        <p id="validado"></p>
+                                                        <script type="text/javascript">
+                                                            function validarpas() {
+                                                              var pas1 = document.getElementById("password").value;
+                                                              var pas2 = document.getElementById("valpas").value;
+                                                              if(pas1==pas2){
+                                                                document.getElementById("validado").innerHTML = "<p style='background-color:#1AA31A;'>La Clave Coincide</p>";
+                                                              }
+                                                              else{
+                                                                document.getElementById("validado").innerHTML ="<p style='background-color:yellow;'>La Clave No coincide</p>";
+                                                              }
+                                                            }
+                                                        </script>
+                                                        <div class="form-group row">
                                                             <label for="rubros" class="col-sm-2 col-form-label">Tipo</label>
                                                             <div class="col-sm-10">
                                                                 <select class="form-control" name="tipo" required="">
                                                                     <option value="">Seleccionar</option>
                                                                     <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                                                    <option value="ADMINISTRADOR2">ADMINISTRADOR2</option>
+                                                                    <option value="GERENTE">GERENTE</option>
                                                                     <option value="SECRETARIA">SECRETARIA</option>
-                                                                    <!-- <option value=""></option>
-                                                                    <option value=""></option> -->
+                                                                    <option value="SOCIO">SOCIO</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -126,10 +146,15 @@
                                                     data-id='$row->id'
                                                     data-name='$row->name'
                                                     data-email='$row->email'
-                                                    data-password='$row->password'
+                                                    // data-password='$row->password'
                                                     data-tipo='$row->tipo'
                                                     data-fecha='$row->fecha'
                                                 ><i class='fa fa-edit'></i></button>
+                                                <button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#exampleModal2' 
+                                                    data-idc2='$row->id'
+                                                    data-emailc2='$row->email'
+                                                    data-password='$row->password'
+                                                ><i class='fas fa-unlock-alt'></i></button>
                                                 <a type='button' onclick='borrar(event)' href='".base_url()."User/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
                                             </div>
                                         </td>
@@ -173,12 +198,12 @@
                                                                 <input type="email" class="form-control" id="email2" name="email" placeholder="Email" required>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
+                                                        <!-- <div class="form-group row">
                                                             <label for="password2" class="col-sm-2 col-form-label">Clave</label>
                                                             <div class="col-sm-10">
                                                                 <input type="password" class="form-control" id="password2" name="password" placeholder="Clave" required>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group row">
                                                             <label for="rubros" class="col-sm-2 col-form-label">Tipo</label>
                                                             <div class="col-sm-10">
@@ -191,6 +216,63 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash"></i> Cancelar</button>
+                                                    <button type="submit" class="btn btn-warning">  Modificar <i class="fa fa-edit"></i></button>
+                                                </div>
+                                                <!-- /.card-footer -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-warning">
+                                            <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-unlock-alt"></i> Cambiar Clave</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-horizontal" method="post" action="<?=base_url()?>User/modificarCla">
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <input type="hidden" id="idc2" name="idc2">
+                                                        <input type="hidden" id="emailc2" name="emailc2">
+                                                        <label for="password1" class="col-sm-2 col-form-label">Clave Actual</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Clave Actual" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="password2" class="col-sm-2 col-form-label">Clave Nuevo</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Clave Nuevo" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="password3" class="col-sm-2 col-form-label">Rep. Clave Nuevo</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="password" class="form-control" id="password3" name="password3" placeholder="Rep. Clave Nuevo" required oninput="validarpassword()">
+                                                        </div>
+                                                    </div>
+                                                    <p id="validarcambio"></p>
+                                                    <script type="text/javascript">
+                                                        function validarpassword() {
+                                                            var pas1 = document.getElementById("password2").value;
+                                                            var pas2 = document.getElementById("password3").value;
+                                                            if(pas1==pas2){
+                                                                document.getElementById("validarcambio").innerHTML = "<p style='background-color:#1AA31A;'>La Clave Coincide</p>";
+                                                            }
+                                                            else{
+                                                                document.getElementById("validarcambio").innerHTML ="<p style='background-color:yellow;'>La Clave No coincide</p>";
+                                                            }
+                                                        }
+                                                    </script>
                                                 </div>
                                                 <!-- /.card-body -->
                                                 <div class="modal-footer justify-content-between">
@@ -232,6 +314,11 @@
             // var modal = $(this)
             // modal.find('.modal-title').text('New message to ' + recipient)
             // modal.find('.modal-body input').val(recipient)
+        })
+        $('#exampleModal2').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            $('#idc2').val(button.data('idc2'));
+            $('#emailc2').val(button.data('emailc2'));
         })
 
         $("#example1").DataTable({

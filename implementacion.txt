@@ -1,0 +1,13 @@
+admin->
+rol-> secre. socio, gerente:
+	ver reportes mesual y diario, 
+	ver ingreso, egresos
+
+- limite de fecha de contratacion
+- fecha automatico de pagos que debe
+- agregar vinculacion entre cliente ambiente
+
+-nit
+-tipo(indefinido,limite)
+-fechalimite de contratacion
+-fechainicio de contratacion

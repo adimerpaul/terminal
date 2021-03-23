@@ -843,19 +843,40 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-circle text-danger"></i>
-                            <p class="text">Usuarios <span class="badge badge-info right">6</span></p>
+                            <p class="text">Usuarios <span class="badge badge-info right">
+                                <?php
+                                    $query=$this->db->query("SELECT COUNT(*) AS Total FROM users");
+                                    foreach ($query->result() as $row){
+                                        echo "$row->Total";
+                                    }
+                                ?>
+                            </span></p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-circle text-warning"></i>
-                            <p>Hambientes <span class="badge badge-info right">6</span></p>
+                            <p>Abientes <span class="badge badge-info right">
+                                <?php
+                                    $query=$this->db->query("SELECT COUNT(*) AS Total FROM ambientes");
+                                    foreach ($query->result() as $row){
+                                        echo "$row->Total";
+                                    }
+                                ?>
+                            </span></p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-circle text-info"></i>
-                            <p>Clientes <span class="badge badge-info right">6</span></p>
+                            <p>Clientes <span class="badge badge-info right">
+                                <?php
+                                    $query=$this->db->query("SELECT COUNT(*) AS Total FROM clientes");
+                                    foreach ($query->result() as $row){
+                                        echo "$row->Total";
+                                    }
+                                ?>
+                            </span></p>
                         </a>
                     </li>
                 </ul>
