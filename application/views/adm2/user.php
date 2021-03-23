@@ -205,15 +205,14 @@
                                                             </div>
                                                         </div> -->
                                                         <div class="form-group row">
-                                                            <label for="tipo2" class="col-sm-2 col-form-label">Tipo</label>
+                                                            <label for="rubros" class="col-sm-2 col-form-label">Tipo</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control" id="tipo2" name="tipo" required="">
+                                                                <select class="form-control" name="tipo" required="">
                                                                     <option value="">Seleccionar</option>
                                                                     <option value="ADMINISTRADOR">ADMINISTRADOR</option>
-                                                                    <option value="ADMINISTRADOR2">ADMINISTRADOR2</option>
-                                                                    <option value="GERENTE">GERENTE</option>
                                                                     <option value="SECRETARIA">SECRETARIA</option>
-                                                                    <option value="SOCIO">SOCIO</option>
+                                                                    <!-- <option value=""></option>
+                                                                    <option value=""></option> -->
                                                                 </select>
                                                             </div>
                                                         </div>

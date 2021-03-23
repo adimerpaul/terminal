@@ -5,9 +5,15 @@ rol-> secre. socio, gerente:
 
 - limite de fecha de contratacion
 - fecha automatico de pagos que debe
+- canon de alquiler Bs. en cobros
+- bodega (debe salir en cobros)
 - agregar vinculacion entre cliente ambiente
 
+
 -nit
+-canon
 -tipo(indefinido,limite)
 -fechalimite de contratacion
 -fechainicio de contratacion
+
+-numero correlativo por rubros en ambientes

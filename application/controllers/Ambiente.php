@@ -10,6 +10,24 @@ class Ambiente extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('ambiente');
         $this->load->view('templates/footer');
+        // else{
+        //     if($this->session->name && $this->session->tipo='ADMINISTRADOR'){
+        //         $this->load->view('templates/header');
+        //         $this->load->view('ambiente');
+        //         $this->load->view('templates/footer');
+        //     }
+        //     if($this->session->name && $this->session->tipo='ADMINISTRADOR2'){
+        //         // var_dump($this->session->tipo);
+        //         $this->load->view('adm2/templates/header');
+        //         $this->load->view('adm2/ambiente');
+        //         $this->load->view('adm2/templates/footer');
+        //     }
+        //     if($this->session->name && ($this->session->tipo='SECRETARIA' || $this->session->tipo='SOCIO')){
+        //         $this->load->view('templates/header');
+        //         $this->load->view('ambiente');
+        //         $this->load->view('templates/footer');
+        //     }
+        // }
 	}
 	public function crear()
     {
@@ -20,6 +38,7 @@ class Ambiente extends CI_Controller {
         $nombre=$this->input->post('nombre');
         $nit=$this->input->post('nit');
         $detalle=$this->input->post('detalle');
+        $canon=$this->input->post('canon');
         $mesanine=$this->input->post('mesanine');
         $tipo=$this->input->post('tipo');
         $fechainit=$this->input->post('fechainit');
@@ -31,6 +50,7 @@ class Ambiente extends CI_Controller {
                             nombre='$nombre',
                             nit='$nit',
                             detalle='$detalle',
+                            canon='$canon',
                             mesanine='$mesanine',
                             tipo='$tipo',
                             fechainit='$fechainit',
@@ -49,6 +69,7 @@ class Ambiente extends CI_Controller {
         $nombre=$this->input->post('nombre');
         $nit=$this->input->post('nit');
         $detalle=$this->input->post('detalle');
+        $canon=$this->input->post('canon');
         $mesanine=$this->input->post('mesanine');
         $tipo=$this->input->post('tipo');
         $fechainit=$this->input->post('fechainit');
@@ -58,6 +79,7 @@ class Ambiente extends CI_Controller {
                     nombre='$nombre',
                     nit='$nit',
                     detalle='$detalle',
+                    canon='$canon',
                     mesanine='$mesanine',
                     tipo='$tipo',
                     fechainit='$fechainit',

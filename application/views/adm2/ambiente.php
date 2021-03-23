@@ -32,7 +32,7 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header bg-success text-white">
-                                                <h4 class="modal-title"> <i class="fa fa-plus-circle"></i> Nuevo Ambiente</h4>
+                                                <h4 class="modal-title"> <i class="fa fa-plus-circle"></i> Nuevo</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -77,12 +77,6 @@
                                                                 <input type="text" class="form-control" id="detalle" name="detalle" placeholder="Detalle" required>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="canon" class="col-sm-2 col-form-label">Canon</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="canon" name="canon" placeholder="Canon de alquiler" required>
-                                                            </div>
-                                                        </div>
                                                         <!-- <div class="form-group row">
                                                             <label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
                                                             <div class="col-sm-10">
@@ -111,17 +105,17 @@
                                                         <div class="form-group row">
                                                             <label for="fechalim" class="col-sm-2 col-form-label">Fecha Limite</label>
                                                             <div class="col-sm-10">
-                                                                <input type="date" class="form-control" id="fechalim" name="fechalim" placeholder="Fecha limite de contrato">
+                                                                <input type="date" class="form-control" id="fechalim" name="fechalim" placeholder="Fecha limite de contrato" required>
                                                             </div>
                                                         </div>                                                    
                                                         <div class="form-group row">
-                                                            <label for="mesanine" class="col-sm-2 col-form-label">Bodega/Almacen</label>
+                                                            <label for="mesanine" class="col-sm-2 col-form-label">Mesanine</label>
                                                             <div class="col-sm-10">
 <!--                                                                <input type="text" class="form-control" id="mesanine" name="mesanine" placeholder="Mesasnine" required>-->
 <!--                                                                <div class="form-group">-->
                                                                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                                                         <input type="checkbox" class="custom-control-input" id="mesanine" name="mesanine">
-                                                                        <label class="custom-control-label" for="mesanine">NO/SI (BG, AL)</label>
+                                                                        <label class="custom-control-label" for="mesanine">NO/SI</label>
                                                                     </div>
 <!--                                                                </div>-->
                                                             </div>
@@ -148,25 +142,24 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+<!--                                    <th>#</th>-->
                                     <th>Rubro</th>
                                     <th>Nombre</th>
                                     <th>Nit</th>
                                     <th>Detalle</th>
-                                    <th>BG/AL</th>
-                                    <th>Canon</th>
+                                    <th>mesanine</th>
                                     <th>Tipo</th>
-                                    <th>Opciones</th>
+                                    <!-- <th>Opciones</th> -->
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <script>
+                                <!-- <script>
                                     function borrar(e){
                                         if (!confirm('Seguro de eliminar?')){
                                             e.preventDefault();
                                         }
                                     }
-                                </script>
+                                </script> -->
                                 <?php
                                 $query=$this->db->query("SELECT * FROM ambientes WHERE estado=1");
 //                                $cont=0;
@@ -178,11 +171,11 @@
                                     }else{
                                         $me="<span class='badge badge-danger'>NO</span>";
                                     }
-                                    if ($this->session->tipo=='ADMINISTRADOR'){
-                                        $be="<a type='button' onclick='borrar(event)' href='".base_url()."Ambiente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
-                                    }else{
-                                        $be="";
-                                    }
+                                    // if ($this->session->tipo=='ADMINISTRADOR'){
+                                    //     $be="<a type='button' onclick='borrar(event)' href='".base_url()."Ambiente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
+                                    // }else{
+                                    //     $be="";
+                                    // }
                                     if ($row->tipo=='LIMITE'){
                                         
                                         $lim="<button type='button' class='btn btn-warning btn-sm' data-toggle='modal'  data-target='#exampleModal2'
@@ -192,54 +185,44 @@
                                                 >LIMITE</button>";
 
                                     }else{
-                                        // $lim="<span class='badge badge-danger'>INDEFINIDO</span>";
-                                        $lim="<button type='button' class='btn btn-danger btn-sm' data-toggle='modal'  data-target='#exampleModal2'
-                                                    data-fechainitv='$row->fechainit'
-                                                    data-fechalimv='$row->fechalim'
-                                                    data-id='$row->id'
-                                                >INDEFINIDO</button>";
+                                        $lim="<span class='badge badge-danger'>INDEFINIDO</span>";
                                     }
-                                    echo "<tr>
-                                        <td>$row->id</td>
-                                        <td>$row->rubro</td>
-                                        <td>$row->nombre</td>
-                                        <td>$row->nit</td>
-                                        <td>$row->detalle</td>
-                                        <td>$me</td>
-                                        <td>$row->canon</td>
-                                        <td>$lim</td>  
-                                        <td>
-                                            <div class='btn btn-group'>
-                                                <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
-                                                    data-rubro='$row->rubro'
-                                                    data-nombre='$row->nombre'
-                                                    data-nit='$row->nit'
-                                                    data-detalle='$row->detalle'
-                                                    data-mesanine='$row->mesanine'
-                                                    data-canon='$row->canon'
-                                                    data-tipo='$row->tipo'
-                                                    data-fechainit='$row->fechainit'
-                                                    data-fechalim='$row->fechalim'
-                                                    data-id='$row->id'
-                                                ><i class='fa fa-edit'></i></button>
-                                                $be
-                                            </div>
-                                        </td>
-                                    </tr>";
+                                    // echo "<tr>
+                                    //     <td>$row->rubro</td>
+                                    //     <td>$row->nombre</td>
+                                    //     <td>$row->nit</td>
+                                    //     <td>$row->detalle</td>
+                                    //     <td>$me</td>
+                                    //     <td>$lim</td>  
+                                    //     <td>
+                                    //         <div class='btn btn-group'>
+                                    //             <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
+                                    //                 data-rubro='$row->rubro'
+                                    //                 data-nombre='$row->nombre'
+                                    //                 data-nit='$row->nit'
+                                    //                 data-detalle='$row->detalle'
+                                    //                 data-mesanine='$row->mesanine'
+                                    //                 data-tipo='$row->tipo'
+                                    //                 data-fechainit='$row->fechainit'
+                                    //                 data-fechalim='$row->fechalim'
+                                    //                 data-id='$row->id'
+                                    //             ><i class='fa fa-edit'></i></button>
+                                    //             $be
+                                    //         </div>
+                                    //     </td>
+                                    // </tr>";
                                 }
                                 ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#</th>
                                     <th>Rubro</th>
                                     <th>Nombre</th>
                                     <th>Nit</th>
                                     <th>Detalle</th>
-                                    <th>BG/AL</th>
-                                    <th>Canon</th>
+                                    <th>mesanine</th>
                                     <th>Tipo</th>
-                                    <th>Opciones</th>
+                                    <!-- <th>Opciones</th> -->
                                 </tr>
                                 </tfoot>
                             </table>
@@ -293,12 +276,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="canon2" class="col-sm-2 col-form-label">Canon</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="canon2" name="canon" placeholder="Canon de alquiler" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
                                                         <label for="tipo2" class="col-sm-2 col-form-label">Tipo</label>
                                                         <div class="col-sm-10">
                                                             <select class="form-control" id="tipo2" name="tipo" required="" >
@@ -322,7 +299,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="mesanine2" class="col-sm-2 col-form-label">Bodega Almacen</label>
+                                                        <label for="mesanine2" class="col-sm-2 col-form-label">Mesanine</label>
                                                         <div class="col-sm-10">
                                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                                                 <input type="checkbox" class="custom-control-input" id="mesanine2" name="mesanine">
@@ -402,7 +379,6 @@
             $('#nombre2').val(button.data('nombre'));
             $('#nit2').val(button.data('nit'));
             $('#detalle2').val(button.data('detalle'));
-            $('#canon2').val(button.data('canon'));
             $('#tipo2').val(button.data('tipo'));
             $('#fechainit2').val(button.data('fechainit'));
             $('#fechalim2').val(button.data('fechalim'));

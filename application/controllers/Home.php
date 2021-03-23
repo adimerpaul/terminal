@@ -7,8 +7,12 @@ class Home extends CI_Controller {
 	    if (!$this->session->name){
             header('Location: '.base_url());
         }
-        $this->load->view('templates/header');
-		$this->load->view('home');
-        $this->load->view('templates/footer');
+        else{
+        	if($this->session->name && $this->session->name='ADMINISTRADOR2'){
+        		$this->load->view('templates/header');
+				$this->load->view('adm2/home');
+		        $this->load->view('templates/footer');		
+        	}
+        }
 	}
 }
