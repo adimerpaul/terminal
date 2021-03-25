@@ -60,6 +60,30 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
+                                                            <label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
+                                                            <div class="col-sm-10" class="form-control">
+                                                                <select class="form-control" id="cliente" name="cliente">
+                                                                    <option value="0">Seleccionar cliente</option>
+                                                                    <?php 
+                                                                        $datos=$this->db->query("SELECT id, razon, nombres, nit FROM clientes");
+                                                                        foreach ($datos->result() as $fila ) {
+                                                                            echo '<option value="'.$fila->id.'" id="'.$fila->razon.'">'.$fila->nombres." ".$fila->nit.'</option>';
+                                                                        }
+                                                                    ?>
+                            
+                                                                </select>
+                                                                <!-- <select class="form-control select2" id="btn-check"style="width: 100%;">
+                                                                    <option selected="selected">Alabama</option>
+                                                                    <option>Alaska</option>
+                                                                    <option>California</option>
+                                                                    <option>Delaware</option>
+                                                                    <option>Tennessee</option>
+                                                                    <option>Texas</option>
+                                                                    <option>Washington</option>
+                                                                </select> -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="form-group row">
                                                             <label for="nombre" class="col-sm-2 col-form-label">Razon social o nombre</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
@@ -70,7 +94,7 @@
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="nit" name="nit" placeholder="Nit" required>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group row">
                                                             <label for="detalle" class="col-sm-2 col-form-label">Detalle</label>
                                                             <div class="col-sm-10">
@@ -277,8 +301,23 @@
                                                     <div class="form-group row">
                                                         <label for="nombre2" class="col-sm-2 col-form-label">Razon social o nombre</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="nombre2" name="nombre" placeholder="Nombre" required>
+                                                            <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre" required>
                                                         </div>
+
+                                                        <!-- <?php foreach ($datos as $row){ ?>
+                                                            <tr>
+                                                            <th scope='row'><?php echo $row->id_paciente; ?></th>
+                                                            <td><?php echo $row->nombre." ".$row->apellido; ?></td>
+                                                            <td><?php echo $row->ci; ?></td>
+                                                            <?php $datacliente=$row->id_paciente."*".$row->nombre."*".$row->apellido."*".$row->ci."*".$row->sexo."*".$row->fnac."*".$row->profecion."*".$row->direccion."*".$row->obs;
+                                                            ?>
+                                                            <td>
+                                                              <button type="button" class="btn btn-success btn-check" value="<?php echo $datacliente; ?>"><span class="fa fa-check">Agregar</span></button>
+
+                                                              
+                                                              </td>
+                                                            </tr>
+                                                        <?php }?> -->
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nit2" class="col-sm-2 col-form-label">Nit</label>
@@ -394,6 +433,8 @@
 </div>
 <script>
     window.onload=function (){
+
+
         $('#exampleModal').on('show.bs.modal', function (event) {
             // console.log('a');
             var button = $(event.relatedTarget) // Button that triggered the modal
@@ -436,5 +477,54 @@
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+
+        // $(document).on("click",".btn-check",function(){
+        //     alert("estoy aqui");
+        //     // alert($(this).val());
+        //     cliente=$(this).val();
+        //     alert(cliente);
+        //     infocliente=cliente.split("*");
+        //     // alert(infocliente[0]);
+        //     $("#id_paciente").val(infocliente[0]);
+        //     $("#paciente").val(infocliente[1]+" "+infocliente[2]);
+        //     //$("#ModalBuscarPaciente").modal("hide");
+        //     // $(this).closest('.modal').modal('toggle');
+        //     //$("#ModalBuscarPaciente").hide();
+            
+
+        // })
     }
+    
+        // $("#nombre2").keyup(function(){
+        //     $('#tbpaciente tbody').html('');
+        //     var tcliente =$("#nombre2").val();
+        //     $.post('../Cliente/busquedacliente',
+        //         {tcliente: tcliente},
+        //         function(data){
+        //             var obj=JSON.parse(data);
+        //             var salida="";
+        //             var datacliente="";
+        //             $.each(obj, function(i, item){
+        //                 // datacliente=""+item.id_paciente+"*"+item.nombre+"*"+item.apellido+"*"+item.ci+"*"+item.sexo+"*"+item.fnac+"*"+item.profecion+"*"+item.direccion+"*"+item.obs;
+        //                 salida+=""+
+        //                 "<tr>"+
+        //                     "<th scope='row'>"+item.id+"</th>"+
+        //                     // "<td>"+item.nombre+" "+item.apellido+"</td>"+
+        //                     "<td>"+item.razon+"</td>"+
+        //                     "<td>"+item.nit+"</td>"+
+        //                     // datacliente=""+item.id_paciente+"*"+item.nombre+"*"+item.apellido+"*"+item.ci+"*"+item.sexo+"*"+item.fnac+"*"+item.profecion+"*"+item.direccion+"*"+item.obs;
+        //                     "<td>"+
+        //                       "<button type='button' class='btn btn-success btn-check' value='"+item.id+"*"+item.razon+"*"+item.nit+"'><span class='fa fa-check'>Agregar</span></button>"+
+
+                              
+        //                     "</td>"+
+        //                 "</tr>";
+        //             });                 
+        //             // alert(salida);
+        //             $('#tbpaciente tbody').append(salida);
+        //         });
+        //     })    
+
+            
 </script>

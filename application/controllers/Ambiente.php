@@ -34,9 +34,15 @@ class Ambiente extends CI_Controller {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
+        $client_id=$this->input->post('cliente');
+        $cliente_dat=$this->db->query("SELECT razon, nit FROM clientes WHERE id='$client_id'");
+        $row=$cliente_dat->row();
+        // echo $row->nit;
+        // exit;
         $rubro=$this->input->post('rubro');
-        $nombre=$this->input->post('nombre');
-        $nit=$this->input->post('nit');
+        // $nombre=$this->input->post('nombre');
+        $nombre=$row->razon;
+        $nit=$row->nit;
         $detalle=$this->input->post('detalle');
         $canon=$this->input->post('canon');
         $mesanine=$this->input->post('mesanine');
@@ -44,6 +50,7 @@ class Ambiente extends CI_Controller {
         $fechainit=$this->input->post('fechainit');
         $fechalim=$this->input->post('fechalim');
         $user_id=$this->session->id;
+
 //        $razon=$this->input->post('razon');
         $this->db->query("INSERT INTO ambientes SET 
                             rubro='$rubro',
@@ -55,7 +62,8 @@ class Ambiente extends CI_Controller {
                             tipo='$tipo',
                             fechainit='$fechainit',
                             fechalim='$fechalim',
-                            user_id='$user_id'
+                            user_id='$user_id',
+                            cliente_id='$client_id'
                             ");
         header('Location: '.base_url().'Ambiente');
     }
@@ -99,4 +107,12 @@ class Ambiente extends CI_Controller {
         ");
         header('Location: '.base_url().'Ambiente');
     }
+    // public function buquedacliente(){
+    //     $this->db->from('paciente');
+    //     $this->db->or_like('nombre',$bus);   
+    //     $this->db->or_like('apellido',$bus);
+    //     $this->db->or_like('ci',$bus);
+    //     $query=$this->db->get();
+    //     echo json_encode($query->result());
+    // }
 }
