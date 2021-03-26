@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-03-2021 a las 03:05:20
+-- Tiempo de generación: 26-03-2021 a las 03:31:15
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -65,7 +65,9 @@ INSERT INTO `ambientes` (`id`, `rubro`, `nombre`, `nit`, `detalle`, `mesanine`, 
 (14, 'KIOSKOS', 'LIBERT VELAZQUEZ SANDOBAL', 878676, 'KIOSKO # 6', '', 'LIMITE', '2021-03-01', '2021-03-31', 0, '2021-03-23 18:10:04', 1, 1, 1),
 (15, 'PLANTA BAJA', 'LILIAN CAMARA HERBAS', 897897, 'SNACK LA ESTACION', 'on', 'LIMITE', '2021-03-01', '2021-03-22', 0, '2021-03-23 20:30:22', 1, 1, 1),
 (16, 'KIOSKOS', 'NOELIA', 878676, '0983', '', 'INDEFINIDO', '2021-03-31', '0000-00-00', 0, '2021-03-23 20:54:34', 1, 1, 1),
-(17, 'PLANTA BAJA', 'JORGE SARMIENTO MAMANI', 878676, '4 CARRITOS MONEDEROS', '', 'INDEFINIDO', '2021-03-01', '0000-00-00', 500, '2021-03-23 21:01:28', 1, 1, 1);
+(17, 'PLANTA BAJA', 'JORGE SARMIENTO MAMANI', 878676, '4 CARRITOS MONEDEROS', '', 'INDEFINIDO', '2021-03-01', '0000-00-00', 500, '2021-03-23 21:01:28', 1, 1, 1),
+(33, 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 53453453, 'PARQUEO', '', 'INDEFINIDO', '2010-01-01', '0000-00-00', 100, '2021-03-25 15:46:48', 1, 1, 27),
+(34, 'OFICINAS DE TRANSPORTE', 'TRANS DEL SUR 1', 5778877, 'OFICINA y BG # 28', 'on', 'INDEFINIDO', '2020-02-01', '0000-00-00', 1200, '2021-03-25 15:51:43', 1, 1, 28);
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,9 @@ INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `nit`, `fec
 (23, '53453453', 'CARLOS', 'MOLLO', 'NASER', 5050, '2021-03-19 15:27:51', 1, 'CARLOS LOPEZ', 9090, '879/09', 'BOLIVAR #40'),
 (24, '53453453', 'RONALD', 'CALLE MOLLO', 'CRUZ DEL SUR', 9595949, '2021-03-20 12:54:54', 1, 'RAMIRO ALI', 89284, '349/9', 'BOLIVAR #20'),
 (25, '53453453', 'BACILIA', 'CONDORI MORA', 'BACILIA CONDORI MORA', 53453453, '2021-03-22 21:53:32', 1, 'BACILIA CONDORI MORA', 898989, '040/2019', 'BOLIVAR #90'),
-(26, '5778877', 'JUAN ALBETITO', 'ALCACHOFA', 'NASER', 8882, '2021-03-23 14:06:57', 1, 'MARIO LOPEZ', 898989, '98798/9', 'BOLIVAR #40');
+(26, '5778877', 'JUAN ALBETITO', 'ALCACHOFA', 'NASER', 8882, '2021-03-23 14:06:57', 1, 'MARIO LOPEZ', 898989, '98798/9', 'BOLIVAR #40'),
+(27, '53453453', 'RAMIRO', 'GONZALES ALI', 'RAMIRO GONZALES ALI', 53453453, '2021-03-25 15:34:26', 1, 'RAMIRO GONZALES', 79889, '98798/9', 'BOLIVAR ENTRE PANDO'),
+(28, '5778877', 'RAUL TOMAS', 'ALI FLORES', 'TRANS DEL SUR 1', 5778877, '2021-03-25 15:50:28', 1, 'SANTIAGO MOLLO LOPEZ', 80979, '8934/8', 'PANDO #5');
 
 -- --------------------------------------------------------
 
@@ -139,6 +143,27 @@ CREATE TABLE `pagos` (
   `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `detalle` varchar(150) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `personal`
+--
+
+CREATE TABLE `personal` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `ci` int(11) NOT NULL,
+  `fnac` date NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `personal`
+--
+
+INSERT INTO `personal` (`id`, `nombre`, `ci`, `fnac`, `fecha`) VALUES
+(2, 'RAMON ALI QUISPE', 89090, '1990-01-01', '2021-03-25 18:09:01');
 
 -- --------------------------------------------------------
 
@@ -192,6 +217,12 @@ ALTER TABLE `pagos`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indices de la tabla `personal`
+--
+ALTER TABLE `personal`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -205,19 +236,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `ambientes`
 --
 ALTER TABLE `ambientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `personal`
+--
+ALTER TABLE `personal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

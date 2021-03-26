@@ -249,6 +249,13 @@
                                 <!--span class="right badge badge-danger">New</span-->
                             </p>
                         </a>
+                        <a href="<?=base_url()?>Personal" class="nav-link">
+                            <i class="nav-icon fas fa-user-tie"></i>
+                            <p>
+                                Personal
+                                <!--span class="right badge badge-danger">New</span-->
+                            </p>
+                        </a>
                     </li>
                     <?php
                         endif

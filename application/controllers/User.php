@@ -5,7 +5,7 @@ class User extends CI_Controller {
 	public function index()
 	{
         
-            var_dump($this->session->name);
+        var_dump($this->session->name);
 	    if (!$this->session->name || $this->session->tipo!='ADMINISTRADOR'){
             header('Location: '.base_url());
         }
