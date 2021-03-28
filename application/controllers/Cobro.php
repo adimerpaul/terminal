@@ -11,6 +11,16 @@ class Cobro extends CI_Controller {
         $this->load->view('cobros');
         $this->load->view('templates/footer');
     }
+    public function ambiente($ambiente_id)
+    {
+        $query=$this->db->query("SELECT *
+        FROM ambientes
+        WHERE id='$ambiente_id'
+        ");
+//        exit;
+//        json_decode( $query->result());
+        echo json_encode( $query->result_array()[0]);
+    }
     public function crear()
     {
         if (!$this->session->name){
@@ -19,6 +29,8 @@ class Cobro extends CI_Controller {
 //        var_dump($_POST);
         $monto=$this->input->post('monto');
         $ambiente_id=$this->input->post('ambiente_id');
+//        echo $monto;
+//        exit;
         $user_id=$this->session->id;
         $mes=$this->input->post('mes');
         $anio=$this->input->post('anio');
