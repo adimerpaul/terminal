@@ -97,4 +97,11 @@ class Reporte extends CI_Controller {
         }
         $this->load->view('mes');
     }
+    public function deuda()
+    {
+        if (!$this->session->name){
+            header('Location: '.base_url());
+        }
+        $this->load->view('deuda');
+    }
 }
