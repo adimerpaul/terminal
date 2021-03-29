@@ -84,7 +84,7 @@ $end = strtotime("$anio2-$mes2-01");
 </table>
 <script>
     window.onload=function (){
-        // window.print();
+        window.print();
     }
 </script>
 </body>
