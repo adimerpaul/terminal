@@ -249,13 +249,6 @@
                                 <!--span class="right badge badge-danger">New</span-->
                             </p>
                         </a>
-                        <a href="<?=base_url()?>Personal" class="nav-link">
-                            <i class="nav-icon fas fa-user-tie"></i>
-                            <p>
-                                Personal
-                                <!--span class="right badge badge-danger">New</span-->
-                            </p>
-                        </a>
                     </li>
                     <?php
                         endif
@@ -336,38 +329,38 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
-                                Uso terminal
+                                Valorados
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="../charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>ChartJS</p>
+                                <a href="<?=base_url()?>Personal" class="nav-link">
+                                    <i class="nav-icon fas fa-user-tie"></i>
+                                    <p>Personal</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../charts/flot.html" class="nav-link">
+                                <a href="<?=base_url()?>Valorados" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Flot</p>
+                                    <p>Valorados</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="../charts/inline.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Inline</p>
+                                    <p>Reportes</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="../charts/uplot.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>uPlot</p>
                                 </a>
-                            </li>
+                            < -->/li>
                         </ul>
                     </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a href="#" class="nav-link">
                                                 <i class="nav-icon fas fa-tree"></i>
                                                 <p>
@@ -425,7 +418,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li> -->
                     <!--                    <li class="nav-item">-->
                     <!--                        <a href="#" class="nav-link">-->
                     <!--                            <i class="nav-icon fas fa-edit"></i>-->

@@ -365,7 +365,7 @@
                                                         <div class="col-sm-10">
                                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                                                 <input type="checkbox" class="custom-control-input" id="mesanine2" name="mesanine">
-                                                                <label class="custom-control-label" for="mesanine2">NO/SI</label>
+                                                                <label class="custom-control-label" for="mesanine2">NO/SI (BG, AL)</label>
                                                             </div>
                                                         </div>
                                                     </div>

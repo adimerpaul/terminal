@@ -61,7 +61,7 @@ class User extends CI_Controller {
         $emailc2=$this->input->post('emailc2');
         $password1=md5($this->input->post('password1'));
         $password2=md5($this->input->post('password2'));
-        var_dump($emailc2);
+        // var_dump($emailc2);
         $this->db->query("UPDATE users SET
                             password='$password2'
                             WHERE id=$idc2 AND email='$emailc2' AND password='$password1'

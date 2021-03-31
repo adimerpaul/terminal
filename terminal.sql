@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-03-2021 a las 03:31:15
+-- Tiempo de generación: 31-03-2021 a las 02:23:15
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -50,24 +50,24 @@ CREATE TABLE `ambientes` (
 --
 
 INSERT INTO `ambientes` (`id`, `rubro`, `nombre`, `nit`, `detalle`, `mesanine`, `tipo`, `fechainit`, `fechalim`, `canon`, `fecha`, `estado`, `user_id`, `cliente_id`) VALUES
-(2, 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 8882, 'OFICINA # 56', 'on', 'INDEFINIDO', '2020-01-23', '0000-00-00', 100, '2021-03-21 19:34:10', 1, 1, 1),
-(3, 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 90435, 'OFICINA # 57', '', 'LIMITE', '2021-03-01', '2021-03-31', 0, '2021-03-21 19:34:51', 1, 1, 1),
-(4, 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 89348, 'OFICINA # 55', 'on', 'INDEFINIDO', '2020-09-01', '0000-00-00', 900, '2021-03-22 01:37:09', 1, 1, 1),
-(5, 'KIOSKOS', 'EXPRESO TARIJA', 0, 'OFICINA # 41 y BG 41-62', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-22 04:12:39', 0, 1, 1),
-(6, 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 0, 'CAJERO AUTOMATICO', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-22 22:27:33', 1, 1, 1),
-(7, 'ESTIVADORES', 'DANIEL UMAÑA LAUREANO', 0, 'ESTIVADOR', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-22 22:54:59', 1, 1, 1),
-(8, 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 0, 'OFICINA # 57', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 01:25:06', 1, 1, 1),
-(9, 'OFICINAS DE TRANSPORTE', 'ANTONIA CRUZ HANNOVER', 0, 'OFICINA # 48', 'on', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 01:26:49', 1, 1, 1),
-(10, 'KIOSKOS', 'BACILIA CONDORI MORA', 898932, 'KIOSKO # 4 FRONTIS BODEGA #43', '', 'LIMITE', '2019-03-01', '2021-04-30', 0, '2021-03-23 01:31:10', 1, 1, 1),
-(11, 'OFICINAS DE TRANSPORTE', 'AIR BUS CORAL S.R.L.', 8908089, 'OFICINA # 7 Y BG 7', '', 'LIMITE', '2021-01-01', '2021-03-30', 0, '2021-03-23 14:05:56', 1, 1, 1),
-(12, 'COMERCIANTES', 'KARINA MAMANI FERNANDEZ', 953, 'VENTA DE REFRESCO ', '', 'LIMITE', '2019-03-01', '2021-03-31', 0, '2021-03-23 14:19:57', 1, 1, 1),
-(13, 'COMERCIANTES', 'RITA MAMANI CONDORI', 878676, 'VENTA DE GELATINA ', '', 'LIMITE', '2020-12-01', '2021-03-31', 100, '2021-03-23 16:21:23', 1, 1, 1),
-(14, 'KIOSKOS', 'LIBERT VELAZQUEZ SANDOBAL', 878676, 'KIOSKO # 6', '', 'LIMITE', '2021-03-01', '2021-03-31', 0, '2021-03-23 18:10:04', 1, 1, 1),
-(15, 'PLANTA BAJA', 'LILIAN CAMARA HERBAS', 897897, 'SNACK LA ESTACION', 'on', 'LIMITE', '2021-03-01', '2021-03-22', 0, '2021-03-23 20:30:22', 1, 1, 1),
-(16, 'KIOSKOS', 'NOELIA', 878676, '0983', '', 'INDEFINIDO', '2021-03-31', '0000-00-00', 0, '2021-03-23 20:54:34', 1, 1, 1),
-(17, 'PLANTA BAJA', 'JORGE SARMIENTO MAMANI', 878676, '4 CARRITOS MONEDEROS', '', 'INDEFINIDO', '2021-03-01', '0000-00-00', 500, '2021-03-23 21:01:28', 1, 1, 1),
-(33, 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 53453453, 'PARQUEO', '', 'INDEFINIDO', '2010-01-01', '0000-00-00', 100, '2021-03-25 15:46:48', 1, 1, 27),
-(34, 'OFICINAS DE TRANSPORTE', 'TRANS DEL SUR 1', 5778877, 'OFICINA y BG # 28', 'on', 'INDEFINIDO', '2020-02-01', '0000-00-00', 1200, '2021-03-25 15:51:43', 1, 1, 28);
+(2, 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 8882, 'OFICINA # 56', 'on', 'INDEFINIDO', '2020-01-23', '0000-00-00', 100, '2021-03-21 23:34:10', 1, 1, 1),
+(3, 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 90435, 'OFICINA # 57', '', 'LIMITE', '2021-03-01', '2021-03-31', 0, '2021-03-21 23:34:51', 1, 1, 1),
+(4, 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 89348, 'OFICINA # 55', 'on', 'INDEFINIDO', '2020-09-01', '0000-00-00', 900, '2021-03-22 05:37:09', 1, 1, 1),
+(5, 'KIOSKOS', 'EXPRESO TARIJA', 0, 'OFICINA # 41 y BG 41-62', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-22 08:12:39', 0, 1, 1),
+(6, 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 0, 'CAJERO AUTOMATICO', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 02:27:33', 1, 1, 1),
+(7, 'ESTIVADORES', 'DANIEL UMAÑA LAUREANO', 0, 'ESTIVADOR', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 02:54:59', 1, 1, 1),
+(8, 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 0, 'OFICINA # 57', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 05:25:06', 1, 1, 1),
+(9, 'OFICINAS DE TRANSPORTE', 'ANTONIA CRUZ HANNOVER', 0, 'OFICINA # 48', 'on', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 05:26:49', 1, 1, 1),
+(10, 'KIOSKOS', 'BACILIA CONDORI MORA', 898932, 'KIOSKO # 4 FRONTIS BODEGA #43', '', 'LIMITE', '2019-03-01', '2021-04-30', 0, '2021-03-23 05:31:10', 1, 1, 1),
+(11, 'OFICINAS DE TRANSPORTE', 'AIR BUS CORAL S.R.L.', 8908089, 'OFICINA # 7 Y BG 7', '', 'LIMITE', '2021-01-01', '2021-03-30', 0, '2021-03-23 18:05:56', 1, 1, 1),
+(12, 'COMERCIANTES', 'KARINA MAMANI FERNANDEZ', 953, 'VENTA DE REFRESCO ', '', 'LIMITE', '2019-03-01', '2021-03-31', 0, '2021-03-23 18:19:57', 1, 1, 1),
+(13, 'COMERCIANTES', 'RITA MAMANI CONDORI', 878676, 'VENTA DE GELATINA ', '', 'LIMITE', '2020-12-01', '2021-03-31', 100, '2021-03-23 20:21:23', 1, 1, 1),
+(14, 'KIOSKOS', 'LIBERT VELAZQUEZ SANDOBAL', 878676, 'KIOSKO # 6', '', 'LIMITE', '2021-03-01', '2021-03-31', 0, '2021-03-23 22:10:04', 1, 1, 1),
+(15, 'PLANTA BAJA', 'LILIAN CAMARA HERBAS', 897897, 'SNACK LA ESTACION', 'on', 'LIMITE', '2021-03-01', '2021-03-22', 0, '2021-03-24 00:30:22', 1, 1, 1),
+(16, 'KIOSKOS', 'NOELIA', 878676, '0983', '', 'INDEFINIDO', '2021-03-31', '0000-00-00', 0, '2021-03-24 00:54:34', 1, 1, 1),
+(17, 'PLANTA BAJA', 'JORGE SARMIENTO MAMANI', 878676, '4 CARRITOS MONEDEROS', '', 'INDEFINIDO', '2021-03-01', '0000-00-00', 500, '2021-03-24 01:01:28', 1, 1, 1),
+(33, 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 53453453, 'PARQUEO', '', 'INDEFINIDO', '2010-01-01', '0000-00-00', 100, '2021-03-25 19:46:48', 1, 1, 27),
+(34, 'OFICINAS DE TRANSPORTE', 'TRANS DEL SUR 1', 5778877, 'OFICINA y BG # 28', 'on', 'INDEFINIDO', '2020-02-01', '0000-00-00', 1200, '2021-03-25 19:51:43', 1, 1, 28);
 
 -- --------------------------------------------------------
 
@@ -125,6 +125,44 @@ INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `nit`, `fec
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `historial`
+--
+
+CREATE TABLE `historial` (
+  `id` int(11) NOT NULL,
+  `detalle` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `persona_id` int(11) NOT NULL,
+  `porton_id` int(11) NOT NULL,
+  `ticketinicio` int(11) NOT NULL,
+  `ticketfin` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fechacreacion` date NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `historial`
+--
+
+INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinicio`, `ticketfin`, `cantidad`, `precio`, `subtotal`, `fecha`, `fechacreacion`, `user_id`) VALUES
+(4, '03:00 - 11:00', 3, 3, 27816, 0, 0, 0, 0, '2021-03-26 16:44:43', '2021-03-01', 1),
+(8, '08:00 - 10:00', 3, 4, 7000, 7000, 0, 2, 0, '2021-03-30 00:27:30', '0000-00-00', 1),
+(9, '03:00 - 11:00', 3, 6, 54, 59, 0, 2, 0, '2021-03-30 02:33:00', '0000-00-00', 1),
+(11, '11:00 - 12:00', 3, 5, 2457, 2903, 446, 2, 892, '2021-03-30 02:55:25', '2020-02-02', 1),
+(12, '03:00 - 20:00', 3, 15, 90, 99, 9, 2, 18, '2021-03-30 03:27:47', '2010-02-02', 1),
+(13, '03:00 - 11:00', 3, 3, 100, 110, 10, 2, 20, '2021-03-30 12:39:27', '2021-02-02', 1),
+(14, '03:00 - 11:00', 3, 3, 1000, 1200, 200, 2, 400, '2021-03-30 14:55:29', '2021-02-02', 1),
+(15, '07:00 - 09:00', 3, 3, 1000, 1200, 200, 2, 400, '2021-03-30 23:11:31', '2021-02-02', 1),
+(16, '08:00 - 09:00', 3, 3, 1001, 1010, 9, 2, 18, '2021-03-30 23:15:44', '2021-02-02', 1),
+(18, '03:00 - 19:00', 3, 3, 0, 1021, 0, 2, 0, '2021-03-30 23:29:33', '2021-02-02', 1),
+(19, '03:00 - 09:00', 3, 3, 1022, 1032, 10, 2, 20, '2021-03-30 23:30:31', '2021-02-02', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pagos`
 --
 
@@ -163,7 +201,41 @@ CREATE TABLE `personal` (
 --
 
 INSERT INTO `personal` (`id`, `nombre`, `ci`, `fnac`, `fecha`) VALUES
-(2, 'RAMON ALI QUISPE', 89090, '1990-01-01', '2021-03-25 18:09:01');
+(3, 'ROSMERY VALVERDE', 53453453, '2010-01-01', '2021-03-26 15:20:37');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `porton`
+--
+
+CREATE TABLE `porton` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `precio` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `porton`
+--
+
+INSERT INTO `porton` (`id`, `nombre`, `precio`, `fecha`) VALUES
+(3, 'PORTON INGRESO - SUC. 2', 2, '2021-03-26 16:13:04'),
+(4, 'PORTON SALIDA', 2, '2021-03-26 16:14:53'),
+(5, 'PORTON LLEGADA SALIDA', 2, '2021-03-26 16:14:53'),
+(6, 'CABINA CENTRAL SUC. 1', 2, '2021-03-26 16:14:53'),
+(7, 'PLATAFORMA 1 PORTON SALIDA', 6, '2021-03-26 16:16:53'),
+(8, 'PLATAFORMA 2 PORTON LLEGADA INGRESO', 3, '2021-03-26 16:16:53'),
+(9, 'PLATAFORMA 3 PORTON LLEGADA SALIDA', 6, '2021-03-26 16:16:53'),
+(10, 'PLATAFORMA 4 PORTON INGRESO', 3, '2021-03-26 16:16:53'),
+(11, 'BAÑO CENTRAL MUJERES', 1, '2021-03-26 16:18:37'),
+(12, 'BAÑO LLEGADA MUJERES', 1, '2021-03-26 16:18:37'),
+(13, 'BAÑO CENTRAL VARONES', 1, '2021-03-26 16:18:37'),
+(14, 'BAÑO LLEGADA VARONES', 1, '2021-03-26 16:18:37'),
+(15, 'PARQUEO', 3, '2021-03-26 16:20:45'),
+(16, 'TAXIS', 2, '2021-03-26 16:20:45'),
+(17, 'GUARDA EQUIPAJE', 0, '2021-03-26 16:20:45');
 
 -- --------------------------------------------------------
 
@@ -185,10 +257,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `tipo`, `fecha`) VALUES
-(1, 'admin', 'admin@test.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-18 23:03:49'),
-(2, 'SOLEDAD', 'soledad@gmail.com', '4d186321c1a7f0f354b297e8914ab240', 'ADMINISTRADOR2', '2021-03-22 00:16:46'),
-(3, 'juana', 'juana@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'SECRETARIA', '2021-03-22 00:17:28'),
-(4, 'HELEN', 'helen@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-22 19:10:40');
+(1, 'admin', 'admin@test.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-19 03:03:49'),
+(2, 'SOLEDAD', 'soledad@gmail.com', '4d186321c1a7f0f354b297e8914ab240', 'ADMINISTRADOR2', '2021-03-22 04:16:46'),
+(3, 'juana', 'juana@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'SECRETARIA', '2021-03-22 04:17:28'),
+(4, 'HELEN', 'helen@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-22 23:10:40');
 
 --
 -- Índices para tablas volcadas
@@ -209,6 +281,15 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `historial`
+--
+ALTER TABLE `historial`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `historial_ibfk_1` (`user_id`),
+  ADD KEY `historial_ibfk_2` (`porton_id`),
+  ADD KEY `persona_id` (`persona_id`);
+
+--
 -- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
@@ -220,6 +301,12 @@ ALTER TABLE `pagos`
 -- Indices de la tabla `personal`
 --
 ALTER TABLE `personal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `porton`
+--
+ALTER TABLE `porton`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -245,6 +332,12 @@ ALTER TABLE `clientes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT de la tabla `historial`
+--
+ALTER TABLE `historial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
@@ -254,7 +347,13 @@ ALTER TABLE `pagos`
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `porton`
+--
+ALTER TABLE `porton`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -272,6 +371,14 @@ ALTER TABLE `users`
 ALTER TABLE `ambientes`
   ADD CONSTRAINT `ambientes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `ambientes_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`);
+
+--
+-- Filtros para la tabla `historial`
+--
+ALTER TABLE `historial`
+  ADD CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`porton_id`) REFERENCES `porton` (`id`),
+  ADD CONSTRAINT `historial_ibfk_3` FOREIGN KEY (`persona_id`) REFERENCES `personal` (`id`);
 
 --
 -- Filtros para la tabla `pagos`
