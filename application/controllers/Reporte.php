@@ -90,4 +90,18 @@ class Reporte extends CI_Controller {
 //        echo json_encode($query->result_array());
 //        header('Location: '.base_url().'Cliente');
     }
+    public function mes()
+    {
+        if (!$this->session->name){
+            header('Location: '.base_url());
+        }
+        $this->load->view('mes');
+    }
+    public function deuda()
+    {
+        if (!$this->session->name){
+            header('Location: '.base_url());
+        }
+        $this->load->view('deuda');
+    }
 }

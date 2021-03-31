@@ -199,8 +199,8 @@
                                 <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Fecha</th>
-                                    <th>Bs.</th>
-                                    <th>Factura o recibo</th>
+                                    <th><div id="montot" class="bg bg-warning">Bs.</div></th>
+                                    <th><div id="facturat" class="bg bg-warning">Factura o recibo	</div></th>
                                     <th>Periodo</th>
                                     <th>Año</th>
                                     <th style="width: 40px">Opciones</th>
@@ -452,6 +452,8 @@
                 },
                 type:'post',
                 success:function (e){
+                    // console.log(e);
+                    // return false;
                     if (e=="Ya se realizo el pago"){
                         alert('el mes ya fue insertado porfavor verifique sus datos');
                     }else{
@@ -502,6 +504,16 @@
         }
         $('#nombre').change(function (e){
             actualizar();
+            $.ajax({
+                url:'Cobro/ambiente/'+$(this).val(),
+                success:function (e) {
+                    // console.log(e);
+                    let datos= JSON.parse(e);
+                    // console.log(datos);
+                    $('#montot').html("Monto "+datos.canon+" Bs.");
+                    $('#facturat').html("Factura N "+datos.nit+" ");
+                }
+            })
             e.preventDefault();
         });
         $('#rubro').change(function (e){
