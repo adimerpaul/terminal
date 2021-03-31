@@ -46,7 +46,7 @@
                                                             <div class="col-sm-10">
                                                                 <select class="form-control" name="porton" id="porton" required="" >
                                                                     <option value="0">Seleccionar Porton</option>
-                                                                        <?php 
+                                                                        <?php
                                                                             $datos=$this->db->query("SELECT id, nombre FROM porton");
                                                                             foreach ($datos->result() as $fila ) {
                                                                                 echo '<option value="'.$fila->id.'" id="'.$fila->id.'">'.$fila->nombre.'</option>';
@@ -60,7 +60,7 @@
                                                             <div class="col-sm-10" class="form-control">
                                                                 <select class="form-control" id="nombrep" name="nombrep">
                                                                     <option value="0">Seleccionar personal</option>
-                                                                    <?php 
+                                                                    <?php
                                                                         $datos=$this->db->query("SELECT id, nombre FROM personal");
                                                                         foreach ($datos->result() as $fila ) {
                                                                             echo '<option value="'.$fila->id.'" id="'.$fila->id.'">'.$fila->nombre.'</option>';
@@ -92,7 +92,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row" id="divcantidad">
-                                                            
+
                                                         </div>
                                                         <div class="form-group row" id="divprecio">
                                                             <label for="precio" class="col-sm-2 col-form-label">Presio Unit.</label>
@@ -101,13 +101,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row" id="divsubtotal">
-                                                            
+
                                                         </div>
                                                         <script type="text/javascript">
                                                             function calcular() {
                                                             // cantidad de ticket
                                                               var tinicio = document.getElementById("ticketinicio").value;
-                                                                // alert(parseInt(tinicio));                                                              
+                                                                // alert(parseInt(tinicio));
                                                               var tfin = document.getElementById("ticketfin").value;
                                                               var cant=tfin-tinicio;
                                                               var cad="<label for='cantidad' class='col-sm-2 col-form-label'>Cantidad ticket</label><div class='col-sm-10'><input type='text' class='form-control' id='cantidad' name='cantidad' value='";
@@ -147,12 +147,19 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <?php
+                            $dia=['','LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO']
+
+                            ?>
                             <table id="" class="table table-bordered">
                                 <thead>
                                 <tr>
+                                    <th colspan="9" class="text-center">RECAUDACION VALORES <?= $dia[(int)date('N')]?> <?=date('d/m/Y')?></th>
+                                </tr>
+                                <tr>
                                     <!-- <th>#</th> -->
-                                    <th>Porton</th>
                                     <th>Detalle</th>
+<!--                                    <th>Porton</th>-->
                                     <th>Nombre</th>
                                     <th>Ticket Inicio</th>
                                     <th>Ticket Final</th>
@@ -164,10 +171,51 @@
                                 </thead>
                                 <tbody id="contenido">
                                     <?php
-                                    $query=$this->db->query("SELECT por.nombre AS nomporton, h.detalle, p.nombre, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal FROM porton por, historial h, personal p WHERE por.id=h.porton_id AND p.id=h.persona_id");
-    //                                $cont=0;
+                                    $query=$this->db->query("SELECT * FROM `porton` WHERE id IN (SELECT porton_id FROM `historial` h WHERE date(h.fecha)=date(now()) GROUP BY porton_id)");
                                     foreach ($query->result() as $row)
                                     {
+                                        echo "
+                                        <tr>
+                                            <th colspan='2' class='text-center'>$row->nombre</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>";
+                                        $query2=$this->db->query("SELECT * FROM historial h INNER JOIN personal p ON p.id=h.persona_id WHERE porton_id='$row->id' AND date(h.fecha)=date(now())");
+                                        $s=0;
+                                        foreach ($query2->result() as $row2){
+                                            echo "
+                                            <tr>
+                                                <th class='text-center'>$row2->detalle</th>
+                                                <td>$row2->nombre</td>
+                                                <td>$row2->ticketinicio</td>
+                                                <td>$row2->ticketfin</td>
+                                                <td>$row2->cantidad</td>
+                                                <td>$row2->precio</td>
+                                                <td>$row2->subtotal</td>
+                                                <td></td>
+                                            </tr>";
+                                            $s+=$row2->subtotal;
+                                        }
+                                        echo "
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>TOTAL</th>
+                                            <th>$s</th>
+                                            <th></th>
+                                        </tr>";
+                                    }
+//                                    $query=$this->db->query("SELECT por.nombre AS nomporton, h.detalle, p.nombre, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal FROM porton por, historial h, personal p WHERE por.id=h.porton_id AND p.id=h.persona_id");
+//    //                                $cont=0;
+//                                    foreach ($query->result() as $row)
+//                                    {
     //                                    $cont++;
                                         // if ($row->mesanine=='on'){
                                         //     $me="<span class='badge badge-success'>SI</span>";
@@ -180,7 +228,7 @@
                                         //     $be="";
                                         // }
                                         // if ($row->tipo=='LIMITE'){
-                                            
+
                                         //     $lim="<button type='button' class='btn btn-warning btn-sm' data-toggle='modal'  data-target='#exampleModal2'
                                         //                 data-fechainitv='$row->fechainit'
                                         //                 data-fechalimv='$row->fechalim'
@@ -194,17 +242,17 @@
                                         //                 data-id='$row->id'
                                         //             >INDEFINIDO</button>";
                                         // }
-                                        echo "<tr>
-                                            <td>$row->nomporton</td>
-                                            <td>$row->detalle</td>
-                                            <td>$row->nombre</td>
-                                            <td>$row->ticketinicio</td>
-                                            <td>$row->ticketfin</td>
-                                            <td>$row->cantidad</td>
-                                            <td>$row->precio</td>
-                                            <td>$row->subtotal</td>
-                                        </tr>";
-                                    }
+//                                        echo "<tr>
+//                                            <td>$row->nomporton</td>
+//                                            <td>$row->detalle</td>
+//                                            <td>$row->nombre</td>
+//                                            <td>$row->ticketinicio</td>
+//                                            <td>$row->ticketfin</td>
+//                                            <td>$row->cantidad</td>
+//                                            <td>$row->precio</td>
+//                                            <td>$row->subtotal</td>
+//                                        </tr>";
+//                                    }
                                     ?>
                                 </tbody>
                                 <tfoot>
@@ -213,7 +261,7 @@
                                         <td style="width: 250px">
                                             <select name="porton" id="porton" class="form-control" required>
                                                 <option value="0">Seleccionar Porton</option>
-                                                    <?php 
+                                                    <?php
                                                         $datos=$this->db->query("SELECT id, nombre FROM porton");
                                                         foreach ($datos->result() as $fila ) {
                                                             echo '<option value="'.$fila->id.'" id="'.$fila->id.'">'.$fila->nombre.'</option>';
@@ -227,7 +275,7 @@
                                         <td style="width: 250px">
                                             <select name="nombre" id="nombre" class="form-control" required>
                                                 <option value="0">Seleccionar personal</option>
-                                                    <?php 
+                                                    <?php
                                                         $datos=$this->db->query("SELECT id, nombre FROM personal");
                                                         foreach ($datos->result() as $fila ) {
                                                             echo '<option value="'.$fila->id.'" id="'.$fila->id.'">'.$fila->nombre.'</option>';
@@ -254,7 +302,7 @@
                                             <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i></button>
                                         </td>
                                     </form> -->
-                                </tr>   
+                                </tr>
                                 </tfoot>
                             </table>
                             <!-- <div class="modal fade" id="exampleModalcopy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -327,7 +375,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="date" class="form-control" id="fechainit2" name="fechainit" placeholder="Fecha inicio de contrato" required>
                                                         </div>
-                                                    </div>  
+                                                    </div>
 
                                                     <div class="form-group row">
                                                         <label for="fechalim2" class="col-sm-2 col-form-label">Fecha Limite</label>
@@ -385,6 +433,6 @@
                     // alert("hola");
                 });
             });
-        }); 
-    }           
+        });
+    }
 </script>
