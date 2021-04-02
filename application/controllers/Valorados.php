@@ -16,10 +16,17 @@ class Valorados extends CI_Controller {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
+
         $porton_id=$this->input->post('porton');
-        $persona_id=$this->input->post('nombrep');
-        // echo $nombrep;
+
+        $datos=$this->db->query("SELECT tipo FROM porton WHERE id='$porton_id'");
+        $tipo_porton=$datos->row();
+        // echo $tipo_porton->tipo;
         // exit;
+
+
+        $persona_id=$this->input->post('nombrep');
+        
         $detalle=$this->input->post('detalle');
         $ticketinicio=$this->input->post('ticketinicio');
         $ticketfin=$this->input->post('ticketfin');
@@ -39,7 +46,8 @@ class Valorados extends CI_Controller {
                             precio='$precio',
                             subtotal='$subtotal',
                             fechacreacion='$fechacreacion',
-                            user_id='$user_id'
+                            user_id='$user_id',
+                            tipo='$tipo_porton->tipo'
                             ");
         header('Location: '.base_url().'Valorados');
     }
@@ -67,5 +75,12 @@ class Valorados extends CI_Controller {
             echo '<input type="text" class="form-control" value="'.$datoticket.'" id="ticketinicio" name="ticketinicio">';
         // }
 
+    }
+    public function valprecio(){
+        $id_porton = $this->input->post("id");
+        $valor=$this->db->query("SELECT precio FROM porton WHERE id='$id_porton'");
+        $valorprecio=$valor->row();
+        $valorprecio=$valorprecio->precio;
+        echo '<input type="text" class="form-control" value="'.$valorprecio.'" id="precio" name="precio" required oninput="calcular()">';
     }
 }

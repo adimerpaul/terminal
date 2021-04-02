@@ -17,3 +17,16 @@ rol-> secre. socio, gerente:
 -fechainicio de contratacion
 
 -numero correlativo por rubros en ambientes
+
+implementar
+
+--extractos de todos rubros(por cliente o oficina)
+
+
+personal
+--fecha de ingreso
+
+-total parcial en valorados RECAUDACION
+
+portones
+

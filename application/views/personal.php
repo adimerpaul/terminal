@@ -53,9 +53,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="fnac" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
+                                                            <label for="fnac" class="col-sm-2 col-form-label">Fecha de ingreso</label>
                                                             <div class="col-sm-10">
-                                                                <input type="date" class="form-control" id="fnac" name="fnac" placeholder="Fecha de nacimiento" required>
+                                                                <input type="date" class="form-control" id="fnac" name="fnac" value="<?=date('Y-m-d'); ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -83,7 +83,7 @@
                                     <th>#</th>
                                     <th>Nombre</th>
                                     <th>Ci</th>
-                                    <th>F. Nac.</th>
+                                    <th>Fecha de Ingreso</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
@@ -126,7 +126,7 @@
                                     <th>#</th>
                                     <th>Nombre</th>
                                     <th>Ci</th>
-                                    <th>Fnac</th>
+                                    <th>Fecha de ingreso</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </tfoot>
@@ -157,7 +157,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="fnac2" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
+                                                        <label for="fnac2" class="col-sm-2 col-form-label">Fecha de ingreso</label>
                                                         <div class="col-sm-10">
                                                             <input type="date" class="form-control" id="fnac2" name="fnac" placeholder="Fecha de nacimiento" required>
                                                         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2021 a las 02:23:15
+-- Tiempo de generación: 02-04-2021 a las 17:59:04
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -140,25 +140,33 @@ CREATE TABLE `historial` (
   `subtotal` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fechacreacion` date NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `historial`
 --
 
-INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinicio`, `ticketfin`, `cantidad`, `precio`, `subtotal`, `fecha`, `fechacreacion`, `user_id`) VALUES
-(4, '03:00 - 11:00', 3, 3, 27816, 0, 0, 0, 0, '2021-03-26 16:44:43', '2021-03-01', 1),
-(8, '08:00 - 10:00', 3, 4, 7000, 7000, 0, 2, 0, '2021-03-30 00:27:30', '0000-00-00', 1),
-(9, '03:00 - 11:00', 3, 6, 54, 59, 0, 2, 0, '2021-03-30 02:33:00', '0000-00-00', 1),
-(11, '11:00 - 12:00', 3, 5, 2457, 2903, 446, 2, 892, '2021-03-30 02:55:25', '2020-02-02', 1),
-(12, '03:00 - 20:00', 3, 15, 90, 99, 9, 2, 18, '2021-03-30 03:27:47', '2010-02-02', 1),
-(13, '03:00 - 11:00', 3, 3, 100, 110, 10, 2, 20, '2021-03-30 12:39:27', '2021-02-02', 1),
-(14, '03:00 - 11:00', 3, 3, 1000, 1200, 200, 2, 400, '2021-03-30 14:55:29', '2021-02-02', 1),
-(15, '07:00 - 09:00', 3, 3, 1000, 1200, 200, 2, 400, '2021-03-30 23:11:31', '2021-02-02', 1),
-(16, '08:00 - 09:00', 3, 3, 1001, 1010, 9, 2, 18, '2021-03-30 23:15:44', '2021-02-02', 1),
-(18, '03:00 - 19:00', 3, 3, 0, 1021, 0, 2, 0, '2021-03-30 23:29:33', '2021-02-02', 1),
-(19, '03:00 - 09:00', 3, 3, 1022, 1032, 10, 2, 20, '2021-03-30 23:30:31', '2021-02-02', 1);
+INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinicio`, `ticketfin`, `cantidad`, `precio`, `subtotal`, `fecha`, `fechacreacion`, `user_id`, `tipo`) VALUES
+(4, '03:00 - 11:00', 3, 3, 27816, 0, 0, 0, 0, '2021-03-26 16:44:43', '2021-03-01', 1, 'USO TERMINAL'),
+(8, '08:00 - 10:00', 3, 4, 7000, 7000, 0, 2, 0, '2021-03-30 00:27:30', '0000-00-00', 1, 'USO TERMINAL'),
+(9, '03:00 - 11:00', 3, 6, 54, 59, 0, 2, 0, '2021-03-30 02:33:00', '0000-00-00', 1, 'USO TERMINAL'),
+(11, '11:00 - 12:00', 3, 5, 2457, 2903, 446, 2, 892, '2021-03-30 02:55:25', '2020-02-02', 1, 'USO TERMINAL'),
+(12, '03:00 - 20:00', 3, 15, 90, 99, 9, 2, 18, '2021-03-30 03:27:47', '2010-02-02', 1, 'PARQUEO TER'),
+(13, '03:00 - 11:00', 3, 3, 100, 110, 10, 2, 20, '2021-03-30 12:39:27', '2021-02-02', 1, 'USO TERMINAL'),
+(14, '03:00 - 11:00', 3, 3, 1000, 1200, 200, 2, 400, '2021-03-30 14:55:29', '2021-02-02', 1, 'USO TERMINAL'),
+(15, '07:00 - 09:00', 3, 3, 1000, 1200, 200, 2, 400, '2021-03-30 23:11:31', '2021-02-02', 1, 'USO TERMINAL'),
+(16, '08:00 - 09:00', 3, 3, 1001, 1010, 9, 2, 18, '2021-03-30 23:15:44', '2021-02-02', 1, 'USO TERMINAL'),
+(18, '03:00 - 19:00', 3, 3, 0, 1021, 0, 2, 0, '2021-03-30 23:29:33', '2021-02-02', 1, 'USO TERMINAL'),
+(19, '03:00 - 09:00', 3, 3, 1022, 1032, 10, 2, 20, '2021-03-30 23:30:31', '2021-02-02', 1, 'USO TERMINAL'),
+(20, '03:00 - 11:00', 3, 4, 7001, 7010, 9, 2, 18, '2021-04-02 12:11:27', '2000-01-01', 1, 'USO TERMINAL'),
+(21, '03:00 - 11:00', 3, 3, 1033, 7001, 5969, 2, 11938, '2021-04-02 12:47:34', '2021-04-02', 1, 'USO TERMINAL'),
+(22, '03:00 - 11:00', 3, 3, 7002, 7009, 8, 2, 16, '2021-04-02 14:44:57', '2021-04-02', 1, 'USO TERMINAL'),
+(23, '03:00 - 11:00', 3, 3, 7010, 7010, 0, 2, 2, '2021-04-02 14:47:03', '2021-04-02', 1, 'USO TERMINAL'),
+(24, '03:00 - 11:00', 3, 17, 0, 0, 0, 0, 0, '2021-04-02 15:01:51', '2021-04-02', 1, 'GUARDA EQUIPAJE TERMINAL'),
+(25, '11:00 - 19:00', 3, 15, 100, 7001, 6902, 3, 20706, '2021-04-02 15:03:01', '2021-04-02', 1, 'PARQUEO TERMINAL'),
+(26, '03:00 - 11:00', 3, 11, 1, 200, 200, 1, 200, '2021-04-02 15:38:50', '2021-04-02', 1, 'MINGITORIO');
 
 -- --------------------------------------------------------
 
@@ -213,29 +221,30 @@ CREATE TABLE `porton` (
   `id` int(11) NOT NULL,
   `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `precio` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `porton`
 --
 
-INSERT INTO `porton` (`id`, `nombre`, `precio`, `fecha`) VALUES
-(3, 'PORTON INGRESO - SUC. 2', 2, '2021-03-26 16:13:04'),
-(4, 'PORTON SALIDA', 2, '2021-03-26 16:14:53'),
-(5, 'PORTON LLEGADA SALIDA', 2, '2021-03-26 16:14:53'),
-(6, 'CABINA CENTRAL SUC. 1', 2, '2021-03-26 16:14:53'),
-(7, 'PLATAFORMA 1 PORTON SALIDA', 6, '2021-03-26 16:16:53'),
-(8, 'PLATAFORMA 2 PORTON LLEGADA INGRESO', 3, '2021-03-26 16:16:53'),
-(9, 'PLATAFORMA 3 PORTON LLEGADA SALIDA', 6, '2021-03-26 16:16:53'),
-(10, 'PLATAFORMA 4 PORTON INGRESO', 3, '2021-03-26 16:16:53'),
-(11, 'BAÑO CENTRAL MUJERES', 1, '2021-03-26 16:18:37'),
-(12, 'BAÑO LLEGADA MUJERES', 1, '2021-03-26 16:18:37'),
-(13, 'BAÑO CENTRAL VARONES', 1, '2021-03-26 16:18:37'),
-(14, 'BAÑO LLEGADA VARONES', 1, '2021-03-26 16:18:37'),
-(15, 'PARQUEO', 3, '2021-03-26 16:20:45'),
-(16, 'TAXIS', 2, '2021-03-26 16:20:45'),
-(17, 'GUARDA EQUIPAJE', 0, '2021-03-26 16:20:45');
+INSERT INTO `porton` (`id`, `nombre`, `precio`, `fecha`, `tipo`) VALUES
+(3, 'PORTON INGRESO - SUC. 2', 2, '2021-03-26 16:13:04', 'USO TERMINAL'),
+(4, 'PORTON SALIDA', 2, '2021-03-26 16:14:53', 'USO TERMINAL'),
+(5, 'PORTON LLEGADA SALIDA', 2, '2021-03-26 16:14:53', 'USO TERMINAL'),
+(6, 'CABINA CENTRAL SUC. 1', 2, '2021-03-26 16:14:53', 'USO TERMINAL'),
+(7, 'PLATAFORMA 1 PORTON SALIDA', 6, '2021-03-26 16:16:53', 'USO CARRIL'),
+(8, 'PLATAFORMA 2 PORTON LLEGADA INGRESO', 3, '2021-03-26 16:16:53', 'PARTICULARES'),
+(9, 'PLATAFORMA 3 PORTON LLEGADA SALIDA', 6, '2021-03-26 16:16:53', 'USO CARRIL'),
+(10, 'PLATAFORMA 4 PORTON INGRESO', 3, '2021-03-26 16:16:53', 'PARTICULARES'),
+(11, 'BAÑO CENTRAL MUJERES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
+(12, 'BAÑO LLEGADA MUJERES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
+(13, 'BAÑO CENTRAL VARONES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
+(14, 'BAÑO LLEGADA VARONES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
+(15, 'PARQUEO', 3, '2021-03-26 16:20:45', 'PARQUEO TERMINAL'),
+(16, 'TAXIS', 2, '2021-03-26 16:20:45', 'TAXIS TERMINAL'),
+(17, 'GUARDA EQUIPAJE', 0, '2021-03-26 16:20:45', 'GUARDA EQUIPAJE TERMINAL');
 
 -- --------------------------------------------------------
 
@@ -335,7 +344,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`

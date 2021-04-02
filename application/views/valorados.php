@@ -47,7 +47,7 @@
                                                                 <select class="form-control" name="porton" id="porton" required="" >
                                                                     <option value="0">Seleccionar Porton</option>
                                                                         <?php
-                                                                            $datos=$this->db->query("SELECT id, nombre FROM porton");
+                                                                            $datos=$this->db->query("SELECT id, nombre,tipo FROM porton");
                                                                             foreach ($datos->result() as $fila ) {
                                                                                 echo '<option value="'.$fila->id.'" id="'.$fila->id.'">'.$fila->nombre.'</option>';
                                                                             }
@@ -96,8 +96,8 @@
                                                         </div>
                                                         <div class="form-group row" id="divprecio">
                                                             <label for="precio" class="col-sm-2 col-form-label">Presio Unit.</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="precio" name="precio" placeholder="Presio Unit." required oninput="calcular()">
+                                                            <div class="col-sm-10" id="preciodiv" name="preciodiv">
+                                                                <!-- <input type="text" class="form-control" id="precio" name="precio" placeholder="Presio Unit." required oninput="calcular()"> -->
                                                             </div>
                                                         </div>
                                                         <div class="form-group row" id="divsubtotal">
@@ -109,7 +109,7 @@
                                                               var tinicio = document.getElementById("ticketinicio").value;
                                                                 // alert(parseInt(tinicio));
                                                               var tfin = document.getElementById("ticketfin").value;
-                                                              var cant=tfin-tinicio;
+                                                              var cant=tfin-(tinicio-1);
                                                               var cad="<label for='cantidad' class='col-sm-2 col-form-label'>Cantidad ticket</label><div class='col-sm-10'><input type='text' class='form-control' id='cantidad' name='cantidad' value='";
                                                               var cad2="' required></div>";
                                                               document.getElementById("divcantidad").innerHTML = cad.concat(cant,cad2);
@@ -125,7 +125,7 @@
                                                         <div class="form-group row">
                                                             <label for="fechacreacion" class="col-sm-2 col-form-label">Fecha</label>
                                                             <div class="col-sm-10">
-                                                                <input type="date" class="form-control" id="fechacreacion" name="fechacreacion" required>
+                                                                <input type="date" class="form-control" id="fechacreacion" name="fechacreacion" value="<?=date('Y-m-d'); ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -171,46 +171,62 @@
                                 </thead>
                                 <tbody id="contenido">
                                     <?php
-                                    $query=$this->db->query("SELECT * FROM `porton` WHERE id IN (SELECT porton_id FROM `historial` h WHERE date(h.fecha)=date(now()) GROUP BY porton_id)");
-                                    foreach ($query->result() as $row)
+                                    $tipoval=$this->db->query("SELECT * FROM porton GROUP BY tipo DESC ");
+                                    foreach ($tipoval->result() as $row)
                                     {
                                         echo "
-                                        <tr>
-                                            <th colspan='2' class='text-center'>$row->nombre</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>";
-                                        $query2=$this->db->query("SELECT * FROM historial h INNER JOIN personal p ON p.id=h.persona_id WHERE porton_id='$row->id' AND date(h.fecha)=date(now())");
-                                        $s=0;
-                                        foreach ($query2->result() as $row2){
+                                            <tr>
+                                                <th colspan='8' class='text-center'>$row->tipo</th>
+                                            </tr>";
+                                        $tparcial=0;
+                                        $query=$this->db->query("SELECT * FROM `porton` WHERE id IN (SELECT porton_id FROM `historial` h WHERE date(h.fecha)=date(now()) AND tipo='$row->tipo' GROUP BY porton_id)");
+                                        foreach ($query->result() as $row)
+                                        {
                                             echo "
                                             <tr>
-                                                <th class='text-center'>$row2->detalle</th>
-                                                <td>$row2->nombre</td>
-                                                <td>$row2->ticketinicio</td>
-                                                <td>$row2->ticketfin</td>
-                                                <td>$row2->cantidad</td>
-                                                <td>$row2->precio</td>
-                                                <td>$row2->subtotal</td>
-                                                <td></td>
+                                                <th colspan='2' class='text-center'>$row->nombre</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>";
-                                            $s+=$row2->subtotal;
+                                            $query2=$this->db->query("SELECT * FROM historial h INNER JOIN personal p ON p.id=h.persona_id WHERE porton_id='$row->id' AND date(h.fecha)=date(now())");
+                                            $s=0;
+                                            foreach ($query2->result() as $row2){
+                                                echo "
+                                                <tr>
+                                                    <th class='text-center'>$row2->detalle</th>
+                                                    <td>$row2->nombre</td>
+                                                    <td>$row2->ticketinicio</td>
+                                                    <td>$row2->ticketfin</td>
+                                                    <td>$row2->cantidad</td>
+                                                    <td>$row2->precio</td>
+                                                    <td>$row2->subtotal</td>
+                                                    <td></td>
+                                                </tr>";
+                                                $s+=$row2->subtotal;
+                                            }
+                                            echo "
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>TOTAL</th>
+                                                <th>$s</th>
+                                                <th></th>
+                                            </tr>";
+                                            $tparcial+=$s;
                                         }
                                         echo "
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th>TOTAL</th>
-                                            <th>$s</th>
-                                            <th></th>
-                                        </tr>";
+                                            <tr>
+                                                <th colspan='6' class='text-center'>TOTAL PARCIAL</th>
+                                                <th>$tparcial</th>
+                                                <th></th>
+                                            </tr>";
                                     }
 //                                    $query=$this->db->query("SELECT por.nombre AS nomporton, h.detalle, p.nombre, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal FROM porton por, historial h, personal p WHERE por.id=h.porton_id AND p.id=h.persona_id");
 //    //                                $cont=0;
@@ -434,5 +450,17 @@
                 });
             });
         });
+        $(document).ready(function(){
+            $("#porton").change(function(){
+                $("#porton option:selected").each(function(){
+                    id = $('#porton').val();
+                    $.post("<?php echo base_url(); ?>Valorados/valprecio",{
+                        id : id
+                    }, function(data){
+                        $("#preciodiv").html(data);
+                    });
+                });
+            });
+        }); 
     }
 </script>
