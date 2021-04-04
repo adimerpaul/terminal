@@ -30,3 +30,6 @@ personal
 
 portones
 
+historial del alquiler desde la fecha de contrato
+Historial por dia
+valoraddos repostes historial por hoy y por dias
