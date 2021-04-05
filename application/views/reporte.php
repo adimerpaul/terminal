@@ -35,7 +35,19 @@
                             <div class="row">
                                 <div class="col-sm-12 py-2">
                                     <h3 class="h3 text-center">Imprimir reportes del Dia</h3>
-                                    <a href="<?=base_url()?>Reporte/hoy" target="_blank" class="btn btn-primary btn-block">Imprimir Ingresos del Dia <i class="fa fa-print"></i></a>
+                                    <form action="<?=base_url()?>Reporte/hoy" method="post" target="_blank">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <input type="date" class="form-control" name="dia" id="dia" placeholder="Dia" value="<?=date('Y-m-d')?>" required>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <button type="submit" name="btn" value="reporte" class="btn btn-primary btn-block">Imprimir Ingresos del Dia <i class="fa fa-print"></i></button>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <button type="submit" name="btn" value="excel" class="btn btn-success btn-block"><i class="fa fa-file-excel"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="col-sm-12 py-2">
                                     <h3 class="h3 text-center">Imprimir reportes del Mes</h3>

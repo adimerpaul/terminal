@@ -1,3 +1,8 @@
+<?php
+if ($this->session->name){
+    header('Location: '.base_url().'Home');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

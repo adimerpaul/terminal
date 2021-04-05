@@ -16,13 +16,17 @@
 </head>
 <body>
 <?php
+$date = new DateTime($hoy);
+//$date->modify('+1 day');
+//echo $date->format('Y-m-d');
 $dias=['DOMINGO','LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO','','','','','',''];
 $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE',''];
+
 ?>
 <table rules="all" style="width: 100%;font-size: 11px;border: 1px solid black;">
     <tr>
         <td width="100">DIA</td>
-        <td style="text-align: right"><?=$dias[date('L')]?> <?=date('m')?> DE <?=$meses[(int)date('m')]?> DE <?=date('Y')?></td>
+        <td style="text-align: right"><?=$dias[$date->format('N')]?> <?=$date->format('d')?> DE <?=$meses[(int)$date->format('m')]?> DE <?=$date->format('Y')?></td>
     </tr>
     <tr>
         <td width="100">NIT</td>
@@ -53,7 +57,7 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
     </thead>
     <tbody>
         <?php
-            $query=$this->db->query("SELECT * FROM pagos WHERE date(fecha)=date(now())");
+            $query=$this->db->query("SELECT * FROM pagos WHERE date(fecha)=date($hoy)");
             $c=0;
             $s=0;
             foreach ($query->result() as $row){
