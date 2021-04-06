@@ -4,12 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Cliente extends CI_Controller {
 	public function index()
 	{
-	    if (!$this->session->name){
+	    if ($this->session->name && ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2')){
+            $this->load->view('templates/header');
+            $this->load->view('cliente');
+            $this->load->view('templates/footer');
+
+            // var_dump($this->session->tipo);
+        } else {
             header('Location: '.base_url());
         }
-        $this->load->view('templates/header');
-        $this->load->view('cliente');
-        $this->load->view('templates/footer');
 	}
     public function crear()
     {

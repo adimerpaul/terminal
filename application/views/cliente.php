@@ -25,9 +25,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
+                                <?php if ($this->session->tipo=='ADMINISTRADOR'): ?>
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
                                     <i class="fa fa-plus-circle"></i> Crear Nuevo Cliente
                                 </button>
+                                <?php endif ?>
                                 <div class="modal fade" id="modal-lg">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -147,17 +149,8 @@
                                 foreach ($query->result() as $row)
                                 {
                                     $cont++;
-                                    echo "<tr>
-                                        <td>$cont</td>
-                                        <td>$row->nombres $row->apellidos</td>
-                                        <td>$row->razon</td>
-                                        <td>$row->nit</td>
-                                        <td>$row->replegal</td>
-                                        <td>$row->celular</td>
-                                        <td>$row->ncontrato</td>
-                                        <td>$row->direccion</td>
-                                        <td>
-                                            <div class='btn btn-group'>
+                                    if ($this->session->tipo=='ADMINISTRADOR'){
+                                        $be="<div class='btn btn-group'>
                                                 <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
                                                     data-ci='$row->ci'
                                                     data-id='$row->id'
@@ -171,7 +164,21 @@
                                                     data-direccion='$row->direccion'
                                                 ><i class='fa fa-edit'></i></button>
                                                 <a type='button' onclick='borrar(event)' href='".base_url()."Cliente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
-                                            </div>
+                                            </div>";
+                                    }else{
+                                        $be="";
+                                    }
+                                    echo "<tr>
+                                        <td>$cont</td>
+                                        <td>$row->nombres $row->apellidos</td>
+                                        <td>$row->razon</td>
+                                        <td>$row->nit</td>
+                                        <td>$row->replegal</td>
+                                        <td>$row->celular</td>
+                                        <td>$row->ncontrato</td>
+                                        <td>$row->direccion</td>
+                                        <td>
+                                            $be
                                         </td>
                                     </tr>";
                                 }

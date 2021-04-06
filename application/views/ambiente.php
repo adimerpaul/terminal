@@ -25,9 +25,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
+                                <?php if($this->session->tipo=='ADMINISTRADOR'): ?>
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
                                     <i class="fa fa-plus-circle"></i> Crear Nuevo Ambiente
                                 </button>
+                                <?php endif ?>
                                 <div class="modal fade" id="modal-lg">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -203,7 +205,20 @@
                                         $me="<span class='badge badge-danger'>NO</span>";
                                     }
                                     if ($this->session->tipo=='ADMINISTRADOR'){
-                                        $be="<a type='button' onclick='borrar(event)' href='".base_url()."Ambiente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
+                                        $be="<div class='btn btn-group'>
+                                                <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
+                                                    data-rubro='$row->rubro'
+                                                    data-nombre='$row->nombre'
+                                                    data-nit='$row->nit'
+                                                    data-detalle='$row->detalle'
+                                                    data-mesanine='$row->mesanine'
+                                                    data-canon='$row->canon'
+                                                    data-tipo='$row->tipo'
+                                                    data-fechainit='$row->fechainit'
+                                                    data-fechalim='$row->fechalim'
+                                                    data-id='$row->id'
+                                                ><i class='fa fa-edit'></i></button><a type='button' onclick='borrar(event)' href='".base_url()."Ambiente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
+                                            </div>";
                                     }else{
                                         $be="";
                                     }
@@ -233,21 +248,7 @@
                                         <td>$row->canon</td>
                                         <td>$lim</td>  
                                         <td>
-                                            <div class='btn btn-group'>
-                                                <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
-                                                    data-rubro='$row->rubro'
-                                                    data-nombre='$row->nombre'
-                                                    data-nit='$row->nit'
-                                                    data-detalle='$row->detalle'
-                                                    data-mesanine='$row->mesanine'
-                                                    data-canon='$row->canon'
-                                                    data-tipo='$row->tipo'
-                                                    data-fechainit='$row->fechainit'
-                                                    data-fechalim='$row->fechalim'
-                                                    data-id='$row->id'
-                                                ><i class='fa fa-edit'></i></button>
-                                                $be
-                                            </div>
+                                            $be
                                         </td>
                                     </tr>";
                                 }

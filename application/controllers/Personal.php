@@ -4,15 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Personal extends CI_Controller {
 	public function index()
 	{
-        if (!$this->session->name || $this->session->tipo!='ADMINISTRADOR'){
-            header('Location: '.base_url());
-        }
-        // if ($this->session->tipo='ADMINISTRADOR2'){
+        // if (!$this->session->name){
         //     header('Location: '.base_url());
         // }
-        $this->load->view('templates/header');
-        $this->load->view('personal');
-        $this->load->view('templates/footer');
+        if ($this->session->name && ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2')){
+            $this->load->view('templates/header');
+            $this->load->view('personal');
+            $this->load->view('templates/footer');
+        }else{
+            header('Location: '.base_url());
+        }
 	}
     public function crear()
     {

@@ -4,12 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Valorados extends CI_Controller {
 	public function index()
 	{
-	    if (!$this->session->name){
+	    if ($this->session->name && ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2')){
+            $this->load->view('templates/header');
+            $this->load->view('valorados');
+            $this->load->view('templates/footer');
+        } else {
             header('Location: '.base_url());
         }
-        $this->load->view('templates/header');
-        $this->load->view('valorados');
-        $this->load->view('templates/footer');
+        
 	}
 	public function crear()
     {

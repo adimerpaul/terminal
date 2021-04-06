@@ -4,30 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Ambiente extends CI_Controller {
 	public function index()
 	{
-	    if (!$this->session->name){
-            header('Location: '.base_url());
+	    if ($this->session->name && ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2')){
+            $this->load->view('templates/header');
+            $this->load->view('ambiente');
+            $this->load->view('templates/footer');
+        } else {
+             header('Location: '.base_url());
         }
-        $this->load->view('templates/header');
-        $this->load->view('ambiente');
-        $this->load->view('templates/footer');
-        // else{
-        //     if($this->session->name && $this->session->tipo='ADMINISTRADOR'){
-        //         $this->load->view('templates/header');
-        //         $this->load->view('ambiente');
-        //         $this->load->view('templates/footer');
-        //     }
-        //     if($this->session->name && $this->session->tipo='ADMINISTRADOR2'){
-        //         // var_dump($this->session->tipo);
-        //         $this->load->view('adm2/templates/header');
-        //         $this->load->view('adm2/ambiente');
-        //         $this->load->view('adm2/templates/footer');
-        //     }
-        //     if($this->session->name && ($this->session->tipo='SECRETARIA' || $this->session->tipo='SOCIO')){
-        //         $this->load->view('templates/header');
-        //         $this->load->view('ambiente');
-        //         $this->load->view('templates/footer');
-        //     }
-        // }
 	}
 	public function crear()
     {

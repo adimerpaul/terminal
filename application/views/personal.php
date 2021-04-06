@@ -25,9 +25,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
+                                <?php if($this->session->tipo=='ADMINISTRADOR'): ?>
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
                                     <i class="fa fa-plus-circle"></i> Crear Nuevo Personal
                                 </button>
+                                <?php endif ?>
                                 <div class="modal fade" id="modal-lg">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -101,13 +103,8 @@
                                 foreach ($query->result() as $row)
                                 {
                                     $cont++;
-                                    echo "<tr>
-                                        <td>$cont</td>
-                                        <td>$row->nombre</td>
-                                        <td>$row->ci</td>
-                                        <td>$row->fnac</td>
-                                        <td>
-                                            <div class='btn btn-group'>
+                                    if ($this->session->tipo=='ADMINISTRADOR') {
+                                        $mos="<div class='btn btn-group'>
                                                 <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
                                                     data-id='$row->id'
                                                     data-nombre='$row->nombre'
@@ -115,7 +112,18 @@
                                                     data-fnac='$row->fnac'
                                                 ><i class='fa fa-edit'></i></button>
                                                 <a type='button' onclick='borrar(event)' href='".base_url()."Personal/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
-                                            </div>
+                                            </div>";
+                                    }
+                                    else{
+                                        $mos="";
+                                    }
+                                    echo "<tr>
+                                        <td>$cont</td>
+                                        <td>$row->nombre</td>
+                                        <td>$row->ci</td>
+                                        <td>$row->fnac</td>
+                                        <td>
+                                            $mos
                                         </td>
                                     </tr>";
                                 }

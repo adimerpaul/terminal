@@ -109,7 +109,10 @@
                                                               var tinicio = document.getElementById("ticketinicio").value;
                                                                 // alert(parseInt(tinicio));
                                                               var tfin = document.getElementById("ticketfin").value;
-                                                              var cant=tfin-(tinicio-1);
+                                                              var cant=0;
+                                                              if (tfin!=tinicio) {
+                                                                cant=tfin-(tinicio-1);
+                                                              }
                                                               var cad="<label for='cantidad' class='col-sm-2 col-form-label'>Cantidad ticket</label><div class='col-sm-10'><input type='text' class='form-control' id='cantidad' name='cantidad' value='";
                                                               var cad2="' required></div>";
                                                               document.getElementById("divcantidad").innerHTML = cad.concat(cant,cad2);

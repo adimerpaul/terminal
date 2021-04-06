@@ -263,6 +263,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            <?php if($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2') { ?>
                             <li class="nav-item">
                                 <a href="<?=base_url()?>Cliente" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -287,6 +288,14 @@
                                     <p>Reportes</p>
                                 </a>
                             </li>
+                            <?php } else { ?>                            
+                            <li class="nav-item">
+                                <a href="<?=base_url()?>Reporte" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Reportes</p>
+                                </a>
+                            </li>
+                            <?php } ?>
                             <!--                            <li class="nav-item">-->
                             <!--                                <a href="../layout/boxed.html" class="nav-link">-->
                             <!--                                    <i class="far fa-circle nav-icon"></i>-->
@@ -333,6 +342,7 @@
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <?php if ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2'){ ?>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="<?=base_url()?>Personal" class="nav-link">
@@ -352,13 +362,17 @@
                                     <p>Reportes</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="../charts/uplot.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>uPlot</p>
-                                </a>
-                            < -->/li>
                         </ul>
+                        <?php } else{ ?>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="../charts/inline.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Reportes</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <?php } ?>
                     </li>
                                         <!-- <li class="nav-item">
                                             <a href="#" class="nav-link">
@@ -841,7 +855,7 @@
                     <!--                    </li>-->
                     <li class="nav-header">TOTALES</li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="<?=base_url()?>User" class="nav-link">
                             <i class="nav-icon far fa-circle text-danger"></i>
                             <p class="text">Usuarios <span class="badge badge-info right">
                                 <?php
@@ -854,9 +868,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="<?=base_url()?>Ambiente" class="nav-link">
                             <i class="nav-icon far fa-circle text-warning"></i>
-                            <p>Abientes <span class="badge badge-info right">
+                            <p>Ambientes <span class="badge badge-info right">
                                 <?php
                                     $query=$this->db->query("SELECT COUNT(*) AS Total FROM ambientes");
                                     foreach ($query->result() as $row){
@@ -867,7 +881,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="<?=base_url()?>Cliente" class="nav-link">
                             <i class="nav-icon far fa-circle text-info"></i>
                             <p>Clientes <span class="badge badge-info right">
                                 <?php

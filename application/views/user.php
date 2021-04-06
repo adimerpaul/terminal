@@ -307,7 +307,7 @@
             // console.log(button.data('ci')); // Extract info from data-* attributes
             $('#name2').val(button.data('name'));
             $('#email2').val(button.data('email'));
-            $('#password2').val(button.data('password'));
+            // $('#password2').val(button.data('password'));
             $('#tipo2').val(button.data('tipo'));
             $('#id2').val(button.data('id'));
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
