@@ -157,7 +157,7 @@
                             <table id="" class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th colspan="9" class="text-center">RECAUDACION VALORES <?= $dia[(int)date('N')]?> <?=date('d/m/Y')?></th>
+                                    <th colspan="8" class="text-center">RECAUDACION VALORES <?= $dia[(int)date('N')]?> <?=date('d/m/Y')?></th>
                                 </tr>
                                 <tr>
                                     <!-- <th>#</th> -->
@@ -175,6 +175,7 @@
                                 <tbody id="contenido">
                                     <?php
                                     $tipoval=$this->db->query("SELECT * FROM porton GROUP BY tipo DESC ");
+                                    $totalrec=0;
                                     foreach ($tipoval->result() as $row)
                                     {
                                         echo "
@@ -224,6 +225,7 @@
                                             </tr>";
                                             $tparcial+=$s;
                                         }
+                                        $totalrec+=$tparcial;
                                         echo "
                                             <tr>
                                                 <th colspan='6' class='text-center'>TOTAL PARCIAL</th>
@@ -231,6 +233,11 @@
                                                 <th></th>
                                             </tr>";
                                     }
+                                    echo "
+                                            <tr>
+                                                <th colspan='7' class='text-center'>TOTAL RECAUADO ".$dia[(int)date('N')]." ".date('d/m/Y')."</th>
+                                                <th>$totalrec</th>
+                                            </tr>";
 //                                    $query=$this->db->query("SELECT por.nombre AS nomporton, h.detalle, p.nombre, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal FROM porton por, historial h, personal p WHERE por.id=h.porton_id AND p.id=h.persona_id");
 //    //                                $cont=0;
 //                                    foreach ($query->result() as $row)
