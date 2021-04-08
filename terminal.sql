@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2021 a las 14:09:43
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.3
+-- Tiempo de generación: 08-04-2021 a las 14:45:31
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -178,6 +178,19 @@ INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinic
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hpagos`
+--
+
+CREATE TABLE `hpagos` (
+  `id` int(11) NOT NULL,
+  `monto` decimal(11,2) NOT NULL,
+  `fecha` date NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pagos`
 --
 
@@ -204,7 +217,10 @@ CREATE TABLE `pagos` (
 
 INSERT INTO `pagos` (`id`, `monto`, `fecha`, `ambiente_id`, `user_id`, `mes`, `anio`, `fechapago`, `factura`, `periodo`, `rubro`, `nombre`, `detalle`, `tipo`) VALUES
 (1, 15.00, '2021-04-07 20:44:36', 35, 1, 4, '2021', '2021-04-07', 'R-123', 'abr-21', 'PERNOCTE Y PARQUEO', '0', 'pernocte', 'INGRESO'),
-(2, 15.00, '2021-04-08 11:24:43', 35, 1, 5, '2021', '2021-04-08', 'R-123', 'may-21', 'PERNOCTE Y PARQUEO', '', 'reposicion', 'INGRESO');
+(2, 15.00, '2021-04-08 11:24:43', 35, 1, 5, '2021', '2021-04-08', 'R-123', 'may-21', 'PERNOCTE Y PARQUEO', '', 'reposicion', 'INGRESO'),
+(3, 178.29, '2021-04-08 12:35:34', 0, 1, 4, '2021', '2021-04-08', 'F-05454', 'abr-21', 'OBLIGACIONES SOCIALES ', 'ADALID AVILA HERBAS', 'SUELDOS DEL MES DE FEBRERO ', 'EGRESO'),
+(4, 1500.00, '2021-04-08 12:41:12', 10, 1, 4, '2021', '2021-04-08', 'F-123456', 'abr-21', 'KIOSKOS', 'BACILIA CONDORI MORA', 'KIOSKO # 4 FRONTIS BODEGA #43', 'INGRESO'),
+(5, 21034.00, '2021-04-08 12:42:48', 0, 1, 4, '2021', '2021-04-08', 'R-1546', 'mar-2021', 'SERVICIOS BASICOS', 'ADALID AVIL A HERBAS \r\n', 'SUELDO NO COBRADOS DEL MES DE SEP\r\n', 'EGRESO');
 
 -- --------------------------------------------------------
 
@@ -266,6 +282,31 @@ INSERT INTO `porton` (`id`, `nombre`, `precio`, `fecha`, `tipo`, `orden`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tipogasto`
+--
+
+CREATE TABLE `tipogasto` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `tipogasto`
+--
+
+INSERT INTO `tipogasto` (`id`, `nombre`, `fecha`) VALUES
+(1, 'OBLIGACIONES SOCIALES', '2021-04-08 12:10:51'),
+(2, 'SUBSIDIOS', '2021-04-08 12:11:41'),
+(3, 'OTROS', '2021-04-08 12:11:41'),
+(4, 'SERVICIOS BASICOS', '2021-04-08 12:12:42'),
+(5, 'GASTOS OPERATIVOS', '2021-04-08 12:12:42'),
+(6, 'GASTOS ADMINISTRATIVOS', '2021-04-08 12:12:42'),
+(7, 'IMPOSITIVOS', '2021-04-08 12:12:42');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -316,6 +357,12 @@ ALTER TABLE `historial`
   ADD KEY `persona_id` (`persona_id`);
 
 --
+-- Indices de la tabla `hpagos`
+--
+ALTER TABLE `hpagos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
@@ -333,6 +380,12 @@ ALTER TABLE `personal`
 -- Indices de la tabla `porton`
 --
 ALTER TABLE `porton`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `tipogasto`
+--
+ALTER TABLE `tipogasto`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -364,10 +417,16 @@ ALTER TABLE `historial`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT de la tabla `hpagos`
+--
+ALTER TABLE `hpagos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -380,6 +439,12 @@ ALTER TABLE `personal`
 --
 ALTER TABLE `porton`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+
+--
+-- AUTO_INCREMENT de la tabla `tipogasto`
+--
+ALTER TABLE `tipogasto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -410,7 +475,6 @@ ALTER TABLE `historial`
 -- Filtros para la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  ADD CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`ambiente_id`) REFERENCES `ambientes` (`id`),
   ADD CONSTRAINT `pagos_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 

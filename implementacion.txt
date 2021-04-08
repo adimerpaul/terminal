@@ -34,8 +34,9 @@ historial del alquiler desde la fecha de contrato
 Historial por dia
 valoraddos repostes historial por hoy y por dias
 
-pernocte agregar varias veces
-crear tabla para saldos anteriores de alquileres
-sumar valores diarios al reporte de alquileres(libro diario)
-imprimir reporte de valorados en reporte general
-crear formulario gastos alquileres
+pernocte agregar varias veces(yo)
+crear tabla para saldos anteriores de alquileres(yo)
+sumar valores diarios al reporte de alquileres(libro diario)(yo)
+imprimir reporte de valorados en reporte general(yo)
+numero correlativo de historial de pago de un ambiente(hans)
+crear formulario gastos alquileres(hans)
