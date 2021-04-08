@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2021 a las 17:59:04
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.3
+-- Tiempo de generación: 08-04-2021 a las 14:09:43
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -39,8 +38,8 @@ CREATE TABLE `ambientes` (
   `fechainit` date NOT NULL,
   `fechalim` date NOT NULL,
   `canon` double NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `estado` int(11) NOT NULL DEFAULT '1',
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` int(11) NOT NULL DEFAULT 1,
   `user_id` int(11) NOT NULL,
   `cliente_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -67,7 +66,8 @@ INSERT INTO `ambientes` (`id`, `rubro`, `nombre`, `nit`, `detalle`, `mesanine`, 
 (16, 'KIOSKOS', 'NOELIA', 878676, '0983', '', 'INDEFINIDO', '2021-03-31', '0000-00-00', 0, '2021-03-24 00:54:34', 1, 1, 1),
 (17, 'PLANTA BAJA', 'JORGE SARMIENTO MAMANI', 878676, '4 CARRITOS MONEDEROS', '', 'INDEFINIDO', '2021-03-01', '0000-00-00', 500, '2021-03-24 01:01:28', 1, 1, 1),
 (33, 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 53453453, 'PARQUEO', '', 'INDEFINIDO', '2010-01-01', '0000-00-00', 100, '2021-03-25 19:46:48', 1, 1, 27),
-(34, 'OFICINAS DE TRANSPORTE', 'TRANS DEL SUR 1', 5778877, 'OFICINA y BG # 28', 'on', 'INDEFINIDO', '2020-02-01', '0000-00-00', 1200, '2021-03-25 19:51:43', 1, 1, 28);
+(34, 'OFICINAS DE TRANSPORTE', 'TRANS DEL SUR 1', 5778877, 'OFICINA y BG # 28', 'on', 'INDEFINIDO', '2020-02-01', '0000-00-00', 1200, '2021-03-25 19:51:43', 1, 1, 28),
+(35, 'PERNOCTE Y PARQUEO', '', 0, 'reposicion', '', 'INDEFINIDO', '2021-01-01', '0000-00-00', 0, '2021-04-07 20:44:11', 1, 1, 29);
 
 -- --------------------------------------------------------
 
@@ -82,8 +82,8 @@ CREATE TABLE `clientes` (
   `apellidos` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `razon` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `nit` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `estado` tinyint(1) NOT NULL DEFAULT '1',
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
   `replegal` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `celular` int(11) NOT NULL,
   `ncontrato` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
@@ -120,7 +120,8 @@ INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `nit`, `fec
 (25, '53453453', 'BACILIA', 'CONDORI MORA', 'BACILIA CONDORI MORA', 53453453, '2021-03-22 21:53:32', 1, 'BACILIA CONDORI MORA', 898989, '040/2019', 'BOLIVAR #90'),
 (26, '5778877', 'JUAN ALBETITO', 'ALCACHOFA', 'NASER', 8882, '2021-03-23 14:06:57', 1, 'MARIO LOPEZ', 898989, '98798/9', 'BOLIVAR #40'),
 (27, '53453453', 'RAMIRO', 'GONZALES ALI', 'RAMIRO GONZALES ALI', 53453453, '2021-03-25 15:34:26', 1, 'RAMIRO GONZALES', 79889, '98798/9', 'BOLIVAR ENTRE PANDO'),
-(28, '5778877', 'RAUL TOMAS', 'ALI FLORES', 'TRANS DEL SUR 1', 5778877, '2021-03-25 15:50:28', 1, 'SANTIAGO MOLLO LOPEZ', 80979, '8934/8', 'PANDO #5');
+(28, '5778877', 'RAUL TOMAS', 'ALI FLORES', 'TRANS DEL SUR 1', 5778877, '2021-03-25 15:50:28', 1, 'SANTIAGO MOLLO LOPEZ', 80979, '8934/8', 'PANDO #5'),
+(29, '0', 'Otros', 'varios', '0', 0, '2021-04-07 20:41:29', 1, 'varios', 0, '0', 'sin dir.');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ CREATE TABLE `historial` (
   `cantidad` int(11) NOT NULL,
   `precio` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `fechacreacion` date NOT NULL,
   `user_id` int(11) NOT NULL,
   `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL
@@ -166,7 +167,13 @@ INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinic
 (23, '03:00 - 11:00', 3, 3, 7010, 7010, 0, 2, 2, '2021-04-02 14:47:03', '2021-04-02', 1, 'USO TERMINAL'),
 (24, '03:00 - 11:00', 3, 17, 0, 0, 0, 0, 0, '2021-04-02 15:01:51', '2021-04-02', 1, 'GUARDA EQUIPAJE TERMINAL'),
 (25, '11:00 - 19:00', 3, 15, 100, 7001, 6902, 3, 20706, '2021-04-02 15:03:01', '2021-04-02', 1, 'PARQUEO TERMINAL'),
-(26, '03:00 - 11:00', 3, 11, 1, 200, 200, 1, 200, '2021-04-02 15:38:50', '2021-04-02', 1, 'MINGITORIO');
+(26, '03:00 - 11:00', 3, 11, 1, 200, 200, 1, 200, '2021-04-02 15:38:50', '2021-04-02', 1, 'MINGITORIO'),
+(27, '03:00 - 11:00', 3, 6, 60, 2000, 1941, 2, 3882, '2021-04-06 18:53:40', '2021-04-06', 1, 'USO TERMINAL'),
+(28, '03:00 - 11:00', 3, 14, 1, 200, 200, 1, 200, '2021-04-06 18:54:28', '2021-04-06', 1, 'MINGITORIO'),
+(29, '11:00 - 19:00', 3, 14, 201, 218, 18, 1, 18, '2021-04-06 18:55:29', '2021-04-06', 1, 'MINGITORIO'),
+(30, '03:00 - 11:00', 3, 3, 7011, 7019, 9, 2, 18, '2021-04-08 11:32:41', '2021-04-08', 1, 'USO TERMINAL'),
+(31, '03:00 - 11:00', 3, 11, 201, 210, 10, 1, 10, '2021-04-08 11:33:02', '2021-04-08', 1, 'MINGITORIO'),
+(32, '11:00 - 19:00', 3, 11, 211, 220, 10, 1, 10, '2021-04-08 11:33:28', '2021-04-08', 1, 'MINGITORIO');
 
 -- --------------------------------------------------------
 
@@ -177,7 +184,7 @@ INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinic
 CREATE TABLE `pagos` (
   `id` int(11) NOT NULL,
   `monto` double(11,2) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `ambiente_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `mes` int(20) NOT NULL,
@@ -187,8 +194,17 @@ CREATE TABLE `pagos` (
   `periodo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `rubro` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `detalle` varchar(150) COLLATE utf8_spanish2_ci NOT NULL
+  `detalle` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo` enum('INGRESO','EGRESO') COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'INGRESO'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `pagos`
+--
+
+INSERT INTO `pagos` (`id`, `monto`, `fecha`, `ambiente_id`, `user_id`, `mes`, `anio`, `fechapago`, `factura`, `periodo`, `rubro`, `nombre`, `detalle`, `tipo`) VALUES
+(1, 15.00, '2021-04-07 20:44:36', 35, 1, 4, '2021', '2021-04-07', 'R-123', 'abr-21', 'PERNOCTE Y PARQUEO', '0', 'pernocte', 'INGRESO'),
+(2, 15.00, '2021-04-08 11:24:43', 35, 1, 5, '2021', '2021-04-08', 'R-123', 'may-21', 'PERNOCTE Y PARQUEO', '', 'reposicion', 'INGRESO');
 
 -- --------------------------------------------------------
 
@@ -201,7 +217,7 @@ CREATE TABLE `personal` (
   `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `ci` int(11) NOT NULL,
   `fnac` date NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -220,31 +236,32 @@ INSERT INTO `personal` (`id`, `nombre`, `ci`, `fnac`, `fecha`) VALUES
 CREATE TABLE `porton` (
   `id` int(11) NOT NULL,
   `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `precio` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL
+  `precio` double(11,2) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `porton`
 --
 
-INSERT INTO `porton` (`id`, `nombre`, `precio`, `fecha`, `tipo`) VALUES
-(3, 'PORTON INGRESO - SUC. 2', 2, '2021-03-26 16:13:04', 'USO TERMINAL'),
-(4, 'PORTON SALIDA', 2, '2021-03-26 16:14:53', 'USO TERMINAL'),
-(5, 'PORTON LLEGADA SALIDA', 2, '2021-03-26 16:14:53', 'USO TERMINAL'),
-(6, 'CABINA CENTRAL SUC. 1', 2, '2021-03-26 16:14:53', 'USO TERMINAL'),
-(7, 'PLATAFORMA 1 PORTON SALIDA', 6, '2021-03-26 16:16:53', 'USO CARRIL'),
-(8, 'PLATAFORMA 2 PORTON LLEGADA INGRESO', 3, '2021-03-26 16:16:53', 'PARTICULARES'),
-(9, 'PLATAFORMA 3 PORTON LLEGADA SALIDA', 6, '2021-03-26 16:16:53', 'USO CARRIL'),
-(10, 'PLATAFORMA 4 PORTON INGRESO', 3, '2021-03-26 16:16:53', 'PARTICULARES'),
-(11, 'BAÑO CENTRAL MUJERES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
-(12, 'BAÑO LLEGADA MUJERES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
-(13, 'BAÑO CENTRAL VARONES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
-(14, 'BAÑO LLEGADA VARONES', 1, '2021-03-26 16:18:37', 'MINGITORIO'),
-(15, 'PARQUEO', 3, '2021-03-26 16:20:45', 'PARQUEO TERMINAL'),
-(16, 'TAXIS', 2, '2021-03-26 16:20:45', 'TAXIS TERMINAL'),
-(17, 'GUARDA EQUIPAJE', 0, '2021-03-26 16:20:45', 'GUARDA EQUIPAJE TERMINAL');
+INSERT INTO `porton` (`id`, `nombre`, `precio`, `fecha`, `tipo`, `orden`) VALUES
+(3, 'PORTON INGRESO - SUC. 2', 2.00, '2021-03-26 16:13:04', 'USO TERMINAL', 1),
+(4, 'PORTON SALIDA', 2.00, '2021-03-26 16:14:53', 'USO TERMINAL', 1),
+(5, 'PORTON LLEGADA SALIDA', 2.00, '2021-03-26 16:14:53', 'USO TERMINAL', 1),
+(6, 'CABINA CENTRAL SUC. 1', 2.00, '2021-03-26 16:14:53', 'USO TERMINAL', 1),
+(7, 'PLATAFORMA 1 PORTON SALIDA', 6.00, '2021-03-26 16:16:53', 'USO CARRIL', 2),
+(8, 'PLATAFORMA 3 PORTON LLEGADA SALIDA', 6.00, '2021-03-26 16:16:53', 'USO CARRIL', 2),
+(9, 'PLATAFORMA 2 PORTON LLEGADA INGRESO', 3.00, '2021-03-26 16:16:53', 'PARTICULARES', 3),
+(10, 'PLATAFORMA 4 PORTON INGRESO', 3.00, '2021-03-26 16:16:53', 'PARTICULARES', 3),
+(11, 'BAÑO CENTRAL MUJERES', 1.00, '2021-03-26 16:18:37', 'MINGITORIO', 4),
+(12, 'BAÑO LLEGADA MUJERES', 1.00, '2021-03-26 16:18:37', 'MINGITORIO', 4),
+(13, 'BAÑO CENTRAL VARONES', 1.00, '2021-03-26 16:18:37', 'MINGITORIO', 4),
+(14, 'BAÑO LLEGADA VARONES', 1.00, '2021-03-26 16:18:37', 'MINGITORIO', 4),
+(15, 'PARQUEO', 3.00, '2021-03-26 16:20:45', 'PARQUEO TERMINAL', 5),
+(16, 'TAXIS', 1.50, '2021-03-26 16:20:45', 'TAXIS TERMINAL', 6),
+(17, 'GUARDA EQUIPAJE', 0.00, '2021-03-26 16:20:45', 'GUARDA EQUIPAJE TERMINAL', 7);
 
 -- --------------------------------------------------------
 
@@ -258,7 +275,7 @@ CREATE TABLE `users` (
   `email` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `password` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `tipo` varchar(150) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'ADMIN',
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -268,7 +285,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `tipo`, `fecha`) VALUES
 (1, 'admin', 'admin@test.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-19 03:03:49'),
 (2, 'SOLEDAD', 'soledad@gmail.com', '4d186321c1a7f0f354b297e8914ab240', 'ADMINISTRADOR2', '2021-03-22 04:16:46'),
-(3, 'juana', 'juana@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'SECRETARIA', '2021-03-22 04:17:28'),
+(3, 'juana', 'juana@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'SECRETARIA', '2021-03-22 04:17:28'),
 (4, 'HELEN', 'helen@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-22 23:10:40');
 
 --
@@ -332,25 +349,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `ambientes`
 --
 ALTER TABLE `ambientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -362,7 +379,7 @@ ALTER TABLE `personal`
 -- AUTO_INCREMENT de la tabla `porton`
 --
 ALTER TABLE `porton`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
