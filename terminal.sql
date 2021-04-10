@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2021 a las 14:45:31
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.1
+-- Tiempo de generación: 10-04-2021 a las 21:32:01
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -220,7 +220,10 @@ INSERT INTO `pagos` (`id`, `monto`, `fecha`, `ambiente_id`, `user_id`, `mes`, `a
 (2, 15.00, '2021-04-08 11:24:43', 35, 1, 5, '2021', '2021-04-08', 'R-123', 'may-21', 'PERNOCTE Y PARQUEO', '', 'reposicion', 'INGRESO'),
 (3, 178.29, '2021-04-08 12:35:34', 0, 1, 4, '2021', '2021-04-08', 'F-05454', 'abr-21', 'OBLIGACIONES SOCIALES ', 'ADALID AVILA HERBAS', 'SUELDOS DEL MES DE FEBRERO ', 'EGRESO'),
 (4, 1500.00, '2021-04-08 12:41:12', 10, 1, 4, '2021', '2021-04-08', 'F-123456', 'abr-21', 'KIOSKOS', 'BACILIA CONDORI MORA', 'KIOSKO # 4 FRONTIS BODEGA #43', 'INGRESO'),
-(5, 21034.00, '2021-04-08 12:42:48', 0, 1, 4, '2021', '2021-04-08', 'R-1546', 'mar-2021', 'SERVICIOS BASICOS', 'ADALID AVIL A HERBAS \r\n', 'SUELDO NO COBRADOS DEL MES DE SEP\r\n', 'EGRESO');
+(5, 21034.00, '2021-04-08 12:42:48', 0, 1, 4, '2021', '2021-04-08', 'R-1546', 'mar-2021', 'SERVICIOS BASICOS', 'ADALID AVIL A HERBAS \r\n', 'SUELDO NO COBRADOS DEL MES DE SEP\r\n', 'EGRESO'),
+(13, 100.00, '2021-04-09 21:15:51', 2, 1, 4, '2021', '2021-04-09', 'R-1237', 'abr-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(14, 700.00, '2021-04-10 18:56:09', 0, 1, 4, '2021', '2021-04-10', 'F-8788', 'abr-21', 'OBLIGACIONES SOCIALES', '', '', 'EGRESO'),
+(15, 500.00, '2021-04-10 19:03:55', 0, 1, 4, '2021', '2021-04-10', 'R-123', 'abr-21', 'OBLIGACIONES SOCIALES', 'DAVID ALI', 'EMAO', 'EGRESO');
 
 -- --------------------------------------------------------
 
@@ -298,11 +301,12 @@ CREATE TABLE `tipogasto` (
 INSERT INTO `tipogasto` (`id`, `nombre`, `fecha`) VALUES
 (1, 'OBLIGACIONES SOCIALES', '2021-04-08 12:10:51'),
 (2, 'SUBSIDIOS', '2021-04-08 12:11:41'),
-(3, 'OTROS', '2021-04-08 12:11:41'),
+(3, 'FINIQUITOS', '2021-04-08 12:11:41'),
 (4, 'SERVICIOS BASICOS', '2021-04-08 12:12:42'),
 (5, 'GASTOS OPERATIVOS', '2021-04-08 12:12:42'),
 (6, 'GASTOS ADMINISTRATIVOS', '2021-04-08 12:12:42'),
-(7, 'IMPOSITIVOS', '2021-04-08 12:12:42');
+(7, 'IMPOSITIVOS', '2021-04-08 12:12:42'),
+(8, 'OTROS', '2021-04-10 13:58:53');
 
 -- --------------------------------------------------------
 
@@ -426,7 +430,7 @@ ALTER TABLE `hpagos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -444,7 +448,7 @@ ALTER TABLE `porton`
 -- AUTO_INCREMENT de la tabla `tipogasto`
 --
 ALTER TABLE `tipogasto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
