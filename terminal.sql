@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2021 a las 21:32:01
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.3
+-- Tiempo de generación: 13-04-2021 a las 18:01:04
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -126,6 +126,27 @@ INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `nit`, `fec
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `dpagos`
+--
+
+CREATE TABLE `dpagos` (
+  `id` int(11) NOT NULL,
+  `monto` decimal(11,2) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `dia` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `dpagos`
+--
+
+INSERT INTO `dpagos` (`id`, `monto`, `created_at`, `dia`) VALUES
+(21, '1030.00', '2021-04-13 11:14:41', '2021-04-12'),
+(22, '3030.00', '2021-04-13 11:15:42', '2021-04-13');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `historial`
 --
 
@@ -173,7 +194,10 @@ INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinic
 (29, '11:00 - 19:00', 3, 14, 201, 218, 18, 1, 18, '2021-04-06 18:55:29', '2021-04-06', 1, 'MINGITORIO'),
 (30, '03:00 - 11:00', 3, 3, 7011, 7019, 9, 2, 18, '2021-04-08 11:32:41', '2021-04-08', 1, 'USO TERMINAL'),
 (31, '03:00 - 11:00', 3, 11, 201, 210, 10, 1, 10, '2021-04-08 11:33:02', '2021-04-08', 1, 'MINGITORIO'),
-(32, '11:00 - 19:00', 3, 11, 211, 220, 10, 1, 10, '2021-04-08 11:33:28', '2021-04-08', 1, 'MINGITORIO');
+(32, '11:00 - 19:00', 3, 11, 211, 220, 10, 1, 10, '2021-04-08 11:33:28', '2021-04-08', 1, 'MINGITORIO'),
+(33, '09:00 - 15:00', 3, 3, 7020, 7030, 11, 2, 22, '2021-04-11 17:46:13', '2021-04-11', 1, 'USO TERMINAL'),
+(34, 'OFICINA # 57', 3, 3, 7031, 7032, 2, 2, 4, '2021-04-13 14:58:12', '2021-04-13', 1, 'USO TERMINAL'),
+(35, 'OFICINA # 57', 3, 6, 2001, 2100, 100, 2, 200, '2021-04-13 15:01:43', '2021-04-13', 1, 'USO TERMINAL');
 
 -- --------------------------------------------------------
 
@@ -184,9 +208,18 @@ INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinic
 CREATE TABLE `hpagos` (
   `id` int(11) NOT NULL,
   `monto` decimal(11,2) NOT NULL,
-  `fecha` date NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `mes` int(11) NOT NULL,
+  `anio` int(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `hpagos`
+--
+
+INSERT INTO `hpagos` (`id`, `monto`, `created_at`, `mes`, `anio`) VALUES
+(21, '604.00', '2021-04-13 10:56:05', 3, 2021),
+(22, '3839.00', '2021-04-13 11:02:56', 4, 2021);
 
 -- --------------------------------------------------------
 
@@ -223,7 +256,46 @@ INSERT INTO `pagos` (`id`, `monto`, `fecha`, `ambiente_id`, `user_id`, `mes`, `a
 (5, 21034.00, '2021-04-08 12:42:48', 0, 1, 4, '2021', '2021-04-08', 'R-1546', 'mar-2021', 'SERVICIOS BASICOS', 'ADALID AVIL A HERBAS \r\n', 'SUELDO NO COBRADOS DEL MES DE SEP\r\n', 'EGRESO'),
 (13, 100.00, '2021-04-09 21:15:51', 2, 1, 4, '2021', '2021-04-09', 'R-1237', 'abr-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
 (14, 700.00, '2021-04-10 18:56:09', 0, 1, 4, '2021', '2021-04-10', 'F-8788', 'abr-21', 'OBLIGACIONES SOCIALES', '', '', 'EGRESO'),
-(15, 500.00, '2021-04-10 19:03:55', 0, 1, 4, '2021', '2021-04-10', 'R-123', 'abr-21', 'OBLIGACIONES SOCIALES', 'DAVID ALI', 'EMAO', 'EGRESO');
+(15, 500.00, '2021-04-10 19:03:55', 0, 1, 4, '2021', '2021-04-10', 'R-123', 'abr-21', 'OBLIGACIONES SOCIALES', 'DAVID ALI', 'EMAO', 'EGRESO'),
+(16, 15.00, '2021-04-10 20:14:15', 35, 1, 4, '2021', '2021-04-10', 'F-123456', 'abr-21', 'PERNOCTE Y PARQUEO', '', 'reposicion', 'INGRESO'),
+(17, 100.00, '2021-04-10 20:18:54', 12, 1, 4, '2021', '2021-04-10', 'F-123456', 'abr-21', 'COMERCIANTES', 'KARINA MAMANI FERNANDEZ', 'VENTA DE REFRESCO ', 'INGRESO'),
+(18, 200.00, '2021-04-10 20:31:29', 2, 1, 5, '2021', '2021-04-10', 'F-123456', 'may-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(19, 1800.00, '2021-04-10 20:31:39', 4, 1, 1, '2021', '2021-04-10', 'F-123456', 'ene-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 55', 'INGRESO'),
+(20, 100.00, '2021-04-10 20:34:40', 4, 1, 3, '2021', '2021-04-10', 'F-123456', 'mar-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 55', 'INGRESO'),
+(21, 200.00, '2021-04-10 20:34:55', 4, 1, 4, '2021', '2021-04-10', 'F-123456', 'abr-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 55', 'INGRESO'),
+(22, 100.00, '2021-04-10 20:35:22', 4, 1, 2, '2021', '2021-04-10', 'F-123456', 'feb-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 55', 'INGRESO'),
+(23, 100.00, '2021-04-10 20:35:47', 4, 1, 5, '2021', '2021-04-10', 'F-123456', 'may-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 55', 'INGRESO'),
+(24, 100.00, '2021-04-10 20:38:51', 2, 1, 6, '2021', '2021-04-10', 'F-123456', 'jun-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(25, 100.00, '2021-04-10 20:39:21', 2, 1, 7, '2021', '2021-04-10', 'F-123456', 'jul-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(32, 100.00, '2021-04-10 23:39:24', 6, 1, 4, '2021', '2021-04-10', 'F-123456', 'abr-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(33, 100.00, '2021-04-10 23:40:15', 6, 1, 1, '2021', '2021-04-10', 'F-001', 'ene-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(34, 300.00, '2021-04-10 23:40:26', 6, 1, 2, '2021', '2021-04-10', 'F-123456', 'feb-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(35, 100.00, '2021-04-10 23:41:45', 6, 1, 3, '2021', '2021-04-10', 'F-001', 'mar-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(36, 300.00, '2021-04-10 23:42:02', 6, 1, 5, '2021', '2021-04-10', 'F-123456', 'may-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(37, 100.00, '2021-04-10 23:42:32', 6, 1, 6, '2021', '2021-04-10', 'F-123456', 'jun-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(38, 1800.00, '2021-04-10 23:48:36', 6, 1, 7, '2021', '2021-04-10', 'F-123456', 'jul-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(44, 100.00, '2021-04-11 00:01:31', 6, 1, 8, '2021', '2021-04-10', 'R-123456', 'ago-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(45, 200.00, '2021-04-11 00:01:52', 6, 1, 9, '2021', '2021-04-10', 'F-123456', 'sep-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(46, 100.00, '2021-04-11 17:25:06', 6, 1, 10, '2021', '2021-04-11', 'F-123456', 'oct-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(47, 100.00, '2021-04-11 17:45:13', 6, 1, 11, '2021', '2021-04-11', 'R-123456', 'nov-21', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO'),
+(48, 100.00, '2021-04-11 17:59:35', 2, 1, 3, '2021', '2021-04-11', 'F-123456', 'mar-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(49, 1800.00, '2021-04-11 18:02:14', 0, 1, 4, '2021', '2021-04-11', 'F-123456', 'abr-21', 'SUBSIDIOS', 'JUAN LOPEZ', 'OFICINA # 55', 'EGRESO'),
+(50, 100.00, '2021-04-11 20:57:55', 2, 1, 8, '2021', '2021-04-11', 'F-123456', 'ago-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(51, 100.00, '2021-04-13 14:56:05', 2, 1, 9, '2021', '2021-04-13', 'F-123456', 'sep-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(52, 500.00, '2021-04-13 14:57:11', 2, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(53, 200.00, '2021-04-13 15:02:08', 0, 1, 4, '2021', '2021-04-13', 'F-123456', 'abr-21', 'OBLIGACIONES SOCIALES', 'JUAN LOPEZ', 'OFICINA # 57', 'EGRESO'),
+(54, 100.00, '2021-04-13 15:02:56', 2, 1, 10, '2021', '2021-04-13', 'F-123456', 'oct-21', 'BODEGAS Y ALMACENES', 'TRANSPORTE FENIX S.R.L.', 'OFICINA # 56', 'INGRESO'),
+(55, 15.00, '2021-04-13 15:09:48', 33, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 'PARQUEO', 'INGRESO'),
+(56, 15.00, '2021-04-13 15:09:56', 35, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', '', 'reposicion', 'INGRESO'),
+(57, 15.00, '2021-04-13 15:10:10', 35, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', '', 'reposicion', 'INGRESO'),
+(58, 15.00, '2021-04-13 15:12:01', 33, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 'PARQUEO', 'INGRESO'),
+(59, 15.00, '2021-04-13 15:12:20', 33, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 'PARQUEO', 'INGRESO'),
+(60, 15.00, '2021-04-13 15:13:32', 33, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 'PARQUEO', 'INGRESO'),
+(61, 15.00, '2021-04-13 15:13:59', 33, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 'PARQUEO', 'INGRESO'),
+(62, 15.00, '2021-04-13 15:14:41', 33, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 'PARQUEO', 'INGRESO'),
+(63, 15.00, '2021-04-13 15:14:49', 33, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'PERNOCTE Y PARQUEO', 'RAMIRO GONZALES ALI', 'PARQUEO', 'INGRESO'),
+(64, 1000.00, '2021-04-13 15:15:15', 12, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'COMERCIANTES', 'KARINA MAMANI FERNANDEZ', 'VENTA DE REFRESCO ', 'INGRESO'),
+(65, 2000.00, '2021-04-13 15:15:42', 13, 1, 1, '2021', '2021-04-13', 'F-123456', 'ene-21', 'COMERCIANTES', 'RITA MAMANI CONDORI', 'VENTA DE GELATINA ', 'INGRESO');
 
 -- --------------------------------------------------------
 
@@ -352,6 +424,12 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `dpagos`
+--
+ALTER TABLE `dpagos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `historial`
 --
 ALTER TABLE `historial`
@@ -415,22 +493,28 @@ ALTER TABLE `clientes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT de la tabla `dpagos`
+--
+ALTER TABLE `dpagos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `hpagos`
 --
 ALTER TABLE `hpagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
