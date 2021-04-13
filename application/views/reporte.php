@@ -73,8 +73,11 @@
                                             <div class="col-sm-4">
                                                 <input type="number" class="form-control" name="anio" id="anio" placeholder="Año" value="<?=date('Y')?>" required>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <button class="btn btn-success btn-block">Imprimir Ingresos del Mes <i class="fa fa-print"></i></button>
+                                            <div class="col-sm-2">
+                                                <button type="submit" name="btn" value="mes" class="btn btn-success btn-block">Mes <i class="fa fa-print"></i></button>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button type="submit" name="btn" value="diario" class="btn btn-primary btn-block">Diario <i class="fa fa-print"></i></button>
                                             </div>
                                         </div>
                                     </form>

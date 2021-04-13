@@ -11,7 +11,7 @@ class Valorados extends CI_Controller {
         } else {
             header('Location: '.base_url());
         }
-        
+
 	}
 	public function crear()
     {
@@ -28,7 +28,7 @@ class Valorados extends CI_Controller {
 
 
         $persona_id=$this->input->post('nombrep');
-        
+
         $detalle=$this->input->post('detalle');
         $ticketinicio=$this->input->post('ticketinicio');
         $ticketfin=$this->input->post('ticketfin');
@@ -51,6 +51,28 @@ class Valorados extends CI_Controller {
                             user_id='$user_id',
                             tipo='$tipo_porton->tipo'
                             ");
+
+        $time=strtotime($fechacreacion);
+        $mes=date("m",$time);
+        $anio=date("Y",$time);
+        $count=$this->db->query("SELECT * FROM `hpagos` WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ")->num_rows();
+        if ($count==0){
+            $actual = strtotime($fechacreacion);
+            $m2 = date("m", strtotime("-1 month", $actual));
+            $y2 = date("Y", strtotime("-1 month", $actual));
+            $query=$this->db->query("SELECT * FROM `hpagos` WHERE mes='".(int)$m2."' AND anio='".(int)$y2."' ");
+            $count=$query->num_rows();
+            if ($count==0){
+                $row="";
+                $row->monto=0;
+            }else{
+                $row=$query->row();
+            }
+            $this->db->query("INSERT INTO hpagos SET mes='".(int)$mes."' , anio='".(int)$anio."' , monto=$subtotal+$row->monto");
+        }else{
+            $this->db->query("UPDATE  hpagos SET monto=monto+$subtotal WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
+        }
+
         header('Location: '.base_url().'Valorados');
     }
     public function ticketini(){
@@ -61,13 +83,13 @@ class Valorados extends CI_Controller {
         // $datos=$this->db->query("SELECT porton_id, ticketinicio FROM historial WHERE porton_id='$id_porton' ORDER BY id DESC");
         $datos=$this->db->query("SELECT porton_id, ticketfin FROM historial WHERE porton_id='$id_porton' AND id IN (SELECT MAX(id) FROM historial WHERE porton_id='$id_porton') ORDER BY id DESC");
         $datoticket=$datos->row();
-        
+
         if(!empty($datos->result())){
             $datoticket=$datoticket->ticketfin;
             $datoticket=$datoticket+1;
         }
         else{
-            $datoticket="ingrese ticket"; 
+            $datoticket="ingrese ticket";
         }
         // echo $datoticket;
         // exit();

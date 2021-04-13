@@ -21,7 +21,7 @@ $anio=$this->input->post('anio');
 $dias=['DOMINGO','LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO','','','','','',''];
 $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE',''];
 ?>
-<h3 style="text-align: center">DETALLE DE COBRO DE ALQUILERES Y ENERGIA ELECTRICA POR RUBROS: <?=$meses[(int)$mes]?> DEL <?=$anio?></h3>
+<h3 style="text-align: center">FORMATO 1.00030: LIBRO  CAJA  <?=$meses[(int)$mes]?> DEL <?=$anio?></h3>
 
 <table rules="all" style="width: 100%;font-size: 10px;border: 1px solid black;">
     <thead>
@@ -38,8 +38,6 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
     </thead>
     <tbody>
         <?php
-
-
         $query2=$this->db->query("SELECT rubro,count(*) cantidad,SUM(monto) monto FROM pagos GROUP BY rubro ORDER BY rubro");
         foreach ($query2->result() as $row2){
             echo " <tr>

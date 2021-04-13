@@ -452,7 +452,7 @@
                 },
                 type:'post',
                 success:function (e){
-                    // console.log(e);
+                    console.log(e);
                     // return false;
                     if (e=="Ya se realizo el pago"){
                         alert('el mes ya fue insertado porfavor verifique sus datos');

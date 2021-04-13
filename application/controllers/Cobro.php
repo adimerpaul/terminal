@@ -36,18 +36,32 @@ class Cobro extends CI_Controller {
         $mes=$this->input->post('mes');
         $anio=$this->input->post('anio');
         $fechapago=$this->input->post('fechapago');
+//        echo "SELECT * FROM `hpagos` WHERE fecha='$fechapago'";
+//        exit;
+
+
+
         $meses=['','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic','','','',''];
         $a=substr($anio,2,2);
         $anio=$this->input->post('anio');
         $periodo=$meses[(int)$mes]."-".$a;
         $factura=$this->input->post('factura');
-        $query = $this->db->query("SELECT * FROM pagos WHERE ambiente_id='$ambiente_id' AND mes='$mes' AND anio='$anio'");
-        if ($query->num_rows()>=1){
-            echo "Ya se realizo el pago";
-            exit;
-        }
         $query = $this->db->query("SELECT * FROM ambientes WHERE id='$ambiente_id'");
         $row=$query->row();
+//        echo $row->rubro;
+//        exit;
+        if($row->rubro=="PERNOCTE Y PARQUEO"){
+            echo "asasas";
+        }
+        else{
+            $query = $this->db->query("SELECT * FROM pagos WHERE ambiente_id='$ambiente_id' AND mes='$mes' AND anio='$anio'");
+            if ($query->num_rows()>=1){
+                echo "Ya se realizo el pago";
+                exit;
+            }
+        }
+
+
 //        echo $query->num_rows();
 
 //        echo $fechapago;
@@ -65,6 +79,46 @@ class Cobro extends CI_Controller {
                                                 detalle='$row->detalle'
                                                 ");
 //        header('Location: '.base_url().'Cliente');
+
+        $time=strtotime($fechapago);
+        $mes=date("m",$time);
+        $anio=date("Y",$time);
+        $count=$this->db->query("SELECT * FROM `hpagos` WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ")->num_rows();
+        if ($count==0){
+            $actual = strtotime($fechapago);
+            $m2 = date("m", strtotime("-1 month", $actual));
+            $y2 = date("Y", strtotime("-1 month", $actual));
+            $query=$this->db->query("SELECT * FROM `hpagos` WHERE mes='".(int)$m2."' AND anio='".(int)$y2."' ");
+            $count=$query->num_rows();
+            if ($count==0){
+                $row->monto=0;
+            }else{
+                $row=$query->row();
+            }
+            $this->db->query("INSERT INTO hpagos SET mes='".(int)$mes."' , anio='".(int)$anio."' , monto=$monto+$row->monto");
+        }else{
+            $this->db->query("UPDATE  hpagos SET monto=monto+$monto WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
+        }
+
+
+        $count=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$fechapago'")->num_rows();
+        if ($count==0){
+            $actual = strtotime($fechapago);
+            $f2 = date("Y-m-d", strtotime("-1 day", $actual));
+            $query=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$f2'");
+            $count=$query->num_rows();
+            if ($count==0){
+                $row->monto=0;
+            }else{
+                $row=$query->row();
+            }
+            $this->db->query("INSERT INTO dpagos SET dia='$fechapago' , monto=$monto+$row->monto");
+        }else{
+            $this->db->query("UPDATE  dpagos SET monto=monto+$monto WHERE dia='$fechapago'");
+        }
+
+
+
     }
     public function modificar()
     {
