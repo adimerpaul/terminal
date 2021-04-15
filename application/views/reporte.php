@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-sm-12 py-2">
                                     <h3 class="h3 text-center">Imprimir reportes del Dia</h3>
-                                    <form action="<?=base_url()?>Reporte/hoy" method="post" target="_blank">
+                                    <form action="<?=base_url()?>Reporte/hoy" method="get" target="_blank">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <input type="date" class="form-control" name="dia" id="dia" placeholder="Dia" value="<?=date('Y-m-d')?>" required>

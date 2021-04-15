@@ -87,8 +87,8 @@ class Reporte extends CI_Controller {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
-        if ($this->input->post('btn')=='reporte'){
-            $data['hoy']=$this->input->post('dia');
+        if ($this->input->get('btn')=='reporte'){
+            $data['hoy']=$this->input->get('dia');
             $this->load->view('hoy',$data);
         }else{
             $this->load->view('templates/header');

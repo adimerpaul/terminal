@@ -282,7 +282,7 @@
                                     <p>Cobros</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?=base_url()?>Reporte" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Reportes</p>
@@ -294,7 +294,7 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Reportes</p>
                                 </a>
-                            </li>
+                            </li> -->
                             <?php } ?>
                             <!--                            <li class="nav-item">-->
                             <!--                                <a href="../layout/boxed.html" class="nav-link">-->
@@ -342,7 +342,7 @@
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <?php if ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2'){ ?>
+                        <?php if ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2') { ?>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="<?=base_url()?>Personal" class="nav-link">
@@ -356,22 +356,22 @@
                                     <p>Valorados</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="../charts/inline.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Reportes</p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
-                        <?php } else{ ?>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                        <?php } else {?>
+                        <!-- <ul class="nav nav-treeview"> -->
+                            <!-- <li class="nav-item">
                                 <a href="" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Reportes</p>
                                 </a>
-                            </li>
-                        </ul>
+                            </li> -->
+                        <!-- </ul> -->
                         <?php } ?>
                     </li>
                     <li class="nav-item">
@@ -390,6 +390,23 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?=base_url()?>Reporte" class="nav-link">
+                            <i class="nav-icon fas fa-poll"></i>
+                            <p>
+                                Reportes
+                                <!-- <i class="fas fa-angle-left right"></i> -->
+                            </p>
+                        </a>
+                        <!-- <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?=base_url()?>Gastos" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Egresos</p>
+                                </a>
+                            </li>
+                        </ul> -->
                     </li>
                     <!--                    <li class="nav-item">-->
                     <!--                        <a href="#" class="nav-link">-->
