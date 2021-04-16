@@ -28,7 +28,10 @@ class Gastos extends CI_Controller {
             header('Location: '.base_url());
         }
 //        var_dump($_POST);
-        $tipogasto=$this->input->post('tipogasto');
+        $tipogasto_id=$this->input->post('tipogasto');
+        //echo $tipogasto_id;
+        //exit;
+        $tipogasto=$this->db->query("SELECT * FROM `tipogasto` WHERE id=$tipogasto_id")->row();
         $nombre=$this->input->post('nombre');
         $detalle=$this->input->post('detalle');
         $user_id=$this->session->id;
@@ -58,10 +61,11 @@ class Gastos extends CI_Controller {
                                                 fechapago='$fechapago',
                                                 factura='$factura',
                                                 periodo='$periodo',
-                                                rubro='$tipogasto',
+                                                rubro='$tipogasto->nombre',
                                                 nombre='$nombre',
                                                 detalle='$detalle',
-                                                tipo='EGRESO'
+                                                tipo='EGRESO',
+                                                valor_idtipopago='$tipogasto->id'
                                                 ");
         $time=strtotime($fechapago);
         $mes=date("m",$time);
@@ -143,13 +147,13 @@ class Gastos extends CI_Controller {
         echo json_encode( $query->result_array());
     }
     public function consulta(){
-        $ambiente_id=$this->input->post('id');
-//        $rubro='OFICINAS DE TRANSPORTE';
+        $tipopago_id=$this->input->post('id');
+        // var_dump($tipopago_id);
         $query=$this->db->query("SELECT *
-        FROM pagos
-        WHERE ambiente_id='$ambiente_id'
-        ORDER BY anio,mes
-        ");
+                                FROM pagos
+                                WHERE valor_idtipopago='$tipopago_id'
+                                ORDER BY anio,mes
+                                ");
 //        exit;
 //        json_decode( $query->result());
         echo json_encode( $query->result_array());

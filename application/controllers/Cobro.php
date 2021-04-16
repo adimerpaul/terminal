@@ -76,7 +76,8 @@ class Cobro extends CI_Controller {
                                                 factura='$factura',
                                                 rubro='$row->rubro',
                                                 nombre='$row->nombre',
-                                                detalle='$row->detalle'
+                                                detalle='$row->detalle',
+                                                valor_idtipopago=0
                                                 ");
 //        header('Location: '.base_url().'Cliente');
 

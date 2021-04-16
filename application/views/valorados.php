@@ -220,7 +220,7 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th>TOTAL</th>
-                                                <th>$s</th>
+                                                <th>".number_format($s,2)."</th>
                                                 <th></th>
                                             </tr>";
                                             $tparcial+=$s;
@@ -229,14 +229,15 @@
                                         echo "
                                             <tr>
                                                 <th colspan='6' class='text-center'>TOTAL PARCIAL</th>
-                                                <th>$tparcial</th>
+                                                <th>".number_format($tparcial,2)."</th>
                                                 <th></th>
                                             </tr>";
                                     }
                                     echo "
                                             <tr>
-                                                <th colspan='7' class='text-center'>TOTAL RECAUADO ".$dia[(int)date('N')]." ".date('d/m/Y')."</th>
-                                                <th>$totalrec</th>
+                                                <th colspan='6' class='text-center'>TOTAL RECAUADO ".$dia[(int)date('N')]." ".date('d/m/Y')."</th>
+                                                <th>".number_format($totalrec, 2)."</th>
+                                                <th></th>
                                             </tr>";
 //                                    $query=$this->db->query("SELECT por.nombre AS nomporton, h.detalle, p.nombre, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal FROM porton por, historial h, personal p WHERE por.id=h.porton_id AND p.id=h.persona_id");
 //    //                                $cont=0;

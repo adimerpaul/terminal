@@ -392,21 +392,33 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="<?=base_url()?>Reporte" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="nav-icon fas fa-poll"></i>
                             <p>
                                 Reportes
-                                <!-- <i class="fas fa-angle-left right"></i> -->
+                                <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
-                        <!-- <ul class="nav nav-treeview">
+                        <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?=base_url()?>Gastos" class="nav-link">
+                                <a href="<?=base_url()?>Reporte" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Reporte</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?=base_url()?>Valreporte" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Valorados</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?=base_url()?>Gasreporte" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Egresos</p>
                                 </a>
                             </li>
-                        </ul> -->
+                        </ul>
                     </li>
                     <!--                    <li class="nav-item">-->
                     <!--                        <a href="#" class="nav-link">-->

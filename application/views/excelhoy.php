@@ -134,7 +134,7 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
                                     <th>TOTALES</th>
                                     <th></th>
                                     <th><?=number_format($tin, 2)?></th>
-                                    <th><?=number_format($teg, 2)?></th>
+                                    <th><?=number_format((-1)*$teg, 2)?></th>
                                     <th><?=number_format($s, 2)?></th>
                                 </tr>
                                 </tfoot>
@@ -240,7 +240,7 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
                                     <th>TOTALES</th>
                                     <th></th>
                                     <th><?=number_format($tin, 2)?></th>
-                                    <th><?=number_format($teg, 2)?></th>
+                                    <th><?=number_format((-1)*$teg, 2)?></th>
                                     <th><?=number_format($s, 2)?></th>
                                 </tr>
                                 </tfoot>

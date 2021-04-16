@@ -119,7 +119,7 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <label for="tipogasto" class="col-sm-1 col-form-label">Tipo Gasto</label>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <!-- <input type="text" class="form-control" id="ci" name="ci" placeholder="Tipo de gasto" required>  -->
                                             <select class="form-control" name="tipogasto" id="tipogasto" required="" >
                                                 <!-- <option value="">Tipo de gasto</option>
@@ -131,16 +131,16 @@
                                                 <option value="OTROS">OTROS</option> -->
                                                 <option value="">Tipo de gasto</option>
                                                 <?php
-                                                    $query=$this->db->query("SELECT nombre FROM tipogasto");
+                                                    $query=$this->db->query("SELECT * FROM tipogasto");
                                                     foreach ($query->result() as $row){
-                                                        echo "<option value='$row->nombre'>$row->nombre</option>";
+                                                        echo '<option value="'.$row->id.'">'.$row->nombre.'</option>';
                                                     }
                                                 ?>
                                             </select>                                                
                                         </div>
-                                        <label for="nombre" class="col-sm-2 col-form-label"> Razon social o nombre</label>
+                                        <label for="nombre" class="col-sm-1 col-form-label"> Concepto</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Concepto" required>
                                         </div>
                                         <label for="detalle" class="col-sm-1 col-form-label"> Detalle</label>
                                         <div class="col-sm-3">
@@ -443,9 +443,8 @@
     window.onload=function (){
         moment.locale('es');
         console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
-        // alert($('#nombre').val());
         $('#formulario').submit(function (e){
-            // console.log($('#nombre').val());
+            // alert($('#tipogasto').val());
             if ($('#tipogasto').val()==null || $('#tipogasto').val()==''){
                 alert('debes seleccionar un tipo de gasto');
                 return false;
@@ -458,6 +457,7 @@
                 alert('debe ingresar un detalle');
                 return false;
             }
+            //console.log($('#tipogasto').val());
             $.ajax({
                 url:'Gastos/crear',
                 data:{
@@ -493,10 +493,12 @@
             return false;
         });
         function actualizar(){
+
+            // alert($('#nombre').val());
             $.ajax({
                 url:'Gastos/consulta',
                 data:{
-                    id:$('#nombre').val()
+                    id:$('#tipogasto').val()
                 },
                 type:'post',
                 success:function (e){
@@ -522,18 +524,18 @@
                 }
             })
         }
-        $('#nombre').change(function (e){
+        $('#tipogasto').change(function (e){
             actualizar();
-            $.ajax({
-                url:'Gastos/ambiente/'+$(this).val(),
-                success:function (e) {
-                    // console.log(e);
-                    let datos= JSON.parse(e);
-                    // console.log(datos);
-                    $('#montot').html("Monto "+datos.canon+" Bs.");
-                    $('#facturat').html("Factura N "+datos.nit+" ");
-                }
-            })
+            // $.ajax({
+            //     url:'Gastos/salidas/'+$(this).val(),
+            //     success:function (e) {
+            //         // console.log(e);
+            //         let datos= JSON.parse(e);
+            //         // console.log(datos);
+            //         $('#montot').html("Monto "+datos.canon+" Bs.");
+            //         $('#facturat').html("Factura N "+datos.nit+" ");
+            //     }
+            // })
             e.preventDefault();
         });
         // $('#rubro').change(function (e){
