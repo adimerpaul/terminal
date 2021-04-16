@@ -40,12 +40,12 @@ class User extends CI_Controller {
         $id=$this->input->post('id');
         $name=$this->input->post('name');
         $email=$this->input->post('email');
-        $password=md5($this->input->post('password'));
+        // $password=md5($this->input->post('password'));
         $tipo=$this->input->post('tipo');
         $this->db->query("UPDATE users SET
         name='$name',
         email='$email',
-        password='$password',
+        -- password='$password',
         tipo='$tipo'
         WHERE id=$id
         ");
@@ -61,11 +61,19 @@ class User extends CI_Controller {
         $password1=md5($this->input->post('password1'));
         $password2=md5($this->input->post('password2'));
         // var_dump($emailc2);
-        $this->db->query("UPDATE users SET
+        $query = $this->db->query("SELECT * FROM users WHERE id=$idc2 AND email='$emailc2' AND password='$password1'");
+            if ($query->num_rows()>=1){
+                $this->db->query("UPDATE users SET
                             password='$password2'
                             WHERE id=$idc2 AND email='$emailc2' AND password='$password1'
                             ");
-        header('Location: '.base_url().'User');
+
+                header('Location: '.base_url().'User');
+            }else{
+                echo "No existe clave";
+                exit;
+            }
+        
     }
     public function borrar($id)
     {

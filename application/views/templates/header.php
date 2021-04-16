@@ -382,6 +382,7 @@
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
+                        <?php if ($this->session->tipo=='ADMINISTRADOR' || $this->session->tipo=='ADMINISTRADOR2') { ?>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="<?=base_url()?>Gastos" class="nav-link">
@@ -390,6 +391,7 @@
                                 </a>
                             </li>
                         </ul>
+                        <?php } ?>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link">

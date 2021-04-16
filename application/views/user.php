@@ -239,7 +239,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="post" action="<?=base_url()?>User/modificarCla">
+                                            <!-- <form class="form-horizontal" method="post" action="<?=base_url()?>User/modificarCla"> -->
+                                            <form class="form-horizontal" method="post" id="forclave">
                                                 <div class="card-body">
                                                     <div class="form-group row">
                                                         <input type="hidden" id="idc2" name="idc2">
@@ -326,5 +327,44 @@
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        $('#forclave').submit(function (e){
+            // console.log($('#nombre').val());
+            if ($('#password1').val()==null || $('#password1').val()==''){
+                alert('debes ingresar clave actual');
+                return false;
+            }
+            $.ajax({
+                url:'User/modificarCla',
+                // <?=base_url()?>User/modificarCla
+                data:{
+                    idc2:$('#idc2').val(),
+                    emailc2:$('#emailc2').val(),
+                    password1:$('#password1').val(),
+                    password2:$('#password2').val(),
+                },
+                type:'post',
+                success:function (e){
+                    console.log(e);
+                    // return false;
+                    if (e=="No existe clave"){
+                        alert('La Clave es incorrecto');
+                    }else{
+                        alert('La clave se cambio con Exito!!');
+                        actualizar();
+                    }
+                },
+                error:function (e){
+                    alert('Algo esta mal. No se realizo cambios');
+                }
+            })
+            e.preventDefault();
+            return false;
+        });
+        function actualizar(){
+            $.ajax({
+                url:'User'
+            })
+        }
     }
 </script>
