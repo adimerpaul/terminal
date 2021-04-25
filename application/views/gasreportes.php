@@ -46,10 +46,13 @@
                                         </div>
                                     </form>
                                 </div>
-                                <!-- <div class="col-sm-12 py-2">
+                                <div class="col-sm-12 py-2">
                                     <h3 class="h3 text-center">Imprimir reportes del Mes</h3>
-                                    <form action="<?=base_url()?>Reporte/mes" method="post" target="_blank">
+                                    <form action="<?=base_url()?>Gasreporte/mes" method="post" target="_blank">
                                         <div class="row">
+                                            <div class="col-sm-3">
+                                                <button type="submit" name="btn" value="mes" class="btn btn-success btn-block">Mes <i class="fa fa-print"></i></button>
+                                            </div>
                                             <div class="col-sm-4">
                                                 <select name="mes" id="mes" class="form-control" required>
                                                     <option value="">Seleccionar..</option>
@@ -70,15 +73,12 @@
                                             <div class="col-sm-4">
                                                 <input type="number" class="form-control" name="anio" id="anio" placeholder="Año" value="<?=date('Y')?>" required>
                                             </div>
-                                            <div class="col-sm-2">
-                                                <button type="submit" name="btn" value="mes" class="btn btn-success btn-block">Mes <i class="fa fa-print"></i></button>
-                                            </div>
-                                            <div class="col-sm-2">
+                                            <!-- <div class="col-sm-2">
                                                 <button type="submit" name="btn" value="diario" class="btn btn-primary btn-block">Diario <i class="fa fa-print"></i></button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </form>
-                                </div> -->
+                                </div>
                                 <!-- <div class="col-sm-12 py-2">
                                     <h3 class="h3 text-center">Imprimir reportes de Deudas</h3>
                                     <form action="<?=base_url()?>Reporte/deuda" method="post" target="_blank">

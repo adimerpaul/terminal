@@ -170,11 +170,12 @@ class Gasreporte extends CI_Controller {
             header('Location: '.base_url());
         }
         if ($this->input->post('btn')=='mes'){
-//            $data['hoy']=$this->input->post('dia');
-            $this->load->view('mes');
-        }else{
-            $this->load->view('diario');
+            $data['hoy']=$this->input->post('dia');
+            $this->load->view('gasmes');
         }
+            // else{
+        //     $this->load->view('diario');
+        // }
 
 
     }

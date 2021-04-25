@@ -60,62 +60,73 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
         $actual = strtotime($hoy);
         $d2 = date("Y-m-d", strtotime("-1 day", $actual));
         $query=$this->db->query("SELECT * FROM dpagos WHERE date(`dia`)=date('$d2')");
-        foreach ($query->result() as $row){
+        $monto=0;
+        if ($query->num_rows()>0) {
+           foreach ($query->result() as $row){
+            $monto=$row->monto;
 
-            echo '<tr>
-                        <td style="text-align: center"></td>
-                        <td></td>
-                        <td>SALDO ANTERIOR</td>
-                        <td style="text-align: center"></td>
-                        <td></td>
-                        <td style="text-align: center"></td>
-                        <td style="text-align: right">'.$row->monto.'</td>
-                        <td></td>
-                        <td>'.$row->monto.'</td>    
-                    </tr>';
+                echo '<tr>
+                            <td style="text-align: center"></td>
+                            <td></td>
+                            <td>SALDO ANTERIOR</td>
+                            <td style="text-align: center"></td>
+                            <td></td>
+                            <td style="text-align: center"></td>
+                            <td style="text-align: right">'.$row->monto.'</td>
+                            <td></td>
+                            <td>'.$row->monto.'</td>    
+                        </tr>';
+            }
+ 
+        }else{
+            $monto=0;
         }
-
+        
 
             $query=$this->db->query("SELECT * FROM pagos WHERE date(`fechapago`)=date('$hoy')");
             $c=0;
-            $s=$row->monto;
-            foreach ($query->result() as $row){
-                $c++;
+            $s=0;
+            if ($query->num_rows()>0) {
+                $s=$monto;
+                    foreach ($query->result() as $row){
+                        $c++;
 
-                echo '<tr>
-                        <td style="text-align: center">'.$c.'</td>
-                        <td>'.$row->fecha.'</td>
-                        <td>'.$row->nombre.'</td>
-                        <td style="text-align: center">'.$row->factura.'</td>
-                        <td>'.$row->detalle.'</td>
-                        <td style="text-align: center">'.strtoupper($row->periodo).'</td>';
-                if ($row->tipo=='INGRESO'){
-                    echo '<td style="text-align: right">'.$row->monto.'</td>
-                        <td></td>';
+                        echo '<tr>
+                                <td style="text-align: center">'.$c.'</td>
+                                <td>'.$row->fecha.'</td>
+                                <td>'.$row->nombre.'</td>
+                                <td style="text-align: center">'.$row->factura.'</td>
+                                <td>'.$row->detalle.'</td>
+                                <td style="text-align: center">'.strtoupper($row->periodo).'</td>';
+                        if ($row->tipo=='INGRESO'){
+                            echo '<td style="text-align: right">'.$row->monto.'</td>
+                                <td></td>';
+                            $s+=$row->monto;
+                        }else{
+                            echo '<td></td>
+                                   <td style="text-align: right">'.$row->monto.'</td>';
+                            $s-=$row->monto;
+                        }
+                        echo '  
+                                <td>'.number_format($s, 2).'</td>    
+                            </tr>';
+                    }
+                    $row=$this->db->query("SELECT sum(subtotal) as monto FROM historial WHERE date(`fechacreacion`)=date('$hoy')")->row();
+                    $c++;
                     $s+=$row->monto;
-                }else{
-                    echo '<td></td>
-                           <td style="text-align: right">'.$row->monto.'</td>';
-                    $s-=$row->monto;
-                }
-                echo '  
-                        <td>'.number_format($s, 2).'</td>    
-                    </tr>';
+                        echo '<tr>
+                                <td style="text-align: center">'.$c.'</td>
+                                <td>'.$hoy.'</td>
+                                <td>INGRESOS DE VALORADOS</td>
+                                <td style="text-align: center"></td>
+                                <td>REC'.$dias[$date->format('N')].' '.$hoy.'</td>
+                                <td style="text-align: center">'.$meses[(int)$date->format('m')].' '.$date->format('Y').'</td>
+                                <td style="text-align: right">'.$row->monto.'</td>
+                                <td></td>
+                                <td>'.number_format($s, 2).'</td>
+                            </tr>';
             }
-            $row=$this->db->query("SELECT sum(subtotal) as monto FROM historial WHERE date(`fechacreacion`)=date('$hoy')")->row();
-            $c++;
-            $s+=$row->monto;
-                echo '<tr>
-                        <td style="text-align: center">'.$c.'</td>
-                        <td>'.$hoy.'</td>
-                        <td>INGRESOS DE VALORADOS</td>
-                        <td style="text-align: center"></td>
-                        <td>REC'.$dias[$date->format('N')].' '.$hoy.'</td>
-                        <td style="text-align: center">'.$meses[(int)$date->format('m')].' '.$date->format('Y').'</td>
-                        <td style="text-align: right">'.$row->monto.'</td>
-                        <td></td>
-                        <td>'.number_format($s, 2).'</td>
-                    </tr>';
+            
         ?>
     </tbody>
     <tfoot>

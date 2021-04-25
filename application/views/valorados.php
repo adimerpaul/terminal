@@ -148,6 +148,13 @@
                                 </div>
                             </h3>
                         </div>
+                        <script>
+                            function borrar(e){
+                                if (!confirm('Seguro de eliminar?')){
+                                    e.preventDefault();
+                                }
+                            }
+                        </script>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <?php
@@ -196,7 +203,7 @@
                                                 <th></th>
                                                 <th></th>
                                             </tr>";
-                                            $query2=$this->db->query("SELECT * FROM historial h INNER JOIN personal p ON p.id=h.persona_id WHERE porton_id='$row->id' AND date(h.fecha)=date(now())");
+                                            $query2=$this->db->query("SELECT h.id, h.detalle, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal, p.nombre FROM historial h INNER JOIN personal p ON p.id=h.persona_id WHERE porton_id='$row->id' AND date(h.fecha)=date(now())");
                                             $s=0;
                                             foreach ($query2->result() as $row2){
                                                 echo "
@@ -208,7 +215,7 @@
                                                     <td>$row2->cantidad</td>
                                                     <td>$row2->precio</td>
                                                     <td>$row2->subtotal</td>
-                                                    <td></td>
+                                                    <td><a type='button' onclick='borrar(event)' href='".base_url()."Valorados/borrar/$row2->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a></td>
                                                 </tr>";
                                                 $s+=$row2->subtotal;
                                             }

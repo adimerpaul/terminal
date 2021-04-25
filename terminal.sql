@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2021 a las 15:44:21
+-- Tiempo de generación: 26-04-2021 a las 00:20:06
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -58,7 +58,7 @@ INSERT INTO `ambientes` (`id`, `rubro`, `nombre`, `nit`, `detalle`, `mesanine`, 
 (8, 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 0, 'OFICINA # 57', '', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 05:25:06', 1, 1, 1),
 (9, 'OFICINAS DE TRANSPORTE', 'ANTONIA CRUZ HANNOVER', 0, 'OFICINA # 48', 'on', '', '0000-00-00', '0000-00-00', 0, '2021-03-23 05:26:49', 1, 1, 1),
 (10, 'KIOSKOS', 'BACILIA CONDORI MORA', 898932, 'KIOSKO # 4 FRONTIS BODEGA #43', '', 'LIMITE', '2019-03-01', '2021-04-30', 0, '2021-03-23 05:31:10', 1, 1, 1),
-(11, 'OFICINAS DE TRANSPORTE', 'AIR BUS CORAL S.R.L.', 8908089, 'OFICINA # 7 Y BG 7', '', 'LIMITE', '2021-01-01', '2021-03-30', 0, '2021-03-23 18:05:56', 1, 1, 1),
+(11, 'OFICINAS DE TRANSPORTE', 'AIR BUS CORAL S.R.L.', 8908089, 'OFICINA # 7 Y BG 7', '', 'LIMITE', '2021-01-01', '2021-03-30', 0, '2021-03-23 18:05:56', 0, 1, 1),
 (12, 'COMERCIANTES', 'KARINA MAMANI FERNANDEZ', 953, 'VENTA DE REFRESCO ', '', 'LIMITE', '2019-03-01', '2021-03-31', 0, '2021-03-23 18:19:57', 1, 1, 1),
 (13, 'COMERCIANTES', 'RITA MAMANI CONDORI', 878676, 'VENTA DE GELATINA ', '', 'LIMITE', '2020-12-01', '2021-03-31', 100, '2021-03-23 20:21:23', 1, 1, 1),
 (14, 'KIOSKOS', 'LIBERT VELAZQUEZ SANDOBAL', 878676, 'KIOSKO # 6', '', 'LIMITE', '2021-03-01', '2021-03-31', 0, '2021-03-23 22:10:04', 1, 1, 1),
@@ -100,7 +100,7 @@ INSERT INTO `clientes` (`id`, `ci`, `nombres`, `apellidos`, `razon`, `nit`, `fec
 (2, '2020', 'JUAN PEDRO ', 'PICA', '220', 1010, '2021-03-19 00:25:29', 1, 'MARIO LOPEZ', 8903248, '98798/9', 'BOLIVAR #90'),
 (3, '3030', 'VILMA', 'PICAPIERDA', 'ANDINA', 8089, '2021-03-19 00:27:25', 1, 'MARIO LOPEZ', 8782, '98798/9', 'BOLIVAR #90'),
 (6, '5050', 'jose', 'chunco', '5050', 0, '2021-03-19 00:43:06', 0, '', 0, '', ''),
-(7, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
+(7, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 0, '', 0, '', ''),
 (8, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
 (9, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
 (10, '12321', 'asdas', 'asdsa', '12321', 0, '2021-03-19 00:43:12', 1, '', 0, '', ''),
@@ -146,7 +146,9 @@ INSERT INTO `dpagos` (`id`, `monto`, `created_at`, `dia`) VALUES
 (22, '3030.00', '2021-04-13 11:15:42', '2021-04-13'),
 (23, '1410.00', '2021-04-15 08:22:10', '2021-04-14'),
 (24, '5290.00', '2021-04-15 10:47:09', '2021-04-15'),
-(25, '5390.00', '2021-04-16 00:46:17', '2021-04-16');
+(25, '5390.00', '2021-04-16 00:46:17', '2021-04-16'),
+(26, '200.00', '2021-04-25 18:06:04', '2021-04-24'),
+(27, '300.00', '2021-04-25 18:14:27', '2021-04-25');
 
 -- --------------------------------------------------------
 
@@ -175,7 +177,6 @@ CREATE TABLE `historial` (
 --
 
 INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinicio`, `ticketfin`, `cantidad`, `precio`, `subtotal`, `fecha`, `fechacreacion`, `user_id`, `tipo`) VALUES
-(4, '03:00 - 11:00', 3, 3, 27816, 0, 0, 0, 0, '2021-03-26 16:44:43', '2021-03-01', 1, 'USO TERMINAL'),
 (8, '08:00 - 10:00', 3, 4, 7000, 7000, 0, 2, 0, '2021-03-30 00:27:30', '0000-00-00', 1, 'USO TERMINAL'),
 (9, '03:00 - 11:00', 3, 6, 54, 59, 0, 2, 0, '2021-03-30 02:33:00', '0000-00-00', 1, 'USO TERMINAL'),
 (11, '11:00 - 12:00', 3, 5, 2457, 2903, 446, 2, 892, '2021-03-30 02:55:25', '2020-02-02', 1, 'USO TERMINAL'),
@@ -202,7 +203,10 @@ INSERT INTO `historial` (`id`, `detalle`, `persona_id`, `porton_id`, `ticketinic
 (33, '09:00 - 15:00', 3, 3, 7020, 7030, 11, 2, 22, '2021-04-15 17:46:13', '2021-04-15', 1, 'USO TERMINAL'),
 (34, 'OFICINA # 57', 3, 3, 7031, 7032, 2, 2, 4, '2021-04-13 14:58:12', '2021-04-13', 1, 'USO TERMINAL'),
 (35, 'OFICINA # 57', 3, 6, 2001, 2100, 100, 2, 200, '2021-04-13 15:01:43', '2021-04-13', 1, 'USO TERMINAL'),
-(36, '03:00 - 11:00', 3, 7, 1, 20, 20, 6, 120, '2021-04-15 16:00:57', '2021-04-15', 1, 'USO CARRIL');
+(36, '03:00 - 11:00', 3, 7, 1, 20, 20, 6, 120, '2021-04-15 16:00:57', '2021-04-15', 1, 'USO CARRIL'),
+(37, '03:00 - 11:00', 3, 11, 221, 240, 20, 1, 20, '2021-04-25 13:12:06', '2021-04-25', 1, 'MINGITORIO'),
+(40, '11:00 - 19:00', 3, 11, 241, 280, 40, 1, 40, '2021-04-25 15:22:15', '2021-04-25', 1, 'MINGITORIO'),
+(41, '03:00 - 11:00', 3, 3, 7033, 7040, 8, 2, 16, '2021-04-25 15:22:53', '2021-04-25', 1, 'USO TERMINAL');
 
 -- --------------------------------------------------------
 
@@ -224,7 +228,7 @@ CREATE TABLE `hpagos` (
 
 INSERT INTO `hpagos` (`id`, `monto`, `created_at`, `mes`, `anio`) VALUES
 (21, '604.00', '2021-04-13 10:56:05', 3, 2021),
-(22, '-1461.00', '2021-04-13 11:02:56', 4, 2021);
+(22, '-1035.00', '2021-04-13 11:02:56', 4, 2021);
 
 -- --------------------------------------------------------
 
@@ -316,7 +320,9 @@ INSERT INTO `pagos` (`id`, `monto`, `fecha`, `ambiente_id`, `user_id`, `mes`, `a
 (79, 1000.00, '2021-04-15 23:26:45', 0, 1, 4, '2021', '2021-04-15', 'F-8788', 'abr-21', 'FINIQUITOS', 'PAGO', 'ARIEL', 'EGRESO', 3),
 (81, 200.00, '2021-04-16 04:06:00', 0, 1, 4, '2021', '2021-04-16', 'F-8788', 'abr-21', '3', 'PAGO SUELDO', 'DAVID', 'EGRESO', 0),
 (82, 100.00, '2021-04-16 04:46:17', 3, 1, 4, '2021', '2021-04-16', 'F-8788', 'abr-21', 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 'OFICINA # 57', 'INGRESO', 0),
-(83, 100.00, '2021-04-16 13:32:05', 0, 1, 4, '2021', '2021-04-16', 'F-8788', 'abr-21', 'OBLIGACIONES SOCIALES', 'NOELIA', 'reposicion', 'EGRESO', 1);
+(83, 100.00, '2021-04-16 13:32:05', 0, 1, 4, '2021', '2021-04-16', 'F-8788', 'abr-21', 'OBLIGACIONES SOCIALES', 'NOELIA', 'reposicion', 'EGRESO', 1),
+(84, 200.00, '2021-04-25 22:06:03', 6, 1, 1, '2022', '2021-04-25', 'F-8788', 'ene-22', 'CAJEROS AUTOMATICOS', 'BANCO DE CREDITO DE BOLIVIA S.A.', 'CAJERO AUTOMATICO', 'INGRESO', 0),
+(85, 100.00, '2021-04-25 22:14:27', 8, 1, 4, '2021', '2021-04-25', 'R-123', 'abr-21', 'OFICINAS DE TRANSPORTE', 'LINEA SINDICAL TRANS IMPERIAL', 'OFICINA # 57', 'INGRESO', 0);
 
 -- --------------------------------------------------------
 
@@ -424,8 +430,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `tipo`, `fecha`) VALUES
 (1, 'admin', 'admin@test.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-19 03:03:49'),
 (2, 'SOLEDAD', 'soledad@gmail.com', '4d186321c1a7f0f354b297e8914ab240', 'ADMINISTRADOR2', '2021-03-22 04:16:46'),
-(3, 'juana', 'juana@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'SECRETARIA', '2021-03-22 04:17:28'),
-(4, 'HELEN', 'helen@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'ADMINISTRADOR', '2021-03-22 23:10:40');
+(3, 'RAUL', 'juana@gmail.com', '4d186321c1a7f0f354b297e8914ab240', 'SECRETARIA', '2021-03-22 04:17:28'),
+(4, 'HELEN', 'helen@gmail.com', '4d186321c1a7f0f354b297e8914ab240', 'ADMINISTRADOR', '2021-03-22 23:10:40');
 
 --
 -- Índices para tablas volcadas
@@ -518,13 +524,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `dpagos`
 --
 ALTER TABLE `dpagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `hpagos`
@@ -536,7 +542,7 @@ ALTER TABLE `hpagos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`

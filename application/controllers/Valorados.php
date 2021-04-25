@@ -89,7 +89,7 @@ class Valorados extends CI_Controller {
             $datoticket=$datoticket+1;
         }
         else{
-            $datoticket="ingrese ticket";
+            $datoticket="Ingrese ticket";
         }
         // echo $datoticket;
         // exit();
@@ -106,5 +106,13 @@ class Valorados extends CI_Controller {
         $valorprecio=$valor->row();
         $valorprecio=$valorprecio->precio;
         echo '<input type="text" class="form-control" value="'.$valorprecio.'" id="precio" name="precio" required oninput="calcular()">';
+    }
+    public function borrar($id)
+    {
+        if (!$this->session->name){
+            header('Location: '.base_url());
+        }
+        $this->db->query("DELETE FROM historial WHERE id=$id");
+        header('Location: '.base_url().'Valorados');
     }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reporte de hoy</title>
+    <title>Reporte del Mes</title>
     <style>
         * {
             margin:  0;
@@ -14,18 +14,22 @@
         }
     </style>
 </head>
-<body>   
+<body>
 <?php
-$date = new DateTime($hoy);
-//$date->modify('+1 day');
-//echo $date->format('Y-m-d');
+// $date = new DateTime($hoy);
+
+$mes=$this->input->post('mes');
+$anio=$this->input->post('anio');
+// $date->modify('+1 day');
+// echo $date->format('Y-m-d');
 $dias=['DOMINGO','LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO','','','','','',''];
 $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE',''];
 
 ?>
 <table rules="all" style="width: 100%;font-size: 11px;border: 1px solid black;">
     <tr>
-        <td style="text-align: center;">EGRESOS MES DE <?=$meses[(int)$date->format('m')]?> DE <?=$date->format('Y')?></td>
+        <td style="text-align: center;">EGRESOS MES DE <?=$meses[(int)$mes]?> DEL <?=$anio?>
+        </td>
     </tr>
 </table>
 <h5 style="text-align: center">EXPRESADO EN BOLIVIANOS</h5>
@@ -48,7 +52,7 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
             echo '<tr>
                         <td style="text-align: center">'.$row->nombre.'</td>    
                     </tr>';
-            $query=$this->db->query("SELECT id, fecha, factura, nombre, detalle, monto FROM `pagos` WHERE tipo='EGRESO' AND valor_idtipopago='$row->id' AND fechapago='$hoy'");
+            $query=$this->db->query("SELECT id, fecha, factura, nombre, detalle, monto FROM `pagos` WHERE tipo='EGRESO' AND valor_idtipopago='$row->id'");
             $s=0;
             foreach ($query->result() as $row){
                 echo '<tr>
