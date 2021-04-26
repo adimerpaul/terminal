@@ -112,6 +112,15 @@ class Valorados extends CI_Controller {
         if (!$this->session->name){
             header('Location: '.base_url());
         }
+        $query=$this->db->query("SELECT * FROM historial WHERE id=$id");
+        $subt=$query->row();
+        // var_dump($subt->subtotal);
+        // exit;
+        $time=strtotime($subt->fechacreacion);
+        $mes=date("m",$time);
+        $anio=date("Y",$time);
+        $this->db->query("UPDATE  hpagos SET monto=monto-$subt->subtotal WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
+        
         $this->db->query("DELETE FROM historial WHERE id=$id");
         header('Location: '.base_url().'Valorados');
     }
