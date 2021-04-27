@@ -57,7 +57,7 @@ class Ambiente extends CI_Controller {
         }
         $rubro=$this->input->post('rubro');
         $id=$this->input->post('id');
-        $nombre=$this->input->post('nombre');
+        $nombre=$this->input->post('nombree');
         $nit=$this->input->post('nit');
         // var_dump($nombre);
         // exit;

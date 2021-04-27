@@ -302,7 +302,7 @@
                                                     <div class="form-group row">
                                                         <label for="nombre2" class="col-sm-2 col-form-label">Razon social o nombre</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="nombre2" name="nombre" placeholder="Nombre" required>
+                                                            <input type="text" class="form-control" id="nombre2" name="nombree" placeholder="Nombre" required>
                                                         </div>
 
                                                         <!-- <?php foreach ($datos as $row){ ?>
