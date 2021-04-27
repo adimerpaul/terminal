@@ -175,6 +175,21 @@ class Reporte extends CI_Controller {
 
 
     }
+    public function mesvalorados()
+    {
+        if (!$this->session->name){
+            header('Location: '.base_url());
+        }
+        if ($this->input->post('btn')=='mes'){
+//            $data['hoy']=$this->input->post('dia');
+            $this->load->view('mesvalorados');
+        }else{
+            $this->load->view('diario');
+        }
+
+
+    }
+
     public function deuda()
     {
         if (!$this->session->name){

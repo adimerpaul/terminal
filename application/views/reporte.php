@@ -83,6 +83,39 @@
                                     </form>
                                 </div>
                                 <div class="col-sm-12 py-2">
+                                    <h3 class="h3 text-center">Imprimir resumen ingresos prevalorados</h3>
+                                    <form action="<?=base_url()?>Reporte/mesvalorados" method="post" target="_blank">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <select name="mes" id="mes" class="form-control" required>
+                                                    <option value="">Seleccionar..</option>
+                                                    <option value="01" <?=date('m')=='01'?'selected':''?>>ENERO</option>
+                                                    <option value="02" <?=date('m')=='02'?'selected':''?>>FEBRERO</option>
+                                                    <option value="03" <?=date('m')=='03'?'selected':''?>>MARZO</option>
+                                                    <option value="04" <?=date('m')=='04'?'selected':''?>>ABRIL</option>
+                                                    <option value="05" <?=date('m')=='05'?'selected':''?>>MAYO</option>
+                                                    <option value="06" <?=date('m')=='06'?'selected':''?>>JUNIO</option>
+                                                    <option value="07" <?=date('m')=='07'?'selected':''?>>JULIO</option>
+                                                    <option value="08" <?=date('m')=='08'?'selected':''?>>AGOSTO</option>
+                                                    <option value="09" <?=date('m')=='09'?'selected':''?>>SEPTIEMBRE</option>
+                                                    <option value="10" <?=date('m')=='10'?'selected':''?>>OCTUBRE</option>
+                                                    <option value="11" <?=date('m')=='11'?'selected':''?>>NOVIEMBRE</option>
+                                                    <option value="12" <?=date('m')=='12'?'selected':''?>>DICIEMBRE</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="number" class="form-control" name="anio" id="anio" placeholder="Año" value="<?=date('Y')?>" required>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button type="submit" name="btn" value="mes" class="btn btn-success btn-block">Mes <i class="fa fa-print"></i></button>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button type="submit" name="btn" value="diario" class="btn btn-primary btn-block">Diario <i class="fa fa-print"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-sm-12 py-2">
                                     <h3 class="h3 text-center">Imprimir reportes de Deudas</h3>
                                     <form action="<?=base_url()?>Reporte/deuda" method="post" target="_blank">
                                         <div class="row">
