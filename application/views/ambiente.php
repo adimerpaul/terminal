@@ -67,9 +67,9 @@
                                                                 <select class="form-control" id="cliente" name="cliente">
                                                                     <option value="0">Seleccionar cliente</option>
                                                                     <?php 
-                                                                        $datos=$this->db->query("SELECT id, razon, nombres, nit FROM clientes");
+                                                                        $datos=$this->db->query("SELECT id, razon, nombres, nit FROM clientes WHERE estado=1");
                                                                         foreach ($datos->result() as $fila ) {
-                                                                            echo '<option value="'.$fila->id.'" id="'.$fila->razon.'">'.$fila->nombres." ".$fila->nit.'</option>';
+                                                                            echo '<option value="'.$fila->id.'" id="'.$fila->razon.'">'.$fila->razon.'</option>';
                                                                         }
                                                                     ?>
                             

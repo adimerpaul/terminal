@@ -60,7 +60,7 @@
                                                                 <input type="text" class="form-control" id="nit" name="nit" placeholder="Nit" required>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
+                                                        <!-- <div class="form-group row">
                                                             <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombres" required>
@@ -71,7 +71,7 @@
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos" required>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <!-- <div class="form-group row">
                                                             <label for="fechanac" class="col-sm-2 col-form-label">Fecha nacimiento</label>
                                                             <div class="col-sm-10">
@@ -125,7 +125,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
+                                    <!-- <th>Nombre</th> -->
                                     <th>Razon</th>
                                     <th>nit</th>
                                     <th>Rep. Legal</th>
@@ -154,8 +154,7 @@
                                                 <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
                                                     data-ci='$row->ci'
                                                     data-id='$row->id'
-                                                    data-nombres='$row->nombres'
-                                                    data-apellidos='$row->apellidos'
+                                                    
                                                     data-razon='$row->razon'
                                                     data-nit='$row->nit'
                                                     data-replegal='$row->replegal'
@@ -170,7 +169,7 @@
                                     }
                                     echo "<tr>
                                         <td>$cont</td>
-                                        <td>$row->nombres $row->apellidos</td>
+                                        
                                         <td>$row->razon</td>
                                         <td>$row->nit</td>
                                         <td>$row->replegal</td>
@@ -187,7 +186,7 @@
                                 <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
+                                    <!-- <th>Nombre</th> -->
                                     <th>Razon</th>
                                     <th>nit</th>
                                     <th>Rep. Legal</th>
@@ -229,7 +228,7 @@
                                                             <input type="text" class="form-control" id="nit2" name="nit" placeholder="Nit" required>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row">
+                                                    <!-- <div class="form-group row">
                                                         <label for="nombres2" class="col-sm-2 col-form-label">Nombres</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control" id="nombres2" name="nombres" placeholder="Nombres" required>
@@ -240,7 +239,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control" id="apellidos2" name="apellidos" placeholder="Apellidos" required>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <!-- <div class="form-group row">
                                                         <label for="fechanac2" class="col-sm-2 col-form-label">Fecha nacimiento</label>
                                                         <div class="col-sm-10">
@@ -303,8 +302,8 @@
             var button = $(event.relatedTarget) // Button that triggered the modal
             // console.log(button.data('ci')); // Extract info from data-* attributes
             $('#ci2').val(button.data('ci'));
-            $('#nombres2').val(button.data('nombres'));
-            $('#apellidos2').val(button.data('apellidos'));
+            // $('#nombres2').val(button.data('nombres'));
+            // $('#apellidos2').val(button.data('apellidos'));
             $('#razon2').val(button.data('razon'));
             // $('#fechanac2').val(button.data('fechanac'));
             $('#nit2').val(button.data('nit'));

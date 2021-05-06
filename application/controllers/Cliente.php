@@ -20,8 +20,8 @@ class Cliente extends CI_Controller {
             header('Location: '.base_url());
         }
         $ci=$this->input->post('ci');
-        $nombres=$this->input->post('nombres');
-        $apellidos=$this->input->post('apellidos');
+        // $nombres=$this->input->post('nombres');
+        // $apellidos=$this->input->post('apellidos');
         // $fechanac=$this->input->post('fechanac');
         $razon=$this->input->post('razon');
         $nit=$this->input->post('nit');
@@ -31,8 +31,8 @@ class Cliente extends CI_Controller {
         $direccion=$this->input->post('direccion');
         $this->db->query("INSERT INTO clientes SET 
                                                 ci='$ci',
-                                                nombres='$nombres',
-                                                apellidos='$apellidos',
+                                                -- nombres='$nombres',
+                                                -- apellidos='$apellidos',
                                                 razon='$razon',
                                                 nit='$nit',
                                                 replegal='$replegal',

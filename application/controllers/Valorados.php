@@ -2,17 +2,22 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Valorados extends CI_Controller {
-	public function index()
+	public function index($fecha)
 	{
+        //echo $fecha;
 	    if ($this->session->name && ($this->session->tipo=='ADMINISTRADOR')){
             $this->load->view('templates/header');
-            $this->load->view('valorados');
+            $dat['fecha']=$fecha;
+            $this->load->view('valorados',$dat);
             $this->load->view('templates/footer');
         } else {
             header('Location: '.base_url());
         }
 
 	}
+    public function cambio(){
+         header('Location: '.base_url().'Valorados/index/'.$this->input->post('fecha'));
+    }
 	public function crear()
     {
         if (!$this->session->name){
@@ -53,6 +58,7 @@ class Valorados extends CI_Controller {
                             ");
 
         $time=strtotime($fechacreacion);
+        /*
         $mes=date("m",$time);
         $anio=date("Y",$time);
         $count=$this->db->query("SELECT * FROM `hpagos` WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ")->num_rows();
@@ -71,9 +77,26 @@ class Valorados extends CI_Controller {
             $this->db->query("INSERT INTO hpagos SET mes='".(int)$mes."' , anio='".(int)$anio."' , monto=$subtotal+$row->monto");
         }else{
             $this->db->query("UPDATE  hpagos SET monto=monto+$subtotal WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
+        }*/
+
+         $count=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$fechacreacion'")->num_rows();
+        if ($count==0){
+            $actual = strtotime($fechacreacion);
+            $f2 = date("Y-m-d", strtotime("-1 day", $actual));
+            $query=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$f2'");
+            $count=$query->num_rows();
+            if ($count==0){
+                $m=0;
+            }else{
+                $row=$query->row();
+                $m=$row->monto;
+            }
+            $this->db->query("INSERT INTO dpagos SET dia='$fechacreacion' , monto=$subtotal+$m");
+        }else{
+            $this->db->query("UPDATE  dpagos SET monto=monto+$subtotal WHERE dia='$fechacreacion'");
         }
 
-        header('Location: '.base_url().'Valorados');
+        header('Location: '.base_url().'Valorados/index/'.date('Y-m-d'));
     }
     public function ticketini(){
         // echo "aqui estoy";
@@ -122,6 +145,6 @@ class Valorados extends CI_Controller {
         $this->db->query("UPDATE  hpagos SET monto=monto-$subt->subtotal WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
         
         $this->db->query("DELETE FROM historial WHERE id=$id");
-        header('Location: '.base_url().'Valorados');
+        header('Location: '.base_url().'Valorados/index/'.date('Y-m-d'));
     }
 }

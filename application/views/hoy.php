@@ -72,9 +72,9 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
                             <td style="text-align: center"></td>
                             <td></td>
                             <td style="text-align: center"></td>
-                            <td style="text-align: right">'.$row->monto.'</td>
+                            <td style="text-align: right">'.number_format($row->monto,2).'</td>
                             <td></td>
-                            <td>'.$row->monto.'</td>    
+                            <td>'.number_format($row->monto,2).'</td>    
                         </tr>';
             }
  
@@ -99,12 +99,12 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
                                 <td>'.$row->detalle.'</td>
                                 <td style="text-align: center">'.strtoupper($row->periodo).'</td>';
                         if ($row->tipo=='INGRESO'){
-                            echo '<td style="text-align: right">'.$row->monto.'</td>
+                            echo '<td style="text-align: right">'.number_format($row->monto,2).'</td>
                                 <td></td>';
                             $s+=$row->monto;
                         }else{
                             echo '<td></td>
-                                   <td style="text-align: right">'.$row->monto.'</td>';
+                                   <td style="text-align: right">'.number_format($row->monto,2).'</td>';
                             $s-=$row->monto;
                         }
                         echo '  
@@ -121,7 +121,7 @@ $meses=['','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SE
                                 <td style="text-align: center"></td>
                                 <td>REC'.$dias[$date->format('N')].' '.$hoy.'</td>
                                 <td style="text-align: center">'.$meses[(int)$date->format('m')].' '.$date->format('Y').'</td>
-                                <td style="text-align: right">'.$row->monto.'</td>
+                                <td style="text-align: right">'.number_format($row->monto,2).'</td>
                                 <td></td>
                                 <td>'.number_format($s, 2).'</td>
                             </tr>';

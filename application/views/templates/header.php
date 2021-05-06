@@ -351,7 +351,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?=base_url()?>Valorados" class="nav-link">
+                                <a href="<?=base_url()?>Valorados/index/<?=date('Y-m-d')?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Valorados</p>
                                 </a>
@@ -874,7 +874,7 @@
                             <i class="nav-icon far fa-circle text-info"></i>
                             <p>Clientes <span class="badge badge-info right">
                                 <?php
-                                    $query=$this->db->query("SELECT COUNT(*) AS Total FROM clientes");
+                                    $query=$this->db->query("SELECT COUNT(*) AS Total FROM clientes WHERE estado=1");
                                     foreach ($query->result() as $row){
                                         echo "$row->Total";
                                     }

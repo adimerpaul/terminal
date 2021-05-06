@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Valorados</li>
+                        <li class="breadcrumb-item active">Valorados </li>
                     </ol>
                 </div>
             </div>
@@ -24,10 +24,30 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
-                                    <i class="fa fa-plus-circle"></i> Crear Nuevo
-                                </button>
+                            <h3 class="card-title" style="width: 100%">
+                                <div class="row" style="width: 100%">
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal-lg">
+                                            <i class="fa fa-plus-circle"></i> Crear Nuevo
+                                        </button>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <form action="<?=base_url()?>Valorados/cambio" method="post">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="date" name="fecha" value="<?=$fecha?>" class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button type="submit" class="btn btn-info"><i class="fa fa-eye"></i>ver</button>    
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                
                                 <div class="modal fade" id="modal-lg">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -36,6 +56,7 @@
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
+                                                                                        
                                             </div>
                                             <div class="modal-body">
                                                 <form class="form-horizontal" method="post" action="<?=base_url()?>Valorados/crear">
@@ -163,8 +184,11 @@
                             ?>
                             <table id="" class="table table-bordered">
                                 <thead>
-                                <tr>
-                                    <th colspan="8" class="text-center">RECAUDACION VALORES <?= $dia[(int)date('N')]?> <?=date('d/m/Y')?></th>
+                                <tr><?php 
+                                $date=date_create($fecha);
+                                
+                                 ?>
+                                    <th colspan="8" class="text-center">RECAUDACION VALORES <?= $dia[(int)date_format($date,"N")]?> <?=date_format($date,"d/m/Y")?></th>
                                 </tr>
                                 <tr>
                                     <!-- <th>#</th> -->
@@ -183,14 +207,14 @@
                                     <?php
                                     $tipoval=$this->db->query("SELECT * FROM porton GROUP BY tipo DESC ");
                                     $totalrec=0;
-                                    foreach ($tipoval->result() as $row)
+                                    foreach ($tipoval->result() as $row0)
                                     {
                                         echo "
                                             <tr>
-                                                <th colspan='8' class='text-center'>$row->tipo</th>
+                                                <th colspan='8' class='text-center'>$row0->tipo</th>
                                             </tr>";
                                         $tparcial=0;
-                                        $query=$this->db->query("SELECT * FROM `porton` WHERE id IN (SELECT porton_id FROM `historial` h WHERE date(h.fecha)=date(now()) AND tipo='$row->tipo' GROUP BY porton_id)");
+                                        $query=$this->db->query("SELECT * FROM `porton` WHERE id IN (SELECT porton_id FROM `historial` h WHERE date(h.fechacreacion)=date('$fecha') AND tipo='$row0->tipo' GROUP BY porton_id)");
                                         foreach ($query->result() as $row)
                                         {
                                             echo "
@@ -203,7 +227,7 @@
                                                 <th></th>
                                                 <th></th>
                                             </tr>";
-                                            $query2=$this->db->query("SELECT h.id, h.detalle, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal, p.nombre FROM historial h INNER JOIN personal p ON p.id=h.persona_id WHERE porton_id='$row->id' AND date(h.fecha)=date(now())");
+                                            $query2=$this->db->query("SELECT h.id, h.detalle, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal, p.nombre FROM historial h INNER JOIN personal p ON p.id=h.persona_id WHERE porton_id='$row->id' AND date(h.fechacreacion)=date('$fecha')");
                                             $s=0;
                                             foreach ($query2->result() as $row2){
                                                 echo "
@@ -242,10 +266,11 @@
                                     }
                                     echo "
                                             <tr>
-                                                <th colspan='6' class='text-center'>TOTAL RECAUADO ".$dia[(int)date('N')]." ".date('d/m/Y')."</th>
+                                                <th colspan='6' class='text-center'>TOTAL RECAUADO ".$dia[(int)date_format($date,"N")]." ".date_format($date,"d/m/Y")."</th>
                                                 <th>".number_format($totalrec, 2)."</th>
                                                 <th></th>
                                             </tr>";
+
 //                                    $query=$this->db->query("SELECT por.nombre AS nomporton, h.detalle, p.nombre, h.ticketinicio, h.ticketfin, h.cantidad, h.precio, h.subtotal FROM porton por, historial h, personal p WHERE por.id=h.porton_id AND p.id=h.persona_id");
 //    //                                $cont=0;
 //                                    foreach ($query->result() as $row)
