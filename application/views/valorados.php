@@ -79,7 +79,7 @@
                                                         <div class="form-group row">
                                                             <label for="nombrep" class="col-sm-2 col-form-label">Persona</label>
                                                             <div class="col-sm-10" class="form-control">
-                                                                <select class="form-control" id="nombrep" name="nombrep">
+                                                                <select class="form-control" id="nombrep" name="nombrep" required="">
                                                                     <option value="0">Seleccionar personal</option>
                                                                     <?php
                                                                         $datos=$this->db->query("SELECT id, nombre FROM personal");
@@ -133,6 +133,9 @@
                                                               var cant=0;
                                                               if (tfin!=tinicio) {
                                                                 cant=tfin-(tinicio-1);
+                                                              }
+                                                              if (tfin==tinicio) {
+                                                                cant=1;
                                                               }
                                                               var cad="<label for='cantidad' class='col-sm-2 col-form-label'>Cantidad ticket</label><div class='col-sm-10'><input type='text' class='form-control' id='cantidad' name='cantidad' value='";
                                                               var cad2="' required></div>";
