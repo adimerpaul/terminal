@@ -139,12 +139,31 @@ class Valorados extends CI_Controller {
         $subt=$query->row();
         // var_dump($subt->subtotal);
         // exit;
-        $time=strtotime($subt->fechacreacion);
-        $mes=date("m",$time);
-        $anio=date("Y",$time);
-        $this->db->query("UPDATE  hpagos SET monto=monto-$subt->subtotal WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
+        //$time=strtotime($subt->fechacreacion);
+        //$mes=date("m",$time);
+        //$anio=date("Y",$time);
+        //$this->db->query("UPDATE  hpagos SET monto=monto-$subt->subtotal WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
         
         $this->db->query("DELETE FROM historial WHERE id=$id");
+
+         $count=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$subt->fechacreacion'")->num_rows();
+        if ($count==0){
+            $actual = strtotime($fechacreacion);
+            $f2 = date("Y-m-d", strtotime("-1 day", $actual));
+            $query=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$f2'");
+            $count=$query->num_rows();
+            if ($count==0){
+                $m=0;
+            }else{
+                $row=$query->row();
+                $m=$row->monto;
+            }
+            $this->db->query("INSERT INTO dpagos SET dia='$subt->fechacreacion' , monto=$subt->subtotal+$m");
+        }else{
+            $this->db->query("UPDATE  dpagos SET monto=monto-$subt->subtotal WHERE dia='$subt->fechacreacion'");
+        }
+
         header('Location: '.base_url().'Valorados/index/'.date('Y-m-d'));
+        //header('Location: '.base_url().'Valorados/index/'.date('Y-m-d'));
     }
 }

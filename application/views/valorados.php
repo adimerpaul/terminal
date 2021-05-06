@@ -65,8 +65,8 @@
                                                         <div class="form-group row">
                                                             <label for="porton" class="col-sm-2 col-form-label">Porton</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control" name="porton" id="porton" required="" >
-                                                                    <option value="0">Seleccionar Porton</option>
+                                                                <select class="form-control" name="porton" id="porton" required >
+                                                                    <option value="">Seleccionar Porton</option>
                                                                         <?php
                                                                             $datos=$this->db->query("SELECT id, nombre,tipo FROM porton");
                                                                             foreach ($datos->result() as $fila ) {
@@ -79,8 +79,8 @@
                                                         <div class="form-group row">
                                                             <label for="nombrep" class="col-sm-2 col-form-label">Persona</label>
                                                             <div class="col-sm-10" class="form-control">
-                                                                <select class="form-control" id="nombrep" name="nombrep" required="">
-                                                                    <option value="0">Seleccionar personal</option>
+                                                                <select class="form-control" id="nombrep" name="nombrep" required>
+                                                                    <option value="">Seleccionar personal</option>
                                                                     <?php
                                                                         $datos=$this->db->query("SELECT id, nombre FROM personal");
                                                                         foreach ($datos->result() as $fila ) {
