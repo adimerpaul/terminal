@@ -173,7 +173,7 @@ class Cobro extends CI_Controller {
 //        json_decode( $query->result());
         echo json_encode( $query->result_array());
     }
-    public function consulta(){
+    public function consulta($ambiente_id=""){
         $ambiente_id=$this->input->post('id');
 //        $rubro='OFICINAS DE TRANSPORTE';
         $query=$this->db->query("SELECT *
@@ -184,5 +184,19 @@ class Cobro extends CI_Controller {
 //        exit;
 //        json_decode( $query->result());
         echo json_encode( $query->result_array());
+    }
+    public function borr($dat){
+        if ($this->session->name && ($this->session->tipo=='ADMINISTRADOR')){
+            $comp=preg_split("/k/", $dat);
+            $monto=$comp[0];
+            $id=$comp[1];
+            $fechapago=$comp[2];
+            $this->db->query("DELETE FROM pagos WHERE id='$id' ");
+            $this->db->query("UPDATE  dpagos SET monto=monto-$monto WHERE dia='$fechapago'");
+            header('Location: '.base_url().'Cobro');
+        }
+        else{
+            header('Location: '.base_url());
+        }
     }
 }

@@ -495,7 +495,7 @@
                             '<td>'+r.factura+'</td>'+
                             '<td>'+r.periodo+'</td>'+
                             '<td>'+r.anio+'</td>'+
-                            '<td></td>'+
+                            '<td><a type="button" onclick="borrar(event)" href="<?=base_url()?>Gastos/borr/'+r.monto+'k'+r.id+'k'+r.fechapago+'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>'+
                             '</tr>';
                     })
                     $('#contenido').html(d);
