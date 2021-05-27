@@ -87,6 +87,24 @@ class Gastos extends CI_Controller {
         }else{
             $this->db->query("UPDATE  hpagos SET monto=monto-$monto WHERE mes='".(int)$mes."' AND anio='".(int)$anio."' ");
         }
+
+
+        $count=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$fechapago'")->num_rows();
+        if ($count==0){
+            $actual = strtotime($fechapago);
+            $f2 = date("Y-m-d", strtotime("-1 day", $actual));
+            $query=$this->db->query("SELECT * FROM `dpagos` WHERE dia='$f2'");
+            $count=$query->num_rows();
+            if ($count==0){
+                $row->monto=0;
+            }else{
+                $row=$query->row();
+            }
+            $this->db->query("INSERT INTO dpagos SET dia='$fechapago' , monto=$monto-$row->monto");
+        }else{
+            $this->db->query("UPDATE  dpagos SET monto=monto-$monto WHERE dia='$fechapago'");
+        }
+
         // $query = $this->db->query("SELECT * FROM pagos WHERE ambiente_id='$ambiente_id' AND mes='$mes' AND anio='$anio'");
         // if ($query->num_rows()>=1){
         //     echo "Ya se realizo el pago";
@@ -158,14 +176,11 @@ class Gastos extends CI_Controller {
 //        json_decode( $query->result());
         echo json_encode( $query->result_array());
     }
-    public function borr($dat){
+    public function borr($monto,$id,$fechapago){
         if ($this->session->name && ($this->session->tipo=='ADMINISTRADOR')){
-            $comp=preg_split("/k/", $dat);
-            $monto=$comp[0];
-            $id=$comp[1];
-            $fechapago=$comp[2];
-            // $this->db->query("DELETE FROM pagos WHERE id='$id' ");
-            // $this->db->query("UPDATE  dpagos SET monto=monto-$monto WHERE dia='$fechapago'");
+
+            $this->db->query("DELETE FROM pagos WHERE id='$id' ");
+            $this->db->query("UPDATE  dpagos SET monto=monto+$monto WHERE dia='$fechapago'");
             header('Location: '.base_url().'Gastos');
         }
         else{

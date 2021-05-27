@@ -92,6 +92,11 @@ class Ambiente extends CI_Controller {
         ");
         header('Location: '.base_url().'Ambiente');
     }
+    public function historial($id){
+        $query=$this->db->query("SELECT * FROM pagos WHERE id=$id ");
+        echo json_encode($query->result_array());
+    }
+
     // public function buquedacliente(){
     //     $this->db->from('paciente');
     //     $this->db->or_like('nombre',$bus);   

@@ -206,6 +206,10 @@
                                     }
                                     if ($this->session->tipo=='ADMINISTRADOR'){
                                         $be="<div class='btn btn-group'>
+                                                <button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#exampleModal3'
+                                                    data-id='$row->id'
+                                                    data-nombre='$row->nombre'
+                                                ><i class='fa fa-list'></i></button>
                                                 <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
                                                     data-rubro='$row->rubro'
                                                     data-nombre='$row->nombre'
@@ -217,7 +221,9 @@
                                                     data-fechainit='$row->fechainit'
                                                     data-fechalim='$row->fechalim'
                                                     data-id='$row->id'
-                                                ><i class='fa fa-edit'></i></button><a type='button' onclick='borrar(event)' href='".base_url()."Ambiente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
+                                                ><i class='fa fa-edit'></i></button>
+                                                
+                                                <a type='button' onclick='borrar(event)' href='".base_url()."Ambiente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
                                             </div>";
                                     }else{
                                         $be="";
@@ -418,6 +424,44 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-warning">
+                                            <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-edit"></i> Fecha limite contrato</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-horizontal" method="post" action="">
+                                                <div class="card-body">
+                                                    <table class="table">
+                                                        <thead class="bg-black">
+                                                            <tr>
+                                                                <th>Factura</th>
+                                                                <th>Periodo</th>
+                                                                <th>Fecha pago</th>
+                                                                <th>Monto</th>
+                                                                <th>Detalle</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="historial">
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- /.card-body -->
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash"></i> Cerrar</button>
+                                                    <!-- <button type="submit" class="btn btn-warning">  Modificar <i class="fa fa-edit"></i></button> -->
+                                                </div>
+                                                <!-- /.card-footer -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -472,6 +516,32 @@
             var button = $(event.relatedTarget) // Button that triggered the modal
             $('#fechainitv').val(button.data('fechainitv'));
             $('#fechalimv').val(button.data('fechalimv'));
+        })
+
+        $('#exampleModal3').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            let id=button.data('id');
+            // $('#fechalimv').val(button.data('fechalimv'));
+            $('#historial').html('');
+            $.ajax({
+                url:'Ambiente/historial/'+id,
+                success:function (e){
+                    let d=JSON.parse(e);
+                    let t='';
+                    d.forEach(r=>{
+                        t+='<tr>' +
+                            '<td>'+r.factura+'</td>' +
+                            '<td>'+r.periodo+'</td>' +
+                            '<td>'+r.fechapago+'</td>' +
+                            '<td>'+r.monto+'</td>' +
+                            '<td>'+r.detalle+'</td>' +
+                            '</tr>';
+                    });
+                    $('#historial').html(t);
+                }
+            })
+            var modal = $(this)
+            modal.find('.modal-title').text('Nombre ' + button.data('nombre'))
         })
 
         $("#example1").DataTable({

@@ -225,7 +225,7 @@
                                         <td></td>
                                         <td><input type="date" class="form-control" placeholder="Fecha de pago" id="fechapago" name="fechapago"  value="<?=date('Y-m-d'); ?>" required></td>
                                         <td>
-                                            <input type="number" class="form-control" placeholder="Bs" id="monto" required>
+                                            <input type="number" step="0.01" class="form-control" placeholder="Bs" id="monto" required>
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" placeholder="Numero F-R" id="factura" required>
@@ -472,6 +472,10 @@
             // e.preventDefault();
             return false;
         });
+        $('#contenido').on('click','.borrar',function (e){
+            if (!confirm('Seguro de elminar?'))
+            e.preventDefault();
+        });
         function actualizar(){
             $.ajax({
                 url:'Cobro/consulta',
@@ -495,7 +499,7 @@
                             '<td>'+r.factura+'</td>'+
                             '<td>'+r.periodo+'</td>'+
                             '<td>'+r.anio+'</td>'+
-                            '<td><a type="button" onclick="borrar(event)" href="<?=base_url()?>Cobro/borr/'+r.monto+'k'+r.id+'k'+r.fechapago+'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>'+
+                            '<td><a type="button" href="<?=base_url()?>Cobro/borr/'+r.monto+'k'+r.id+'k'+r.fechapago+'" class="borrar btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>'+
                             '</tr>';
                     })
                     $('#contenido').html(d);
