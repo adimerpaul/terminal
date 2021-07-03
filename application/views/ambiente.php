@@ -129,6 +129,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
+                                                            <label for="ncontrato" class="col-sm-2 col-form-label">Nro Contrato</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="ncontrato" name="ncontrato" placeholder="Nro Contrato" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
                                                             <label for="fechainit" class="col-sm-2 col-form-label">Fecha inicio</label>
                                                             <div class="col-sm-10">
                                                                 <input type="date" class="form-control" id="fechainit" name="fechainit" placeholder="Fecha inicio de contrato" required>
@@ -181,6 +187,7 @@
                                     <th>Detalle</th>
                                     <th>BG/AL</th>
                                     <th>Canon</th>
+                                    <th>Nro Contrato</th>
                                     <th>Tipo</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -213,6 +220,7 @@
                                                     data-detalle='$row->detalle'
                                                     data-mesanine='$row->mesanine'
                                                     data-canon='$row->canon'
+                                                    data-ncontrato='$row->ncontrato'
                                                     data-tipo='$row->tipo'
                                                     data-fechainit='$row->fechainit'
                                                     data-fechalim='$row->fechalim'
@@ -246,6 +254,7 @@
                                         <td>$row->detalle</td>
                                         <td>$me</td>
                                         <td>$row->canon</td>
+                                        <td>$row->ncontrato</td>
                                         <td>$lim</td>  
                                         <td>
                                             $be
@@ -263,6 +272,7 @@
                                     <th>Detalle</th>
                                     <th>BG/AL</th>
                                     <th>Canon</th>
+                                    <th>Nro Contrato</th>
                                     <th>Tipo</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -338,6 +348,12 @@
                                                             <input type="text" class="form-control" id="canon2" name="canon" placeholder="Canon de alquiler" required>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                            <label for="ncontrato2" class="col-sm-2 col-form-label">Nro Contrato</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="ncontrato2" name="ncontrato" placeholder="Nro Contrato" required>
+                                                            </div>
+                                                        </div>
                                                     <div class="form-group row">
                                                         <label for="tipo2" class="col-sm-2 col-form-label">Tipo</label>
                                                         <div class="col-sm-10">
@@ -445,6 +461,7 @@
             $('#nit2').val(button.data('nit'));
             $('#detalle2').val(button.data('detalle'));
             $('#canon2').val(button.data('canon'));
+            $('#ncontrato2').val(button.data('ncontrato'));
             $('#tipo2').val(button.data('tipo'));
             $('#fechainit2').val(button.data('fechainit'));
             $('#fechalim2').val(button.data('fechalim'));

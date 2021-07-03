@@ -27,7 +27,7 @@ class Cliente extends CI_Controller {
         $nit=$this->input->post('nit');
         $replegal=$this->input->post('replegal');
         $celular=$this->input->post('celular');
-        $ncontrato=$this->input->post('ncontrato');
+        // $ncontrato=$this->input->post('ncontrato');
         $direccion=$this->input->post('direccion');
         $this->db->query("INSERT INTO clientes SET 
                                                 ci='$ci',
@@ -37,7 +37,7 @@ class Cliente extends CI_Controller {
                                                 nit='$nit',
                                                 replegal='$replegal',
                                                 celular='$celular',
-                                                ncontrato='$ncontrato',
+                                                -- ncontrato='$ncontrato',
                                                 direccion='$direccion'
                                                 ");
         header('Location: '.base_url().'Cliente');
@@ -56,7 +56,7 @@ class Cliente extends CI_Controller {
         $nit=$this->input->post('nit');
         $replegal=$this->input->post('replegal');
         $celular=$this->input->post('celular');
-        $ncontrato=$this->input->post('ncontrato');
+        // $ncontrato=$this->input->post('ncontrato');
         $direccion=$this->input->post('direccion');
         $this->db->query("UPDATE clientes SET
                                     ci='$ci',
@@ -66,7 +66,7 @@ class Cliente extends CI_Controller {
                                     nit='$nit',
                                     replegal='$replegal',
                                     celular='$celular',
-                                    ncontrato='$ncontrato',
+                                    -- ncontrato='$ncontrato',
                                     direccion='$direccion'
                                     WHERE id=$id
                                     ");

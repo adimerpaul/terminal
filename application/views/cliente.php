@@ -90,12 +90,12 @@
                                                                 <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular" required>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
+                                                        <!-- <div class="form-group row">
                                                             <label for="ncontrato" class="col-sm-2 col-form-label">Nro Contrato</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="ncontrato" name="ncontrato" placeholder="Nro Contrato" required>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group row">
                                                             <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
                                                             <div class="col-sm-10">
@@ -159,7 +159,7 @@
                                                     data-nit='$row->nit'
                                                     data-replegal='$row->replegal'
                                                     data-celular='$row->celular'
-                                                    data-ncontrato='$row->ncontrato'
+                                                    // data-ncontrato='$row->ncontrato'
                                                     data-direccion='$row->direccion'
                                                 ><i class='fa fa-edit'></i></button>
                                                 <a type='button' onclick='borrar(event)' href='".base_url()."Cliente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
@@ -258,12 +258,12 @@
                                                                 <input type="text" class="form-control" id="celular2" name="celular" placeholder="Celular" required>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
+                                                        <!-- <div class="form-group row">
                                                             <label for="ncontrato2" class="col-sm-2 col-form-label">Nro Contrato</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="ncontrato2" name="ncontrato" placeholder="Nro Contrato" required>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group row">
                                                             <label for="direccion2" class="col-sm-2 col-form-label">Direccion</label>
                                                             <div class="col-sm-10">
@@ -309,7 +309,7 @@
             $('#nit2').val(button.data('nit'));
             $('#replegal2').val(button.data('replegal'));
             $('#celular2').val(button.data('celular'));
-            $('#ncontrato2').val(button.data('ncontrato'));
+            // $('#ncontrato2').val(button.data('ncontrato'));
             $('#direccion2').val(button.data('direccion'));
             $('#id2').val(button.data('id'));
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).

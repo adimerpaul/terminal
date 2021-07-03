@@ -28,6 +28,7 @@ class Ambiente extends CI_Controller {
         $nit=$row->nit;
         $detalle=$this->input->post('detalle');
         $canon=$this->input->post('canon');
+        $ncontrato=$this->input->post('ncontrato');
         $mesanine=$this->input->post('mesanine');
         $tipo=$this->input->post('tipo');
         $fechainit=$this->input->post('fechainit');
@@ -41,6 +42,7 @@ class Ambiente extends CI_Controller {
                             nit='$nit',
                             detalle='$detalle',
                             canon='$canon',
+                            ncontrato='$ncontrato',
                             mesanine='$mesanine',
                             tipo='$tipo',
                             fechainit='$fechainit',
@@ -63,6 +65,7 @@ class Ambiente extends CI_Controller {
         // exit;
         $detalle=$this->input->post('detalle');
         $canon=$this->input->post('canon');
+        $ncontrato=$this->input->post('ncontrato');
         $mesanine=$this->input->post('mesanine');
         $tipo=$this->input->post('tipo');
         $fechainit=$this->input->post('fechainit');
@@ -73,12 +76,14 @@ class Ambiente extends CI_Controller {
                     nit='$nit',
                     detalle='$detalle',
                     canon='$canon',
+                    ncontrato='$ncontrato',
                     mesanine='$mesanine',
                     tipo='$tipo',
                     fechainit='$fechainit',
                     fechalim='$fechalim'
                     WHERE id=$id
                     ");
+
         header('Location: '.base_url().'Ambiente');
     }
     public function borrar($id)
