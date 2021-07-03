@@ -20,6 +20,7 @@ $mes1=$this->input->post('mes1');
 $anio1=$this->input->post('anio1');
 $mes2=$this->input->post('mes2');
 $anio2=$this->input->post('anio2');
+$rubro=$this->input->post('rubro');
 $dias=['DOMINGO','LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO','','','','','',''];
 $meses=['','ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC',''];
 //exit;
@@ -48,7 +49,10 @@ $end = strtotime("$anio2-$mes2-01");
     </thead>
     <tbody>
     <?php
-    $query=$this->db->query("SELECT * FROM ambientes ORDER  BY rubro");
+    if ($rubro=='TODOS')
+        $query=$this->db->query("SELECT * FROM ambientes  ORDER  BY rubro");
+    else
+        $query=$this->db->query("SELECT * FROM ambientes WHERE rubro='$rubro' ORDER  BY rubro");
     $c=0;
     $s=0;
 

@@ -120,6 +120,23 @@
                                     <form action="<?=base_url()?>Reporte/deuda" method="post" target="_blank">
                                         <div class="row">
                                             <div class="col-sm-2">
+                                                <label for="rubro">Rubro</label>
+                                                <select class="form-control" name="rubro" required="" >
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="TODOS">TODOS</option>
+                                                    <option value="OFICINAS DE TRANSPORTE">OFICINAS DE TRANSPORTE</option>
+                                                    <option value="BODEGAS Y ALMACENES">BODEGAS Y ALMACENES</option>
+                                                    <option value="KIOSKOS">KIOSKOS</option>
+                                                    <option value="PLANTA BAJA">PLANTA BAJA</option>
+                                                    <option value="PLANTA ALTA COMERCIAL">PLANTA ALTA COMERCIAL</option>
+                                                    <option value="CAJEROS AUTOMATICOS">CAJEROS AUTOMATICOS</option>
+                                                    <option value="ESTIVADORES">ESTIVADORES</option>
+                                                    <option value="COMERCIANTES">COMERCIANTES</option>
+                                                    <option value="PERNOCTE Y PARQUEO">PERNOCTE Y PARQUEO</option>
+                                                    <option value="ENERGIA ELECTRICA">ENERGIA ELECTRICA</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2">
                                                 <label for="mes1">Mes Inicio</label>
                                                 <select name="mes1" id="mes1" class="form-control" required>
                                                     <option value="">Seleccionar..</option>
@@ -163,7 +180,7 @@
                                                 <label for="anio2">Año Fin</label>
                                                 <input type="number" class="form-control" name="anio2" id="anio2" placeholder="Año" value="<?=date('Y')?>" required>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-2">
                                                 <label for="">Imprimir</label>
                                                 <button class="btn btn-info btn-block">Imprimir Deudas <i class="fa fa-print"></i></button>
                                             </div>
