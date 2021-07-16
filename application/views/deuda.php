@@ -50,15 +50,14 @@ $end = strtotime("$anio2-$mes2-01");
     <tbody>
     <?php
     if ($rubro=='TODOS')
-        $query=$this->db->query("SELECT * FROM ambientes  ORDER  BY rubro");
+        $query=$this->db->query("SELECT * FROM ambientes WHERE estado=1 ORDER  BY rubro ");
     else
-        $query=$this->db->query("SELECT * FROM ambientes WHERE rubro='$rubro' ORDER  BY rubro");
+        $query=$this->db->query("SELECT * FROM ambientes WHERE estado=1 AND rubro='$rubro' ORDER  BY rubro");
     $c=0;
     $s=0;
 
     foreach ($query->result() as $row){
         $c++;
-//        $s+=$row->monto;
         echo "<tr>
                         <td>$c</td>
                         <td>$row->rubro</td>
@@ -69,7 +68,6 @@ $end = strtotime("$anio2-$mes2-01");
         while($month <= $end)
         {
             $query2=$this->db->query("SELECT * FROM pagos WHERE ambiente_id='$row->id' AND mes='".(int)date('m', $month)."' AND anio='".date('Y', $month)."'");
-//            echo "<td>". $meses[ (int)date('m', $month)]."-".date('Y', $month)."</td>"; ;
             if ($query2->num_rows()!=0){
                 echo "<td>". $query2->row()->factura."</td>";
             }else{

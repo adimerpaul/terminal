@@ -97,6 +97,17 @@ class Ambiente extends CI_Controller {
         ");
         header('Location: '.base_url().'Ambiente');
     }
+    public function baja($id)
+    {
+        if (!$this->session->name){
+            header('Location: '.base_url());
+        }
+        $this->db->query("UPDATE ambientes SET
+        estado='0'
+        WHERE id=$id
+        ");
+        header('Location: '.base_url().'Ambiente');
+    }
     public function historial($id){
         $query=$this->db->query("SELECT * FROM pagos WHERE id=$id ");
         echo json_encode($query->result_array());
@@ -104,7 +115,7 @@ class Ambiente extends CI_Controller {
 
     // public function buquedacliente(){
     //     $this->db->from('paciente');
-    //     $this->db->or_like('nombre',$bus);   
+    //     $this->db->or_like('nombre',$bus);
     //     $this->db->or_like('apellido',$bus);
     //     $this->db->or_like('ci',$bus);
     //     $query=$this->db->get();

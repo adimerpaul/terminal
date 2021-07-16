@@ -66,13 +66,13 @@
                                                             <div class="col-sm-10" class="form-control">
                                                                 <select class="form-control" id="cliente" name="cliente">
                                                                     <option value="0">Seleccionar cliente</option>
-                                                                    <?php 
+                                                                    <?php
                                                                         $datos=$this->db->query("SELECT id, razon, nombres, nit FROM clientes WHERE estado=1");
                                                                         foreach ($datos->result() as $fila ) {
                                                                             echo '<option value="'.$fila->id.'" id="'.$fila->razon.'">'.$fila->razon.'</option>';
                                                                         }
                                                                     ?>
-                            
+
                                                                 </select>
                                                                 <!-- <select class="form-control select2" id="btn-check"style="width: 100%;">
                                                                     <option selected="selected">Alabama</option>
@@ -139,13 +139,13 @@
                                                             <div class="col-sm-10">
                                                                 <input type="date" class="form-control" id="fechainit" name="fechainit" placeholder="Fecha inicio de contrato" required>
                                                             </div>
-                                                        </div>     
+                                                        </div>
                                                         <div class="form-group row">
                                                             <label for="fechalim" class="col-sm-2 col-form-label">Fecha Limite</label>
                                                             <div class="col-sm-10">
                                                                 <input type="date" class="form-control" id="fechalim" name="fechalim" placeholder="Fecha limite de contrato">
                                                             </div>
-                                                        </div>                                                    
+                                                        </div>
                                                         <div class="form-group row">
                                                             <label for="mesanine" class="col-sm-2 col-form-label">Bodega/Almacen</label>
                                                             <div class="col-sm-10">
@@ -199,6 +199,11 @@
                                             e.preventDefault();
                                         }
                                     }
+                                    function baja(e){
+                                        if (!confirm('Seguro de dar de baja?')){
+                                            e.preventDefault();
+                                        }
+                                    }
                                 </script>
                                 <?php
                                 $query=$this->db->query("SELECT * FROM ambientes WHERE estado=1");
@@ -216,7 +221,7 @@
                                                 <button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#exampleModal3'
                                                     data-id='$row->id'
                                                     data-nombre='$row->nombre'
-                                                ><i class='fa fa-list'></i></button>
+                                                ><i class='fa fa-list'></i> Listar</button>
                                                 <button type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#exampleModal' 
                                                     data-rubro='$row->rubro'
                                                     data-nombre='$row->nombre'
@@ -229,15 +234,14 @@
                                                     data-fechainit='$row->fechainit'
                                                     data-fechalim='$row->fechalim'
                                                     data-id='$row->id'
-                                                ><i class='fa fa-edit'></i></button>
-                                                
-                                                <a type='button' onclick='borrar(event)' href='".base_url()."Ambiente/borrar/$row->id' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>
+                                                ><i class='fa fa-edit'></i>Editar</button>                                             
+                                                <a type='button' onclick='baja(event)' href='".base_url()."Ambiente/baja/$row->id' class='btn btn-secondary btn-sm'><i class='fa fa-cog'></i>Baja</a>
                                             </div>";
                                     }else{
                                         $be="";
                                     }
                                     if ($row->tipo=='LIMITE'){
-                                        
+
                                         $lim="<button type='button' class='btn btn-warning btn-sm' data-toggle='modal'  data-target='#exampleModal2'
                                                     data-fechainitv='$row->fechainit'
                                                     data-fechalimv='$row->fechalim'
@@ -331,7 +335,7 @@
                                                             <td>
                                                               <button type="button" class="btn btn-success btn-check" value="<?php echo $datacliente; ?>"><span class="fa fa-check">Agregar</span></button>
 
-                                                              
+
                                                               </td>
                                                             </tr>
                                                         <?php }?> -->
@@ -375,7 +379,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="date" class="form-control" id="fechainit2" name="fechainit" placeholder="Fecha inicio de contrato" required>
                                                         </div>
-                                                    </div>  
+                                                    </div>
 
                                                     <div class="form-group row">
                                                         <label for="fechalim2" class="col-sm-2 col-form-label">Fecha Limite</label>
@@ -421,7 +425,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="date" class="form-control" id="fechainitv" name="fechainit" placeholder="Fecha inicio de contrato" required disabled>
                                                         </div>
-                                                    </div>     
+                                                    </div>
                                                     <div class="form-group row">
                                                         <label for="fechalimv" class="col-sm-2 col-form-label">Fecha Limite</label>
                                                         <div class="col-sm-10">
@@ -579,11 +583,11 @@
         //     //$("#ModalBuscarPaciente").modal("hide");
         //     // $(this).closest('.modal').modal('toggle');
         //     //$("#ModalBuscarPaciente").hide();
-            
+
 
         // })
     }
-    
+
         // $("#nombre2").keyup(function(){
         //     $('#tbpaciente tbody').html('');
         //     var tcliente =$("#nombre2").val();
@@ -605,14 +609,14 @@
         //                     "<td>"+
         //                       "<button type='button' class='btn btn-success btn-check' value='"+item.id+"*"+item.razon+"*"+item.nit+"'><span class='fa fa-check'>Agregar</span></button>"+
 
-                              
+
         //                     "</td>"+
         //                 "</tr>";
-        //             });                 
+        //             });
         //             // alert(salida);
         //             $('#tbpaciente tbody').append(salida);
         //         });
-        //     })    
+        //     })
 
-            
+
 </script>
